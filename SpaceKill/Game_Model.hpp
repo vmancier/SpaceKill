@@ -4,6 +4,7 @@
 class Game_Model
 {
 private:
+
 public:
 
 };

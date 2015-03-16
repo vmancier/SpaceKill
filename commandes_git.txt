@@ -5,3 +5,7 @@ git commit -m 'Premier commit avec fichier contributeurs'
 git push -u origin master
 
 git pull
+
+//////
+Faire un pull avant tout commit/push
+//////

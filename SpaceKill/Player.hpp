@@ -1,0 +1,6 @@
+#ifndef PLAYER_HPP_INCLUDED
+#define PLAYER_HPP_INCLUDED
+
+
+
+#endif // PLAYER_HPP_INCLUDED

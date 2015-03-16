@@ -31,7 +31,10 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-		<Unit filename="Vaisseau.hpp" />
+		<Unit filename="Game_Model.cpp" />
+		<Unit filename="Game_Model.hpp" />
+		<Unit filename="Game_View.cpp" />
+		<Unit filename="Game_View.hpp" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />

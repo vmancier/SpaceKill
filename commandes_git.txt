@@ -1,0 +1,7 @@
+git init
+git remote add origin https://theeli0tt@bitbucket.org/oddfuture/spacekill.git
+git add *
+git commit -m 'Premier commit avec fichier contributeurs'
+git push -u origin master
+
+git pull

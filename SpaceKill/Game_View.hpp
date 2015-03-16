@@ -3,7 +3,9 @@
 
 class Game_View
 {
+
 private:
+
 public:
 
 };

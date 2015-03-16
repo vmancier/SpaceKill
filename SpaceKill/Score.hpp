@@ -1,0 +1,6 @@
+#ifndef SCORE_HPP_INCLUDED
+#define SCORE_HPP_INCLUDED
+
+
+
+#endif // SCORE_HPP_INCLUDED

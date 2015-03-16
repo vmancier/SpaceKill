@@ -31,10 +31,15 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="Enemy.hpp" />
 		<Unit filename="Game_Model.cpp" />
 		<Unit filename="Game_Model.hpp" />
 		<Unit filename="Game_View.cpp" />
 		<Unit filename="Game_View.hpp" />
+		<Unit filename="Player.hpp" />
+		<Unit filename="Score.hpp" />
+		<Unit filename="Ship.hpp" />
+		<Unit filename="Shot.hpp" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />

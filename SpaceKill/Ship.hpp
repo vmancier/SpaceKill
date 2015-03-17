@@ -10,7 +10,7 @@ private:
     int m_style;
     Shot m_shot;
     int m_damages;
-    float m_percentageLife; // nom approximatif,  au départ :niveauVie
+    float m_health;
     bool m_alive;
     int m_x;
     int m_y;

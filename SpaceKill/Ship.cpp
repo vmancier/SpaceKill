@@ -10,13 +10,13 @@ Ship::Ship()
 
 void Ship::loseLife(int damages)
 {
-    if (m_percentageLife > damages)
+    if (m_health > damages)
     {
-        m_percentageLife -= damages;
+        m_health -= damages;
     }
-    else if (m_percentageLife == damages)
+    else if (m_health == damages)
     {
-        m_percentageLife =0;
+        m_health =0;
         m_life--;
     }
     else
@@ -55,9 +55,9 @@ bool Ship::getAlive()
     return m_alive;
 }
 
-float Ship::getPercentageLife()
+float Ship::getHealth()
 {
-    return m_percentageLife;
+    return m_health;
 }
 
 int Ship::getX()

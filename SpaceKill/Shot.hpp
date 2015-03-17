@@ -9,6 +9,8 @@ private:
     int m_style;
     bool m_collision;
 public:
+    Shot();
+    Shot(int style, float fireRate, float damageP);
     bool collision();
 };
 

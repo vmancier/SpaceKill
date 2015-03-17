@@ -1,13 +1,14 @@
 #ifndef ENEMY_HPP_INCLUDED
 #define ENEMY_HPP_INCLUDED
 
-class Enemy
+class Enemy : public Ship
 {
-
 private:
-    int m_vieE = 1;
+    int m_lifeE = 1;
     int m_value;
 public:
+    Enemy();
+    Enemy(int style, int life, int value);
     void moveForward();
 };
 

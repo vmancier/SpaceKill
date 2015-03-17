@@ -8,7 +8,7 @@ private:
     int m_lifeP = 3;
 public:
     Player();
-    Player(int style, int life, int value);
+    Player(int style);
     ~Player();
     void moveP();
 };

@@ -15,8 +15,16 @@ private:
     int m_x;
     int m_y;
 public:
+    Ship();
     void loseLife(int damages);
     void shoot();
     void die();
+    int getStyle();
+    int getLife();
+    int getDamages();
+    bool getAlive();
+    float getPercentageLife();
+    int getX();
+    int getY();
 };
 #endif // SHIP_HPP_INCLUDED

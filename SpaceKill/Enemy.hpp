@@ -1,7 +1,7 @@
 #ifndef ENEMY_HPP_INCLUDED
 #define ENEMY_HPP_INCLUDED
-
 #include "Ship.hpp"
+
 class Enemy : public Ship
 {
 private:

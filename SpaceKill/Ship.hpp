@@ -3,10 +3,12 @@
 
 #include "Shot.hpp"
 
+class Shot;
+
 class Ship
 {
 private:
-    virtual int m_life;
+    int m_life;
     int m_style;
     Shot m_shot;
     int m_damages;
@@ -23,7 +25,7 @@ public:
     int getLife();
     int getDamages();
     bool getAlive();
-    float getPercentageLife();
+    float getHealth();
     int getX();
     int getY();
 };

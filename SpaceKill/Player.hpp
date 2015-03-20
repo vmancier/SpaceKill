@@ -1,5 +1,6 @@
 #ifndef PLAYER_HPP_INCLUDED
 #define PLAYER_HPP_INCLUDED
+#include "Ship.hpp"
 
 class Player : public Ship
 {

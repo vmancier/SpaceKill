@@ -10,7 +10,7 @@ private:
     bool m_collision;
 public:
     Shot();
-    Shot(int style, float fireRate, float damageP);
+    Shot(int style);
     bool collision();
 };
 

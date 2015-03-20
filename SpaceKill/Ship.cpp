@@ -3,10 +3,10 @@
 
 using namespace std;
 
-Ship::Ship()
-{
+//Ship::Ship()
+//{
 
-}
+//}
 
 void Ship::loseLife(int damages)
 {
@@ -16,12 +16,14 @@ void Ship::loseLife(int damages)
     }
     else if (m_health == damages)
     {
-        m_health =0;
+        m_health =100;
         m_life--;
     }
     else
     {
-
+        m_life--;
+        int tmp = m_health-damages;
+        m_health=100-tmp;
     }
 }
 
@@ -47,7 +49,7 @@ int Ship::getLife()
 
 int Ship::getDamages()
 {
-    return getDamages;
+    return m_damages;
 }
 
 bool Ship::getAlive()
@@ -63,11 +65,6 @@ float Ship::getHealth()
 int Ship::getX()
 {
     return m_x;
-}
-
-int Ship::die()
-{
-
 }
 
 int Ship::getY()

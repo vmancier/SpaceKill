@@ -67,27 +67,5 @@ void Game_View::draw()
     _window->Display();
 }
 
-//=======================================
-// Traitement des evenements
-// Retourne false si un evenement de fin est reçu
-//=======================================
-bool Game_View::treatEvents()
-{
-    bool result = false;
-    if(_window->IsOpened())
-    {
-        result = true;
-        Event event;
-        while (_window->GetEvent(event))
-        {
-            if ((event.Type == Event::Closed) ||
-                    ((event.Type == Event::KeyPressed) && (event.Key.Code == sf::Key::Escape)))
-            {
-                _window->Close();
-                result = false;
-            }
-        }
-    }
-    return result;
-}
+
 */

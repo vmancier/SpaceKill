@@ -5,11 +5,10 @@
 class Enemy : public Ship
 {
 private:
-    int m_lifeE = 1;
     int m_value;
 public:
     Enemy();
-    Enemy(int style, int life, int value);
+    Enemy(int x, int y, int w, int h, float x_speed, float y_speed, int health, int damages, Shot shot, int style, int value);
     void moveForward();
 };
 

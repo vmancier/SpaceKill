@@ -16,8 +16,13 @@ private:
     bool m_alive;
     int m_x;
     int m_y;
+    int m_w;
+    int m_h;
+    float m_x_speed;
+    float m_y_speed;
 public:
     Ship();
+    Ship(int x, int y, int w, int h, float x_speed, float y_speed, int health, int damages, Shot m_shot, int m_style);
     void loseLife(int damages);
     void shoot();
     void die();

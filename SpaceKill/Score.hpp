@@ -8,7 +8,7 @@ private:
     int m_score;
 public:
     Score();    //constructeur par défaut
-    Score();    //constructeur
+
     ~Score();   //destructeur
     void scoreCalculation();
 };

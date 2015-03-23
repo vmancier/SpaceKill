@@ -8,11 +8,9 @@ const int VIEW_WIDTH = 800;
 const int VIEW_HEIGHT = 600;
 const int VIEW_BPP = 32;
 
-/*
-const int BALL_WIDTH = 20;
-const int BALL_HEIGHT = 20;
-const int BALL_X_SPEED = 1;
-const int BALL_Y_SPEED = 1;
-*/
+const int PLAYER_WIDTH = 20;
+const int PLAYER_HEIGHT = 40;
+const int PLAYER_X_SPEED = 2;
+const int PLAYER_Y_SPEED = 2;
 
 #endif // ENTITIES_HPP_INCLUDED

@@ -8,27 +8,23 @@ class Shot;
 class Ship
 {
 private:
-    int m_life;
-    int m_style;
-    Shot m_shot;
-    int m_damages;
-    float m_health;
-    bool m_alive;
     int m_x;
     int m_y;
     int m_w;
     int m_h;
     float m_x_speed;
     float m_y_speed;
+    float m_health;
+    Shot m_shot;
+    int m_life;
+    bool m_alive;
 public:
     Ship();
-    Ship(int x, int y, int w, int h, float x_speed, float y_speed, int health, int damages, Shot m_shot, int m_style);
+    Ship(int x, int y, int w, int h, float x_speed, float y_speed, int health, Shot m_shot);
     void loseLife(int damages);
     void shoot();
     void die();
-    int getStyle();
     int getLife();
-    int getDamages();
     bool getAlive();
     float getHealth();
     int getX();

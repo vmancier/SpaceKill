@@ -7,7 +7,7 @@ class Player : public Ship
 private:
     int m_scoreP;
 public:
-    Player(int x, int y, int w, int h, float x_speed, float y_speed, int health, int damages, Shot m_shot, int m_style);
+    Player(int x, int y, int w, int h, float x_speed, float y_speed, int health, Shot m_shot);
     Player();
     ~Player();
     void moveP();

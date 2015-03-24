@@ -22,3 +22,13 @@ Shot::Shot(int style)
         break;
     }
 }
+
+int Shot::getStyle()
+{
+    return m_style;
+}
+
+int Shot::getDamages()
+{
+    return m_damageP;
+}

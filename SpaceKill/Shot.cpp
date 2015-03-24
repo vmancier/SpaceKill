@@ -79,5 +79,13 @@ bool collision(Ship &s)
     return true;
     */
 }
+int Shot::getStyle()
+{
+    return m_style;
+}
 
+int Shot::getDamages()
+{
+    return m_damageP;
+}
 

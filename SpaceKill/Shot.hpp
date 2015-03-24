@@ -1,6 +1,8 @@
 #ifndef SHOT_HPP_INCLUDED
 #define SHOT_HPP_INCLUDED
 
+class Ship;
+
 class Shot
 {
 private:
@@ -11,7 +13,9 @@ private:
 public:
     Shot();
     Shot(int style);
-    bool collision();
+    void shotSettings(int style);
+    bool collision(Ship &s);
+
 };
 
 #endif // SHOT_HPP_INCLUDED

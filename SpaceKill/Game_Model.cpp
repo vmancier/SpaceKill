@@ -14,7 +14,8 @@ Game_Model::Game_Model(): _w(MODEL_WIDTH), _h(MODEL_HEIGHT)
 //=======================================
 Game_Model::Game_Model(int w, int h):  _w(w), _h(h)
 {
-    //m_player = new Player(w/2, 10, PLAYER_WIDTH, PLAYER_HEIGHT, PLAYER_X_SPEED, PLAYER_Y_SPEED);
+    m_player = new Player();
+    //m_player = new Player(w/2, 10, PLAYER_WIDTH, PLAYER_HEIGHT, PLAYER_X_SPEED, PLAYER_Y_SPEED,100,30,shot,style);
 }
 
 //=======================================
@@ -39,10 +40,9 @@ void Game_Model::getPlayerPos(int &x, int &y) const
 //=======================================
 void Game_Model::nextStep()
 {
-
     if(m_player != NULL)
     {
-        // Deplacement du joueur
+        //getPlayerPos();
 
     }
 }
@@ -50,7 +50,7 @@ void Game_Model::nextStep()
 bool Game_Model::Play()
 {
     bool result = false;
-    if(m_player->getLife())
+    if(m_player->getAlive())
     {
         result =true;
     }

@@ -15,5 +15,15 @@ Player::Player():Ship()
 
 void Player::moveP()
 {
-
+    int choice;
+    cout << "   1 : Gauche         ";
+    cout << "2 : Droite"<<endl;
+    cin >> choice;
+    switch (choice)
+    {
+    case 1:
+        break;
+    case 2:
+        break;
+    }
 }

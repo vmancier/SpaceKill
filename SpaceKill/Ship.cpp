@@ -58,9 +58,9 @@ void Ship::shoot()
 
 void Ship::die()
 {
-    if (m_alive =false)
+    if (m_life==0)
     {
-
+        m_alive =false;
     }
 }
 

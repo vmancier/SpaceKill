@@ -1,2 +1,4 @@
 SpaceKill.layout
 SpaceKill.depend
+*.o
+*.exe

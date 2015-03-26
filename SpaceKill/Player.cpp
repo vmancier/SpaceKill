@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Player.hpp"
+#include "Ship.hpp"
 
 using namespace std;
 
@@ -14,6 +15,7 @@ Player::Player():Ship()
 
 }
 
+
 void Player::moveP()
 {
     int choice;
@@ -23,8 +25,10 @@ void Player::moveP()
     switch (choice)
     {
     case 1:
+        setX(getX()-getX_speed());
         break;
     case 2:
+        setX(getX()+getX_speed());
         break;
     }
 }

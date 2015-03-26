@@ -68,6 +68,16 @@ float Ship::getHealth()
     return m_health;
 }
 
+void Ship::setX(int x)
+{
+    m_x = x;
+}
+
+void Ship::setY(int y)
+{
+    m_y = y;
+}
+
 int Ship::getX()
 {
     return m_x;
@@ -76,4 +86,14 @@ int Ship::getX()
 int Ship::getY()
 {
     return m_y;
+}
+
+int Ship::getX_speed()
+{
+    return m_x_speed;
+}
+
+int Ship::getY_speed()
+{
+    return m_y_speed;
 }

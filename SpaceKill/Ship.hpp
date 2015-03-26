@@ -27,7 +27,11 @@ public:
     int getLife();
     bool getAlive();
     float getHealth();
+    void setX(int x);
+    void setY(int y);
     int getX();
     int getY();
+    int getX_speed();
+    int getY_speed();
 };
 #endif // SHIP_HPP_INCLUDED

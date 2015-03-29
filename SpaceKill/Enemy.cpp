@@ -1,5 +1,9 @@
 #include <iostream>
 #include "Enemy.hpp"
+#include "Entities.hpp"
+
+#include "cstdlib"  //necessaire pour le rand() du x
+
 
 using namespace std;
 
@@ -17,4 +21,10 @@ Enemy::Enemy():Ship()
 int Enemy::getStyle()
 {
     return m_style;
+}
+
+void createEnemy()
+{
+    //generer un enemi grace au constructeur, en lui passant comme parametres un y fixe (le haut de l'ecran), et un x random
+    //Enemy monEnemiTest(int x=rand() % MODEL_WIDTH, getY, MODEL_WIDTH, MODEL_HEIGHT, x_speed, y_speed, health, Shot shot, style, value);
 }

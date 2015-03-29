@@ -13,6 +13,7 @@ public:
     Enemy(int x, int y, int w, int h, float x_speed, float y_speed, int health, Shot shot, int style, int value);
     void moveForward();
     int getStyle();
+    void createEnemy();
 };
 
 #endif // ENEMY_HPP_INCLUDED

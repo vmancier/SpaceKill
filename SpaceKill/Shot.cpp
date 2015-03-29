@@ -5,6 +5,10 @@ using namespace std;
 
 Shot::Shot()
 {
+    m_xS=0;
+    m_yS=0;
+    m_wS=10;
+    m_hS=30;
     m_damageP=30.0;
     m_fireRate=0.50;
     m_style=0;
@@ -49,36 +53,6 @@ void Shot::shotSettings(int style)
     }
 }
 
-bool collision(Ship &s)
-{
-    /*
-    int leftA, leftB;
-    int rightA, rightB;
-    int topA, topB;
-    int bottomA, bottomB;
-
-    leftA = a.x;
-    rightA = a.x + a.w;
-    topA = a.y;
-    bottomA = a.y + a.h;
-
-    leftB = b.x;
-    rightB = b.x + b.w;
-    topB = b.y;
-    bottomB = b.y + b.h;
-
-    if(bottomA <= topB)
-        return false;
-    if(topA >= bottomB)
-        return false;
-    if(rightA <= leftB)
-        return false;
-    if(leftA >= rightB)
-        return false;
-
-    return true;
-    */
-}
 int Shot::getStyle()
 {
     return m_style;
@@ -87,5 +61,25 @@ int Shot::getStyle()
 int Shot::getDamages()
 {
     return m_damageP;
+}
+
+void Shot::setPosition(int style, int x, int y, int w, int h)
+{
+    switch(style)
+    {
+    case 0:
+        m_xS =x+w/2;//s.getX() + s.getW()/2;
+        m_yS =y+h/2;//s.getY() + s.getH()/2;
+        break;
+    case 1:
+        m_xS =x+w/2;//s.getX() + s.getW()/2;
+        m_yS =y+h/2;//s.getY() + s.getH()/2;
+        break;
+    case 2:
+
+        break;
+
+    }
+
 }
 

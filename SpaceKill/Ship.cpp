@@ -77,3 +77,13 @@ int Ship::getY()
 {
     return m_y;
 }
+
+int Ship::getW()
+{
+    return m_w;
+}
+
+int Ship::getH()
+{
+    return m_h;
+}

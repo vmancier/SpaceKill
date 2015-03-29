@@ -20,7 +20,7 @@ private:
     bool m_alive;
 public:
     Ship();
-    Ship(int x, int y, int w, int h, float x_speed, float y_speed, int health, Shot m_shot);
+    Ship(int x, int y, int w, int h, float x_speed, float y_speed, int health, Shot shot);
     void loseLife(int damages);
     void shoot();
     void die();
@@ -29,5 +29,7 @@ public:
     float getHealth();
     int getX();
     int getY();
+    int getW();
+    int getH();
 };
 #endif // SHIP_HPP_INCLUDED

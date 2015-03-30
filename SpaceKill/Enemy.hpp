@@ -10,10 +10,9 @@ private:
 
 public:
     Enemy();
-    Enemy(int x, int y, int w, int h, float x_speed, float y_speed, int health, Shot shot, int style, int value);
+    Enemy(int x, int y, int w, int h, float x_speed, float y_speed, int health, int style, int value, int styleShot);
     void moveForward();
-    int getStyle();
-    void createEnemy();
+    int getStyle()const;
 };
 
 #endif // ENEMY_HPP_INCLUDED

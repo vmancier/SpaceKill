@@ -12,13 +12,11 @@ Shot::Shot()
     m_damageP=30.0;
     m_fireRate=0.50;
     m_style=0;
-    m_collision=false;
 }
 
 Shot::Shot(int style)
 {
     m_style= style;
-    m_collision=false;
     shotSettings(style);
 }
 
@@ -53,12 +51,12 @@ void Shot::shotSettings(int style)
     }
 }
 
-int Shot::getStyle()
+int Shot::getStyle()const
 {
     return m_style;
 }
 
-int Shot::getDamages()
+int Shot::getDamages()const
 {
     return m_damageP;
 }

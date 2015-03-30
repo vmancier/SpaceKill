@@ -2,6 +2,8 @@
 #include "Game_Model.hpp"
 #include "Entities.hpp"
 
+#include <cstdlib>  //necessaire pour le rand() du x
+
 using namespace std;
 
 //=======================================
@@ -45,6 +47,8 @@ void Game_Model::nextStep()
         //getPlayerPos();
 
     }
+    createEnemy(); //<<<<<<<<<<<<<<<<<<<<---------LA FUITE MEMOIRE EST LA
+
 }
 
 bool Game_Model::Play()
@@ -55,4 +59,11 @@ bool Game_Model::Play()
         result =true;
     }
     return result;
+}
+
+void Game_Model::createEnemy()
+{
+    int xPos=rand() % MODEL_WIDTH;
+    Enemy *monEnemiTest= new Enemy(xPos,10, PLAYER_WIDTH, PLAYER_HEIGHT, PLAYER_X_SPEED, PLAYER_Y_SPEED, 100, 0,10,0);
+    //Enemy(int x, int y, int w, int h, float x_speed, float y_speed, int health, int style, int value, int styleShot)
 }

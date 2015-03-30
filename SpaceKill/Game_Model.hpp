@@ -16,6 +16,7 @@ public:
     void nextStep();
     bool Play();
     void getPlayerPos(int &x, int &y) const;
+    void createEnemy();
 };
 
 #endif // GAME_MODEL_HPP_INCLUDED

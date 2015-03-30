@@ -15,13 +15,13 @@ private:
     int m_style;
     float m_damageP;
     float m_fireRate;
-    bool m_collision;
+
 public:
     Shot();
     Shot(int style);
     void shotSettings(int style);
-    int getStyle();
-    int getDamages();
+    int getStyle() const;
+    int getDamages() const;
     void setPosition(int style, int x, int y, int w, int h);
 };
 

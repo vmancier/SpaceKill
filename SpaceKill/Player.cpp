@@ -4,8 +4,8 @@
 
 using namespace std;
 
-Player::Player(int x, int y, int w, int h, float x_speed, float y_speed, int health, Shot shot)
-       :Ship(x, y, w, h, x_speed, y_speed, health, shot)
+Player::Player(int x, int y, int w, int h, float x_speed, float y_speed, int health, int styleShot)
+       :Ship(x, y, w, h, x_speed, y_speed, health, styleShot)
 {
 
 }

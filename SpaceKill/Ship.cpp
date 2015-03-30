@@ -3,8 +3,8 @@
 
 using namespace std;
 
-Ship::Ship(int x, int y, int w, int h, float x_speed, float y_speed, int health, Shot shot)
-            : m_x(x), m_y(y), m_w(w), m_h(h), m_x_speed(x_speed), m_y_speed(y_speed), m_health(health), m_shot(shot)
+Ship::Ship(int x, int y, int w, int h, float x_speed, float y_speed, int health, int styleShot)
+            : m_x(x), m_y(y), m_w(w), m_h(h), m_x_speed(x_speed), m_y_speed(y_speed), m_health(health), m_styleShot(styleShot)
 {
     m_alive = true;
 }
@@ -53,17 +53,17 @@ void Ship::die()
     }
 }
 
-int Ship::getLife()
+int Ship::getLife() const
 {
     return m_life;
 }
 
-bool Ship::getAlive()
+bool Ship::getAlive()const
 {
     return m_alive;
 }
 
-float Ship::getHealth()
+float Ship::getHealth() const
 {
     return m_health;
 }
@@ -78,32 +78,32 @@ void Ship::setY(int y)
     m_y = y;
 }
 
-int Ship::getX()
+int Ship::getX() const
 {
     return m_x;
 }
 
-int Ship::getY()
+int Ship::getY() const
 {
     return m_y;
 }
 
-int Ship::getW()
+int Ship::getW() const
 {
     return m_w;
 }
 
-int Ship::getH()
+int Ship::getH() const
 {
     return m_h;
 }
 
-int Ship::getX_speed()
+int Ship::getX_speed() const
 {
     return m_x_speed;
 }
 
-int Ship::getY_speed()
+int Ship::getY_speed() const
 {
     return m_y_speed;
 }

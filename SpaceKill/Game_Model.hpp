@@ -2,12 +2,18 @@
 #define GAME_MODEL_HPP_INCLUDED
 #include "Player.hpp"
 #include "Enemy.hpp"
+#include "Shot.hpp"
+
+#include <vector>
 
 class Game_Model
 {
 private:
     int _w, _h;
     Player * m_player;
+    std::vector<Enemy*> enemies;
+    std::vector<Shot*> shots;
+
 public:
     Game_Model();
     Game_Model(int w, int h);
@@ -15,7 +21,8 @@ public:
 
     void nextStep();
     bool Play();
-    void getPlayerPos(int &x, int &y) const;
+    void getPlayerPos() const;
+    void getEnemyPos() const;
     void createEnemy();
 };
 

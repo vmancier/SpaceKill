@@ -22,13 +22,16 @@ void Player::moveP()
     cout << "   1 : Gauche         ";
     cout << "2 : Droite"<<endl;
     cin >> choice;
-    switch (choice)
+    if(choice==1)
     {
-    case 1:
         setX(getX()-getX_speed());
-        break;
-    case 2:
+    }
+    else if(choice ==2)
+    {
         setX(getX()+getX_speed());
-        break;
+    }
+    else
+    {
+        moveP();
     }
 }

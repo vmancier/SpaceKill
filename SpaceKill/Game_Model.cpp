@@ -40,7 +40,7 @@ void Game_Model::getPlayerPos() const
 
 void Game_Model::getEnemyPos() const
 {
-    for(int i=0;i<enemies.size();i++)
+    for(int i=0; i<enemies.size(); i++)
     {
         int x=enemies[i]->getX();
         int y=enemies[i]->getY();
@@ -73,4 +73,7 @@ void Game_Model::createEnemy()
     int xPos=rand() % MODEL_WIDTH;
     Enemy *monEnemiTest= new Enemy(xPos,10, PLAYER_WIDTH, PLAYER_HEIGHT, PLAYER_X_SPEED, PLAYER_Y_SPEED, 100, 0,10,0);
     enemies.push_back(monEnemiTest);
+}
+void Game_Model::Level(int levelStyle) {
+
 }

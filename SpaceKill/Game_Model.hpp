@@ -10,6 +10,7 @@ class Game_Model
 {
 private:
     int _w, _h;
+    int _levelStyle;
     Player * m_player;
     std::vector<Enemy*> enemies;
     std::vector<Shot*> shots;
@@ -24,6 +25,7 @@ public:
     void getPlayerPos() const;
     void getEnemyPos() const;
     void createEnemy();
+    void Level(int levelStyle);
 };
 
 #endif // GAME_MODEL_HPP_INCLUDED

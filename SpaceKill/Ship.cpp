@@ -40,11 +40,6 @@ void Ship::loseLife(int damages)
     }
 }
 
-void Ship::shoot()
-{
-
-}
-
 void Ship::die()
 {
     if (m_life==0)

@@ -20,3 +20,12 @@ int Enemy::getStyle() const
 {
     return m_style;
 }
+
+void Enemy::shoot()
+{
+    Shot* shot =new Shot();
+    shot->setPosition(0,getX(),getY(),getW(),getH());
+    shot->setSpeed(-2,0);
+    shots.push_back(shot);
+}
+

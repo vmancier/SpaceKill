@@ -12,7 +12,6 @@ private:
     int _w, _h;
     Player * m_player;
     std::vector<Enemy*> enemies;
-    std::vector<Shot*> shots;
 
 public:
     Game_Model();

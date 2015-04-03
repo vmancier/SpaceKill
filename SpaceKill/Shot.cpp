@@ -9,6 +9,8 @@ Shot::Shot()
     m_yS=0;
     m_wS=10;
     m_hS=30;
+    m_x_speedS=2;
+    m_y_speedS=0;
     m_damageP=30.0;
     m_fireRate=0.50;
     m_style=0;
@@ -49,6 +51,10 @@ void Shot::shotSettings(int style)
         m_fireRate=1.50;
         break;
     }
+    m_wS=10;
+    m_hS=30;
+    m_x_speedS=2;
+    m_y_speedS=0;
 }
 
 int Shot::getStyle()const
@@ -79,5 +85,17 @@ void Shot::setPosition(int style, int x, int y, int w, int h)
 
     }
 
+}
+
+void Shot::moveShot()
+{
+    m_xS+=m_x_speedS;
+    m_yS+=m_y_speedS;
+}
+
+void Shot::setSpeed(int xSpeed, int ySpeed)
+{
+    m_x_speedS=xSpeed;
+    m_y_speedS=ySpeed;
 }
 

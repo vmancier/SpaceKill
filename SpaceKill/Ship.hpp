@@ -1,13 +1,14 @@
 #ifndef SHIP_HPP_INCLUDED
 #define SHIP_HPP_INCLUDED
 
-//#include "Shot.hpp"
+#include "Shot.hpp"
+#include <vector>
 
-//class Shot;
+class Shot;
 
 class Ship
 {
-private:
+protected:
     int m_x;
     int m_y;
     int m_w;
@@ -18,11 +19,12 @@ private:
     int m_styleShot;
     int m_life;
     bool m_alive;
+    std::vector<Shot*> shots;
+
 public:
     Ship();
     Ship(int x, int y, int w, int h, float x_speed, float y_speed, int health,int styleShot);
     void loseLife(int damages);
-    void shoot();
     void die();
     int getLife() const;
     bool getAlive() const;

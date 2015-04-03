@@ -19,7 +19,7 @@ Player::Player():Ship()
 void Player::moveP()
 {
     int choice;
-    cout << "   1 : Gauche         ";
+    cout << "1 : Gauche"<<endl;
     cout << "2 : Droite"<<endl;
     cin >> choice;
     if(choice==1)
@@ -34,4 +34,12 @@ void Player::moveP()
     {
         moveP();
     }
+}
+
+void Player::shot()
+{
+    Shot* shot =new Shot();
+    shot->setPosition(0,getX(),getY(),getW(),getH());
+    shot->setSpeed(-2,0);
+    shots.push_back(shot);
 }

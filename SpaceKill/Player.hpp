@@ -11,5 +11,6 @@ public:
     Player();
     ~Player();
     void moveP();
+    void shot();
 };
 #endif // PLAYER_HPP_INCLUDED

@@ -15,6 +15,10 @@ Enemy::Enemy():Ship()
     m_value=0;
 }
 
+void Enemy::moveForward()
+{
+    m_x+=m_x_speed;
+}
 
 int Enemy::getStyle() const
 {
@@ -25,7 +29,7 @@ void Enemy::shoot()
 {
     Shot* shot =new Shot();
     shot->setPosition(0,getX(),getY(),getW(),getH());
-    shot->setSpeed(-2,0);
+    shot->setSpeed(20,0);
     shots.push_back(shot);
 }
 

@@ -24,6 +24,8 @@ public:
     void getPlayerPos() const;
     void getEnemyPos() const;
     void createEnemy();
+    void shootEnemy();
+    void moveShots();
     void Level(int levelStyle);
 };
 

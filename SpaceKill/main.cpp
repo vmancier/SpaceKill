@@ -10,12 +10,10 @@ int main()
     Game_Model *model = new Game_Model(MODEL_WIDTH, MODEL_HEIGHT);
     while(model->Play())
     {
-        system("cls");
         model->nextStep();
+        system("cls");
     }
 
     delete model;
-
-    cout << "Hello world"<< endl;
     return 0;
 }

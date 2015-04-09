@@ -17,7 +17,6 @@ Game_Model::Game_Model(): _w(MODEL_WIDTH), _h(MODEL_HEIGHT)
 Game_Model::Game_Model(int w, int h):  _w(w), _h(h)
 {
     m_player = new Player(_w/2, _h-10, PLAYER_WIDTH, PLAYER_HEIGHT, PLAYER_X_SPEED, PLAYER_Y_SPEED, 100, 0);
-    cout << "Creation du Joueur" <<endl;
 }
 
 //=======================================
@@ -35,7 +34,7 @@ void Game_Model::getPlayerPos() const
 {
     int x=m_player->getX();
     int y=m_player->getY();
-    cout << "Joueur("<<x<<","<<y<<")"<<endl;
+    cout << "Joueur("<<x<<","<<y<<")"<<endl<<endl;
 }
 
 void Game_Model::getEnemyPos() const
@@ -46,6 +45,7 @@ void Game_Model::getEnemyPos() const
         int y=enemies[i]->getY();
         cout << "Ennemi("<<x<<","<<y<<")"<<endl;
     }
+    cout <<endl;
 }
 //=======================================
 // Calcul la prochaine étape
@@ -53,9 +53,13 @@ void Game_Model::getEnemyPos() const
 void Game_Model::nextStep()
 {
     createEnemy(); //<<<<<<<<<<<<<<<<<<<<---------LA FUITE MEMOIRE EST LA
-    m_player->moveP();
     getPlayerPos();
     getEnemyPos();
+    shootEnemy();
+    m_player->shot();
+    m_player->getShotsPos();
+    moveShots();
+    m_player->moveP();
 }
 
 bool Game_Model::Play()
@@ -74,6 +78,24 @@ void Game_Model::createEnemy()
     Enemy *monEnemiTest= new Enemy(xPos,10, PLAYER_WIDTH, PLAYER_HEIGHT, PLAYER_X_SPEED, PLAYER_Y_SPEED, 100, 0,10,0);
     enemies.push_back(monEnemiTest);
 }
+
+void Game_Model::shootEnemy()
+{
+    for(int i=0; i<enemies.size(); i++)
+    {
+        enemies[i]->shoot();
+        enemies[i]->getShotsPos();
+    }
+}
+
+void Game_Model::moveShots()
+{
+    for(int i=0; i<enemies.size(); i++)
+    {
+        enemies[i]->moveShotsShip();
+    }
+}
+
 void Game_Model::Level(int levelStyle) {
 
 }

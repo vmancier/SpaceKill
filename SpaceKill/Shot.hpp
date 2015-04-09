@@ -1,8 +1,6 @@
 #ifndef SHOT_HPP_INCLUDED
 #define SHOT_HPP_INCLUDED
 
-class Ship;
-
 class Shot
 {
 private:
@@ -24,6 +22,8 @@ public:
     void moveShot();
     int getStyle() const;
     int getDamages() const;
+    int getX()const;
+    int getY()const;
     void setPosition(int style, int x, int y, int w, int h);
     void setSpeed(int xSpeed, int ySpeed);
 };

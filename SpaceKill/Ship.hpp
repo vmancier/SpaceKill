@@ -1,6 +1,6 @@
 #ifndef SHIP_HPP_INCLUDED
 #define SHIP_HPP_INCLUDED
-
+#include "Entities.hpp"
 #include "Shot.hpp"
 #include <vector>
 
@@ -19,13 +19,15 @@ protected:
     int m_styleShot;
     int m_life;
     bool m_alive;
-    std::vector<Shot*> shots;
+    std::vector <Shot*> shots;
 
 public:
     Ship();
     Ship(int x, int y, int w, int h, float x_speed, float y_speed, int health,int styleShot);
     void loseLife(int damages);
     void die();
+    void getShotsPos();
+    void moveShotsShip();
     int getLife() const;
     bool getAlive() const;
     float getHealth() const;

@@ -4,7 +4,7 @@
 using namespace std;
 
 Ship::Ship(int x, int y, int w, int h, float x_speed, float y_speed, int health, int styleShot)
-            : m_x(x), m_y(y), m_w(w), m_h(h), m_x_speed(x_speed), m_y_speed(y_speed), m_health(health), m_styleShot(styleShot)
+    : m_x(x), m_y(y), m_w(w), m_h(h), m_x_speed(x_speed), m_y_speed(y_speed), m_health(health), m_styleShot(styleShot)
 {
     m_alive = true;
 }
@@ -15,7 +15,7 @@ Ship::Ship()
     m_y=10;
     m_w=1;
     m_h=1;
-    m_x_speed=0;
+    m_x_speed=20.0;
     m_y_speed=0;
     m_health=100;
     m_alive = true;
@@ -45,6 +45,29 @@ void Ship::die()
     if (m_life==0)
     {
         m_alive =false;
+    }
+}
+
+void Ship::getShotsPos()
+{
+    for(int i=0; i<shots.size(); i++)
+    {
+        int x=shots[i]->getX();
+        int y=shots[i]->getY();
+        cout << "Tir("<<x<<","<<y<<")"<<endl;
+    }
+}
+
+void Ship::moveShotsShip()
+{
+    for(int i=0; i<shots.size(); i++)
+    {
+        shots[i]->moveShot();
+        if (shots[i]->getX()> MODEL_WIDTH || shots[i]->getX()< 0)
+        {
+            shots.erase(shots.begin()+i);
+            shots.pop_back();
+        }
     }
 }
 

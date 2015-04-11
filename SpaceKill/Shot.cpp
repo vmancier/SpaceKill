@@ -16,13 +16,13 @@ Shot::Shot()
     m_style=0;
 }
 
-Shot::Shot(int style, int x, int y,int w, int h, int xSpeed, int ySpeed)
+Shot::Shot(int style, int x, int y, int xSpeed, int ySpeed)
 {
     m_style= style;
     shotSettings(m_style, x, y, xSpeed, ySpeed);
 }
 
-void Shot::shotSettings(int style, int x, int y,int w, int h, int xSpeed, int ySpeed)
+void Shot::shotSettings(int style, int x, int y, int xSpeed, int ySpeed)
 {
     switch(style)
     {
@@ -51,8 +51,8 @@ void Shot::shotSettings(int style, int x, int y,int w, int h, int xSpeed, int yS
         m_fireRate=1.50;
         break;
     }
-    m_xS =x+w/2;
-    m_yS =y+h/2;
+    m_xS =x;
+    m_yS =y;
     m_wS=10;
     m_hS=30;
     m_x_speedS=xSpeed;
@@ -78,36 +78,10 @@ int Shot::getY()const
 {
     return m_yS;
 }
-/*
-void Shot::setPosition(int style, int x, int y, int w, int h)
-{
-    switch(style)
-    {
-    case 0:
-        m_xS =x+w/2;
-        m_yS =y+h/2;
-        break;
-    case 1:
-        m_xS =x+w/2;
-        m_yS =y+h/2;
-        break;
-    case 2:
-
-        break;
-
-    }
-
-}*/
 
 void Shot::moveShot()
 {
     m_xS+=m_x_speedS;
     m_yS+=m_y_speedS;
 }
-/*
-void Shot::setSpeed(int xSpeed, int ySpeed)
-{
-    m_x_speedS=xSpeed;
-    m_y_speedS=ySpeed;
-}*/
 

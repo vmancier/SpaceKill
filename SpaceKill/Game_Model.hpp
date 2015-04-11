@@ -26,6 +26,7 @@ public:
     void createEnemy();
     void shootEnemy();
     void moveShots();
+    void moveEnemies();
     void Level(int levelStyle);
 };
 

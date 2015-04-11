@@ -21,6 +21,14 @@ Ship::Ship()
     m_alive = true;
 }
 
+Ship::~Ship()
+{
+    for(int i=0; i<shots.size(); i++)
+    {
+        delete shots[i];
+    }
+}
+
 void Ship::loseLife(int damages)
 {
     if (m_health > damages)
@@ -63,10 +71,10 @@ void Ship::moveShotsShip()
     for(int i=0; i<shots.size(); i++)
     {
         shots[i]->moveShot();
-        if (shots[i]->getX()> MODEL_WIDTH || shots[i]->getX()< 0)
+        if ( shots[i]->getX()< 0 || (shots[i]->getX())> MODEL_WIDTH || shots[i]->getY()< 0 || shots[i]->getY()> MODEL_HEIGHT )
         {
+            delete shots[i];
             shots.erase(shots.begin()+i);
-            shots.pop_back();
         }
     }
 }

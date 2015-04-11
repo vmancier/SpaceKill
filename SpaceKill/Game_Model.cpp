@@ -24,7 +24,10 @@ Game_Model::Game_Model(int w, int h):  _w(w), _h(h)
 //=======================================
 Game_Model::~Game_Model()
 {
-
+     for(int i=0; i<enemies.size(); i++)
+    {
+        delete enemies[i];
+    }
 }
 
 //=======================================
@@ -52,13 +55,14 @@ void Game_Model::getEnemyPos() const
 //=======================================
 void Game_Model::nextStep()
 {
-    createEnemy(); //<<<<<<<<<<<<<<<<<<<<---------LA FUITE MEMOIRE EST LA
+    createEnemy();
     getPlayerPos();
     getEnemyPos();
     shootEnemy();
     m_player->shot();
     m_player->getShotsPos();
     moveShots();
+    moveEnemies();
     m_player->moveP();
 }
 
@@ -75,7 +79,7 @@ bool Game_Model::Play()
 void Game_Model::createEnemy()
 {
     int xPos=rand() % MODEL_WIDTH;
-    Enemy *monEnemiTest= new Enemy(xPos,10, PLAYER_WIDTH, PLAYER_HEIGHT, PLAYER_X_SPEED, PLAYER_Y_SPEED, 100, 0,10,0);
+    Enemy *monEnemiTest= new Enemy(xPos,10, PLAYER_WIDTH, PLAYER_HEIGHT, PLAYER_X_SPEED, 40, 100, 0,10,0);
     enemies.push_back(monEnemiTest);
 }
 
@@ -90,9 +94,23 @@ void Game_Model::shootEnemy()
 
 void Game_Model::moveShots()
 {
+    m_player->moveShotsShip();
     for(int i=0; i<enemies.size(); i++)
     {
         enemies[i]->moveShotsShip();
+    }
+}
+
+void Game_Model::moveEnemies()
+{
+     for(int i=0; i<enemies.size(); i++)
+    {
+        enemies[i]->moveForward();
+        if ( enemies[i]->getY()> MODEL_HEIGHT )
+        {
+            delete enemies[i];
+            enemies.erase(enemies.begin()+i);
+        }
     }
 }
 

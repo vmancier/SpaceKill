@@ -16,7 +16,7 @@ protected:
     float m_x_speed;
     float m_y_speed;
     float m_health;
-    int m_styleShot;
+    int m_styleShot=0;
     int m_life;
     bool m_alive;
     std::vector <Shot*> shots;
@@ -24,6 +24,7 @@ protected:
 public:
     Ship();
     Ship(int x, int y, int w, int h, float x_speed, float y_speed, int health,int styleShot);
+    ~Ship();
     void loseLife(int damages);
     void die();
     void getShotsPos();

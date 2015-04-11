@@ -17,15 +17,15 @@ private:
 
 public:
     Shot();
-    Shot(int style);
-    void shotSettings(int style);
+    Shot(int style, int x, int y,int w, int h, int xSpeed, int ySpeed);
+    void shotSettings(int style, int x, int y,int w, int h, int xSpeed, int ySpeed);
     void moveShot();
     int getStyle() const;
     int getDamages() const;
     int getX()const;
     int getY()const;
-    void setPosition(int style, int x, int y, int w, int h);
-    void setSpeed(int xSpeed, int ySpeed);
+    //void setPosition(int style, int x, int y, int w, int h);
+    //void setSpeed(int xSpeed, int ySpeed);
 };
 
 #endif // SHOT_HPP_INCLUDED

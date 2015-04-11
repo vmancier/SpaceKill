@@ -39,8 +39,6 @@ void Player::moveP()
 
 void Player::shot()
 {
-    Shot* shot =new Shot();
-    shot->setPosition(0,getX(),getY(),getW(),getH());
-    shot->setSpeed(-2,0);
+    Shot* shot =new Shot(m_styleShot,getX(),getY(),getW(),getH(),-20, 0);
     shots.push_back(shot);
 }

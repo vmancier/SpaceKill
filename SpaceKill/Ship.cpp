@@ -3,32 +3,59 @@
 
 using namespace std;
 
+// -- Ship --------------------------------------
+// Builds by default an object "ship"
+// * out-parameters :
+// - "ship", object : the ship itself
+// ----------------------------------------------
+Ship::Ship()
+{
+    m_x = 200;
+    m_y = 10;
+    m_w = 1;
+    m_h = 1;
+    m_x_speed = 20.0;
+    m_y_speed = 0;
+    m_health = 100;
+    m_alive = true;
+}
+
+// -- Ship --------------------------------------
+// Builds an object "ship"
+// * in-parameters :
+// - "x", int : horizontal position of the ship
+// - "y", int : vertical position of the ship
+// - "w", int : width of the ship
+// - "h", int : height of the ship
+// - "x_speed", float : horizontal speed of the ship
+// - "y_speed", float : horizontal speed of the ship
+// - "health", int : level of the ship's health
+// - "styleShot" : number of the ship's shoot's style
+// * out-parameters :
+// - "ship", object : the ship itself
+// ----------------------------------------------
 Ship::Ship(int x, int y, int w, int h, float x_speed, float y_speed, int health, int styleShot)
     : m_x(x), m_y(y), m_w(w), m_h(h), m_x_speed(x_speed), m_y_speed(y_speed), m_health(health), m_styleShot(styleShot)
 {
     m_alive = true;
 }
 
-Ship::Ship()
-{
-    m_x=200;
-    m_y=10;
-    m_w=1;
-    m_h=1;
-    m_x_speed=20.0;
-    m_y_speed=0;
-    m_health=100;
-    m_alive = true;
-}
-
+// -- ~Ship -------------------------------------
+// Deletes the object "ship"
+// ----------------------------------------------
 Ship::~Ship()
 {
-    for(int i=0; i<shots.size(); i++)
+    for(unsigned int i = 0; i<shots.size(); i++)
     {
         delete shots[i];
     }
 }
 
+// -- loseLife ----------------------------------
+// Makes the ship lose a part of his life
+// * in-parameters :
+// - "damages", int : amount of damages
+// ----------------------------------------------
 void Ship::loseLife(int damages)
 {
     if (m_health > damages)
@@ -44,31 +71,40 @@ void Ship::loseLife(int damages)
     {
         m_life--;
         int tmp = m_health-damages;
-        m_health=100-tmp;
+        m_health = 100-tmp;
     }
 }
 
+// -- die ---------------------------------------
+// Makes the ship die
+// ----------------------------------------------
 void Ship::die()
 {
-    if (m_life==0)
+    if (m_life == 0)
     {
-        m_alive =false;
+        m_alive = false;
     }
 }
 
+// -- getShotPos --------------------------------
+// Returns the shot's position
+// ----------------------------------------------
 void Ship::getShotsPos()
 {
-    for(int i=0; i<shots.size(); i++)
+    for(unsigned int i=0; i<shots.size(); i++)
     {
-        int x=shots[i]->getX();
-        int y=shots[i]->getY();
-        cout << "Tir("<<x<<","<<y<<")"<<endl;
+        int x = shots[i]->getX();
+        int y = shots[i]->getY();
+        cout << "Tir(" << x << "," << y << ")" << endl;
     }
 }
 
+// -- moveShotsShip -----------------------------
+// Moves the ship's shots
+// ----------------------------------------------
 void Ship::moveShotsShip()
 {
-    for(int i=0; i<shots.size(); i++)
+    for(unsigned int i=0; i<shots.size(); i++)
     {
         shots[i]->moveShot();
         if ( shots[i]->getX()< 0 || (shots[i]->getX())> MODEL_WIDTH || shots[i]->getY()< 0 || shots[i]->getY()> MODEL_HEIGHT )
@@ -79,56 +115,89 @@ void Ship::moveShotsShip()
     }
 }
 
+// -- getLife -----------------------------------
+// Returns the ship's life
+// ----------------------------------------------
 int Ship::getLife() const
 {
     return m_life;
 }
 
+// -- getAlive ----------------------------------
+// Returns the ship's state
+// ----------------------------------------------
 bool Ship::getAlive()const
 {
     return m_alive;
 }
 
+// -- getHealth ---------------------------------
+// Returns the ship's health
+// ----------------------------------------------
 float Ship::getHealth() const
 {
     return m_health;
 }
 
+// -- setX --------------------------------------
+// Sets the horizontal ship's position
+// ----------------------------------------------
 void Ship::setX(int x)
 {
     m_x = x;
 }
 
+// -- setY --------------------------------------
+// Sets the vertical ship's position
+// ----------------------------------------------
 void Ship::setY(int y)
 {
     m_y = y;
 }
 
+// -- getX --------------------------------------
+// Returns the horizontal ship's position
+// ----------------------------------------------
 int Ship::getX() const
 {
     return m_x;
 }
 
+// -- getY --------------------------------------
+// Returns the vertical ship's position
+// ----------------------------------------------
 int Ship::getY() const
 {
     return m_y;
 }
 
+// -- getW --------------------------------------
+// Returns the ship's width
+// ----------------------------------------------
 int Ship::getW() const
 {
     return m_w;
 }
 
+// -- getH --------------------------------------
+// Returns the ship's height
+// ----------------------------------------------
 int Ship::getH() const
 {
     return m_h;
 }
 
+// -- getWX_speed -------------------------------
+// Returns the horizontal ship's speed
+// ----------------------------------------------
 int Ship::getX_speed() const
 {
     return m_x_speed;
 }
 
+// -- getWX_speed -------------------------------
+// Returns the vertical ship's speed
+// ----------------------------------------------
 int Ship::getY_speed() const
 {
     return m_y_speed;

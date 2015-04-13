@@ -12,7 +12,7 @@ class Game_View
 private:
     int _w, _h;
 
-    sf::RenderWindow * _window;
+    sf::RenderWindow *_window;
 
     sf::Image _background_image;
     //sf::Image _ball_image;
@@ -21,7 +21,6 @@ private:
     //sf::Sprite _ball_sprite;
 
     Game_Model * _model;
-
 
 public:
     Game_View(int w, int h, int bpp);

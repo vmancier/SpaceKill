@@ -5,8 +5,6 @@ using namespace std;
 
 // -- Ship --------------------------------------
 // Builds by default an object "ship"
-// * out-parameters :
-// - "ship", object : the ship itself
 // ----------------------------------------------
 Ship::Ship()
 {
@@ -31,8 +29,6 @@ Ship::Ship()
 // - "y_speed", float : horizontal speed of the ship
 // - "health", int : level of the ship's health
 // - "styleShot" : number of the ship's shoot's style
-// * out-parameters :
-// - "ship", object : the ship itself
 // ----------------------------------------------
 Ship::Ship(int x, int y, int w, int h, float x_speed, float y_speed, int health, int styleShot)
     : m_x(x), m_y(y), m_w(w), m_h(h), m_x_speed(x_speed), m_y_speed(y_speed), m_health(health), m_styleShot(styleShot)

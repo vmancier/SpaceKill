@@ -5,8 +5,6 @@ using namespace std;
 
 // -- Shot --------------------------------------
 // Builds by default an object "shot"
-// * out-parameters :
-// - "shot", object : the shot itself
 // ----------------------------------------------
 Shot::Shot()
 {
@@ -29,8 +27,6 @@ Shot::Shot()
 // - "y", int : vertical position of the shot
 // - "xSpeed", float : horizontal speed of the shot
 // - "ySpeed", float : horizontal speed of the shot
-// * out-parameters :
-// - "shot", object : the shot itself
 // ----------------------------------------------
 Shot::Shot(int style, int x, int y, int xSpeed, int ySpeed)
 {

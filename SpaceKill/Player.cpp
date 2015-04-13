@@ -6,8 +6,6 @@ using namespace std;
 
 // -- Player -------------------------------------
 // Builds by default an object "player"
-// * out-parameters :
-// - "player", object : the player itself
 // ----------------------------------------------
 Player::Player():Ship()
 {
@@ -25,8 +23,6 @@ Player::Player():Ship()
 // - "y_speed", float : horizontal speed of the player
 // - "health", int : level of the player's health
 // - "styleShot" : number of the player's shoot's style
-// * out-parameters :
-// - "player", object : the player itself
 // ----------------------------------------------
 Player::Player(int x, int y, int w, int h, float x_speed, float y_speed, int health, int styleShot)
     :Ship(x, y, w, h, x_speed, y_speed, health, styleShot)

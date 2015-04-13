@@ -27,8 +27,6 @@ Enemy::Enemy()
 // - "style", int : number of the enemy's style
 // - "value", int : A COMPLETEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEER
 // - "styleShot" : number of the enemy's shoot's style
-// * out-parameters :
-// - "enemy", object : the enemy itself
 // ----------------------------------------------
 Enemy::Enemy(int x, int y, int w, int h, float x_speed, float y_speed, int health, int style, int value, int styleShot)
     :Ship(x, y, w, h, x_speed, y_speed, health, styleShot), m_style(style), m_value(value)

@@ -68,6 +68,6 @@ int Enemy::getStyle() const
 // ----------------------------------------------
 void Enemy::shoot()
 {
-    Shot* shot = new Shot(m_styleShot, ((getX()+getW())/2), ((getY()+getH())/2), 0, 20);
+    Shot* shot = new Shot(m_styleShot, ((getX()+getW())/2), ((getY()+getH())/2), 0, 53);
     shots.push_back(shot);
 }

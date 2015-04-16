@@ -1,5 +1,15 @@
+/********************************************************************************************
+ * Project: SpaceKill
+ * File: Ship.hpp
+ * ------------------------------------------------------------------------------------------
+ * Authors: Valentin Mancier, Eliott Vincent
+ * License: This work is licensed under the Creative Commons
+ *          Attribution-NonCommercial-ShareAlike 4.0 International License.
+ *********************************************************************************************/
+
 #ifndef SHIP_HPP_INCLUDED
 #define SHIP_HPP_INCLUDED
+
 #include "Entities.hpp"
 #include "Shot.hpp"
 #include <vector>

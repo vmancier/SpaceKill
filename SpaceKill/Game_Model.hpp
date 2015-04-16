@@ -1,5 +1,15 @@
+/********************************************************************************************
+ * Project: SpaceKill
+ * File: Game_Model.hpp
+ * ------------------------------------------------------------------------------------------
+ * Authors: Valentin Mancier, Eliott Vincent
+ * License: This work is licensed under the Creative Commons
+ *          Attribution-NonCommercial-ShareAlike 4.0 International License.
+ *********************************************************************************************/
+
 #ifndef GAME_MODEL_HPP_INCLUDED
 #define GAME_MODEL_HPP_INCLUDED
+
 #include "Player.hpp"
 #include "Enemy.hpp"
 #include "Shot.hpp"

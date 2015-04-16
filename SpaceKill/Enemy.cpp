@@ -1,3 +1,12 @@
+/********************************************************************************************
+ * Project: SpaceKill
+ * File: Enemy.cpp
+ * ------------------------------------------------------------------------------------------
+ * Authors: Valentin Mancier, Eliott Vincent
+ * License: This work is licensed under the Creative Commons
+ *          Attribution-NonCommercial-ShareAlike 4.0 International License.
+ *********************************************************************************************/
+
 #include <iostream>
 #include "Enemy.hpp"
 #include "Entities.hpp"

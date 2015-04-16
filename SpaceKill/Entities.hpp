@@ -1,3 +1,12 @@
+/********************************************************************************************
+ * Project: SpaceKill
+ * File: Entities.hpp
+ * ------------------------------------------------------------------------------------------
+ * Authors: Valentin Mancier, Eliott Vincent
+ * License: This work is licensed under the Creative Commons
+ *          Attribution-NonCommercial-ShareAlike 4.0 International License.
+ *********************************************************************************************/
+
 #ifndef ENTITIES_HPP_INCLUDED
 #define ENTITIES_HPP_INCLUDED
 

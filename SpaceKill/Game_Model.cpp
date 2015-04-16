@@ -1,3 +1,12 @@
+/********************************************************************************************
+ * Project: SpaceKill
+ * File: Game_Model.cpp
+ * ------------------------------------------------------------------------------------------
+ * Authors: Valentin Mancier, Eliott Vincent
+ * License: This work is licensed under the Creative Commons
+ *          Attribution-NonCommercial-ShareAlike 4.0 International License.
+ *********************************************************************************************/
+
 #include <iostream>
 #include "Game_Model.hpp"
 #include "Entities.hpp"
@@ -47,7 +56,7 @@ void Game_Model::getPlayerPos() const
 {
     int x = m_player->getX();
     int y = m_player->getY();
-    cout << "Joueur(" << x << "," << y << ")" << endl << endl;
+    cout << endl<< "Joueur(" << x << "," << y << ")" << endl;
 }
 
 // -- getEnemyPos ------------------------------
@@ -70,14 +79,15 @@ void Game_Model::getEnemyPos() const
 void Game_Model::nextStep()
 {
     createEnemy();
-    getPlayerPos();
     getEnemyPos();
     shootEnemy();
     m_player->shot();
     m_player->getShotsPos();
     moveShots();
     moveEnemies();
+    getPlayerPos();
     m_player->moveP();
+
 }
 
 // -- Play --------------------------------------
@@ -100,9 +110,10 @@ bool Game_Model::Play()
 // ----------------------------------------------
 void Game_Model::createEnemy()
 {
+
     int xPos = rand() % MODEL_WIDTH;
-    Enemy *monEnemiTest = new Enemy(xPos, 10, PLAYER_WIDTH, PLAYER_HEIGHT, PLAYER_X_SPEED, 40, 100, 0, 10, 0);
-    enemies.push_back(monEnemiTest);
+    Enemy *myEnemy = new Enemy(xPos, 10, PLAYER_WIDTH, PLAYER_HEIGHT, PLAYER_X_SPEED, 40, 100, 0, 10, 0);
+    enemies.push_back(myEnemy);
 }
 
 // -- shootEnemy --------------------------------

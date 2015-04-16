@@ -1,3 +1,12 @@
+/********************************************************************************************
+ * Project: SpaceKill
+ * File: Player.cpp
+ * ------------------------------------------------------------------------------------------
+ * Authors: Valentin Mancier, Eliott Vincent
+ * License: This work is licensed under the Creative Commons
+ *          Attribution-NonCommercial-ShareAlike 4.0 International License.
+ *********************************************************************************************/
+
 #include <iostream>
 #include "Player.hpp"
 #include "Ship.hpp"
@@ -53,8 +62,6 @@ void Player::moveP()
     }
     else if(choice == 2)
     {
-        setX(getX()+getX_speed());
-
         if (getX()+getX_speed()< MODEL_WIDTH)
         {
             setX(getX()+getX_speed());

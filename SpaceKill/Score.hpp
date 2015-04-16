@@ -1,3 +1,12 @@
+/********************************************************************************************
+ * Project: SpaceKill
+ * File: Score.hpp
+ * ------------------------------------------------------------------------------------------
+ * Authors: Valentin Mancier, Eliott Vincent
+ * License: This work is licensed under the Creative Commons
+ *          Attribution-NonCommercial-ShareAlike 4.0 International License.
+ *********************************************************************************************/
+
 #ifndef SCORE_HPP_INCLUDED
 #define SCORE_HPP_INCLUDED
 

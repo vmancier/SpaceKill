@@ -14,9 +14,12 @@
 				<Compiler>
 					<Add option="-std=c++11" />
 					<Add option="-g" />
+					<Add option="-DSFML_DYNAMIC" />
 				</Compiler>
 				<Linker>
-					<Add option="-lsfml-graphics-d -lsfml-window-d -lsfml-system-d" />
+					<Add option="-lsfml-graphics" />
+					<Add option="-lsfml-window" />
+					<Add option="-lsfml-system" />
 				</Linker>
 			</Target>
 			<Target title="Release">

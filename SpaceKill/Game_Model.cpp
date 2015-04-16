@@ -110,6 +110,7 @@ void Game_Model::createEnemy()
 // ----------------------------------------------
 void Game_Model::shootEnemy()
 {
+
     for(unsigned int i = 0; i<enemies.size(); i++)
     {
         enemies[i]->shoot();

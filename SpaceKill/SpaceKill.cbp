@@ -17,11 +17,18 @@
 					<Add option="-std=c++0x" />
 					<Add option="-Wall" />
 					<Add option="-g" />
+					<Add option="-DSFML_DYNAMIC" />
 				</Compiler>
 				<Linker>
+<<<<<<< HEAD
 					<Add option="-lsfml-system" />
 					<Add option="-lsfml-graphics" />
 					<Add option="-lsfml-window" />
+=======
+					<Add option="-lsfml-graphics" />
+					<Add option="-lsfml-window" />
+					<Add option="-lsfml-system" />
+>>>>>>> 73c61fc7ceaeaee85b90dd45564ac222175e32b5
 				</Linker>
 			</Target>
 			<Target title="Release">
@@ -34,6 +41,7 @@
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
+					<Add option="-lsfml-graphics -lsfml-window -lsfml-system" />
 				</Linker>
 			</Target>
 		</Build>

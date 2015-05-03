@@ -1,3 +1,12 @@
+/********************************************************************************************
+ * Project: SpaceKill
+ * File: Game_View.hpp
+ * ------------------------------------------------------------------------------------------
+ * Authors: Valentin Mancier, Eliott Vincent
+ * License: This work is licensed under the Creative Commons
+ *          Attribution-NonCommercial-ShareAlike 4.0 International License.
+ *********************************************************************************************/
+
 #ifndef GAME_VIEW_HPP_INCLUDED
 #define GAME_VIEW_HPP_INCLUDED
 #include <SFML/System.hpp>
@@ -20,7 +29,6 @@ private:
     sf::Sprite _player_sprite;
 
     Game_Model * _model;
-
 
 public:
     Game_View(int w, int h, int bpp);

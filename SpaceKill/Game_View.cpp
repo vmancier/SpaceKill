@@ -1,15 +1,29 @@
-#include <iostream>
+/********************************************************************************************
+ * Project: SpaceKill
+ * File: Game_View.cpp
+ * ------------------------------------------------------------------------------------------
+ * Authors: Valentin Mancier, Eliott Vincent
+ * License: This work is licensed under the Creative Commons
+ *          Attribution-NonCommercial-ShareAlike 4.0 International License.
+ *********************************************************************************************/
+
 #include "Game_View.hpp"
 #include "Game_Model.hpp"
 #include "Entities.hpp"
+
+#include <iostream>
 
 using namespace std;
 
 using namespace sf;
 
-//=======================================
-// Constructeur
-//=======================================
+// -- Game_View ---------------------------------
+// Builds the game view
+// * in-parameters :
+// - w, int : width of the window
+// - h, int : height of the window
+// - bbp, int : number of bits by pixel
+// ----------------------------------------------
 Game_View::Game_View(int w, int h, int bpp): _w(w), _h(h)
 {
     _window = new RenderWindow(sf::VideoMode(w, h, bpp), "SpaceKill", sf::Style::Close);
@@ -31,13 +45,15 @@ Game_View::Game_View(int w, int h, int bpp): _w(w), _h(h)
     }
 }
 
-//=======================================
-// Destructeur
-//=======================================
+// -- ~Game_View --------------------------------
+// Deletes the game view
+// ----------------------------------------------
 Game_View::~Game_View()
 {
-    if(_window!= NULL)
+    if(_window != NULL)
+    {
         delete _window;
+    }
 }
 
 //=======================================
@@ -66,7 +82,6 @@ void Game_View::draw()
     _player_sprite.SetPosition(x, y);
 
     _window->Draw(_player_sprite);
-
 
     _window->Display();
 }

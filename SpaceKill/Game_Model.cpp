@@ -16,7 +16,7 @@ Game_Model::Game_Model(): _w(MODEL_WIDTH), _h(MODEL_HEIGHT)
 //=======================================
 Game_Model::Game_Model(int w, int h):  _w(w), _h(h)
 {
-    m_player = new Player(_w/2, _h-10, PLAYER_WIDTH, PLAYER_HEIGHT, PLAYER_X_SPEED, PLAYER_Y_SPEED, 100, 0);
+    m_player = new Player((_w/2)-(PLAYER_WIDTH/2), _h-(2*PLAYER_HEIGHT), PLAYER_WIDTH, PLAYER_HEIGHT, PLAYER_X_SPEED, PLAYER_Y_SPEED, 100, 0);
 }
 
 //=======================================
@@ -24,7 +24,7 @@ Game_Model::Game_Model(int w, int h):  _w(w), _h(h)
 //=======================================
 Game_Model::~Game_Model()
 {
-     for(int i=0; i<enemies.size(); i++)
+    for(int i=0; i<enemies.size(); i++)
     {
         delete enemies[i];
     }
@@ -50,6 +50,15 @@ void Game_Model::getEnemyPos() const
     }
     cout <<endl;
 }
+
+void Game_Model::getPlayerSettings(int &x, int &y, int &w, int &h) const
+{
+    x= m_player->getX();
+    y= m_player->getY();
+    w= m_player->getW();
+    h= m_player->getH();
+}
+
 //=======================================
 // Calcul la prochaine étape
 //=======================================
@@ -103,7 +112,7 @@ void Game_Model::moveShots()
 
 void Game_Model::moveEnemies()
 {
-     for(int i=0; i<enemies.size(); i++)
+    for(int i=0; i<enemies.size(); i++)
     {
         enemies[i]->moveForward();
         if ( enemies[i]->getY()> MODEL_HEIGHT )
@@ -114,6 +123,7 @@ void Game_Model::moveEnemies()
     }
 }
 
-void Game_Model::Level(int levelStyle) {
+void Game_Model::Level(int levelStyle)
+{
 
 }

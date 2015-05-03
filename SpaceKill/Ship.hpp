@@ -16,7 +16,7 @@ protected:
     float m_x_speed;
     float m_y_speed;
     float m_health;
-    int m_styleShot=0;
+    int m_styleShot;
     int m_life;
     bool m_alive;
     std::vector <Shot*> shots;

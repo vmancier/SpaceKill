@@ -7,18 +7,26 @@
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="Debug">
-				<Option output="bin/Debug/SpaceKill" prefix_auto="1" extension_auto="1" />
-				<Option object_output="obj/Debug/" />
+				<Option output="bin\Debug\SpaceKill" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj\Debug\" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
-					<Add option="-std=c++11" />
+					<Add option="-pedantic-errors" />
+					<Add option="-pedantic" />
+					<Add option="-std=c++0x" />
+					<Add option="-Wall" />
 					<Add option="-g" />
 				</Compiler>
+				<Linker>
+					<Add option="-lsfml-system" />
+					<Add option="-lsfml-graphics" />
+					<Add option="-lsfml-window" />
+				</Linker>
 			</Target>
 			<Target title="Release">
-				<Option output="bin/Release/SpaceKill" prefix_auto="1" extension_auto="1" />
-				<Option object_output="obj/Release/" />
+				<Option output="bin\Release\SpaceKill" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj\Release\" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
@@ -31,6 +39,7 @@
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
+			<Add option="-fexceptions" />
 		</Compiler>
 		<Unit filename="Enemy.cpp" />
 		<Unit filename="Enemy.hpp" />
@@ -50,8 +59,6 @@
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />
-			<envvars />
-			<lib_finder disable_auto="1" />
 			<debugger />
 		</Extensions>
 	</Project>

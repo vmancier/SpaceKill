@@ -21,13 +21,36 @@ using namespace sf;
 int main()
 {
     srand(time(NULL));
+
     Game_Model *model = new Game_Model(MODEL_WIDTH, MODEL_HEIGHT);
-    while(model->Play())
+    Game_View *view = new Game_View(VIEW_WIDTH,VIEW_HEIGHT, VIEW_BPP);
+    view->setModel(model);
+
+    while(view->treatEvents())
     {
+        view->draw();
         cout<< endl << "----------DEPLACEMENT SUIVANT----------" << endl <<endl ;
         model->nextStep();
     }
 
+    delete view;
     delete model;
+
     return 0;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

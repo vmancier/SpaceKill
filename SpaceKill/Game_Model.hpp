@@ -33,6 +33,7 @@ public:
     bool Play();
     void getPlayerPos() const;
     void getEnemyPos() const;
+    void getPlayerSettings(int &x, int &y, int &w, int &h) const;
     void createEnemy();
     void shootEnemy();
     void moveShots();

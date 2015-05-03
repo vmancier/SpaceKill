@@ -11,8 +11,6 @@
 #include "Entities.hpp"
 #include "Game_View.hpp"
 
-//#include <SFML/System.hpp>
-
 #include <cstdlib>
 #include <iostream>
 

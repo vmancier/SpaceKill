@@ -33,12 +33,16 @@ public:
     bool Play();
     void getPlayerPos() const;
     void getEnemyPos() const;
+    void getEnemySettings(int &x, int &y, int &w, int &h) const;
     void getPlayerSettings(int &x, int &y, int &w, int &h) const;
     void createEnemy();
     void shootEnemy();
     void moveShots();
     void moveEnemies();
     void Level(int levelStyle);
+    int getEnemiesSize() const;
+    Enemy* getEnemy(int nb) const;
+    Player* getPlayer() const;
 };
 
 #endif // GAME_MODEL_HPP_INCLUDED

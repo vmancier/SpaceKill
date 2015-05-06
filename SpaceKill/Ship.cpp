@@ -104,6 +104,19 @@ void Ship::getShotsPos()
     }
 }
 
+void Ship::getShotSettings(int &x, int &y, int &w, int &h) const
+{
+    for(unsigned int i=0; i<shots.size(); i++)
+    {
+        x = shots[i]->getX();
+        y = shots[i]->getY();
+        w = shots[i]->getW();
+        h = shots[i]->getH();
+    }
+    cout << endl;
+}
+
+
 // -- moveShotsShip -----------------------------
 // Moves the ship's shots
 // ----------------------------------------------
@@ -206,4 +219,14 @@ int Ship::getX_speed() const
 int Ship::getY_speed() const
 {
     return m_y_speed;
+}
+
+int Ship::getShotsSize() const
+{
+    return shots.size();
+}
+
+Shot* Ship::getShot(int nb) const
+{
+    return shots[nb];
 }

@@ -10,10 +10,10 @@
 #ifndef ENTITIES_HPP_INCLUDED
 #define ENTITIES_HPP_INCLUDED
 
-const int MODEL_WIDTH = 800;
+const int MODEL_WIDTH = 400;
 const int MODEL_HEIGHT = 600;
 
-const int VIEW_WIDTH = 800;
+const int VIEW_WIDTH = 400;
 const int VIEW_HEIGHT = 600;
 const int VIEW_BPP = 32;
 

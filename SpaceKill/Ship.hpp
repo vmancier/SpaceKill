@@ -38,6 +38,7 @@ public:
     void loseLife(int damages);
     void die();
     void getShotsPos();
+    void getShotSettings(int &x, int &y, int &w, int &h) const;
     void moveShotsShip();
     int getLife() const;
     bool getAlive() const;
@@ -50,5 +51,7 @@ public:
     int getH() const;
     int getX_speed() const;
     int getY_speed() const;
+    int getShotsSize() const;
+    Shot* getShot(int nb) const;
 };
 #endif // SHIP_HPP_INCLUDED

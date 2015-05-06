@@ -33,6 +33,8 @@ public:
     int getDamages() const;
     int getX()const;
     int getY()const;
+    int getW()const;
+    int getH()const;
 };
 
 #endif // SHOT_HPP_INCLUDED

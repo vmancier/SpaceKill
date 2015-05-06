@@ -24,11 +24,15 @@ private:
 
     sf::Image _background_image;
     sf::Image _player_image;
+    sf::Image _enemy_image;
+    sf::Image _frite_image;
 
     sf::Sprite _background_sprite;
     sf::Sprite _player_sprite;
+    sf::Sprite _enemy_sprite;
+    sf::Sprite _frite_sprite;
 
-    Game_Model * _model;
+    Game_Model *_model;
 
 public:
     Game_View(int w, int h, int bpp);

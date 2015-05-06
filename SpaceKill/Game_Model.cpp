@@ -73,6 +73,18 @@ void Game_Model::getEnemyPos() const
     cout << endl;
 }
 
+void Game_Model::getEnemySettings(int &x, int &y, int &w, int &h) const
+{
+    for(unsigned int i=0; i<enemies.size(); i++)
+    {
+        x = enemies[i]->getX();
+        y = enemies[i]->getY();
+        w = enemies[i]->getW();
+        h = enemies[i]->getH();
+    }
+    cout << endl;
+}
+
 void Game_Model::getPlayerSettings(int &x, int &y, int &w, int &h) const
 {
     x= m_player->getX();
@@ -168,4 +180,19 @@ void Game_Model::moveEnemies()
 void Game_Model::Level(int levelStyle)
 {
 
+}
+
+int Game_Model::getEnemiesSize() const
+{
+    return enemies.size();
+}
+
+Enemy* Game_Model::getEnemy(int nb) const
+{
+    return enemies[nb];
+}
+
+Player* Game_Model::getPlayer() const
+{
+    return m_player;
 }

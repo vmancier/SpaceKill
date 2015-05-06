@@ -28,20 +28,25 @@ Game_View::Game_View(int w, int h, int bpp): _w(w), _h(h)
 {
     _window = new RenderWindow(sf::VideoMode(w, h, bpp), "SpaceKill", sf::Style::Close);
 
-    if (!_background_image.LoadFromFile("assets/enemy0.png") ||
-        !_player_image.LoadFromFile("assets/enemy1.png"))
+    if (!_background_image.LoadFromFile("assets/background.JPG") ||
+            !_player_image.LoadFromFile("assets/enemy1.png") ||
+            !_enemy_image.LoadFromFile("assets/enemy2.png") ||
+            !_frite_image.LoadFromFile("assets/frite.png"))
     {
         _background_sprite = Sprite ();
         _player_sprite = Sprite();
+        _enemy_sprite = Sprite();
+        _frite_sprite = Sprite();
     }
     else
     {
-
-        _background_sprite = Sprite (_background_image);
+        _background_sprite = Sprite(_background_image);
         _background_sprite.Resize(_w, _h);
         _background_sprite.SetPosition(0,0);
 
         _player_sprite = Sprite(_player_image);
+        _enemy_sprite = Sprite(_enemy_image);
+        _frite_sprite = Sprite(_frite_image);
     }
 }
 
@@ -69,20 +74,51 @@ void Game_View::setModel(Game_Model * model)
 //=======================================
 void Game_View::draw()
 {
+    ////Background////
     _window->Clear();
     _window->Draw(_background_sprite);
+    //////////////////
 
     int x, y, w, h;
-
+    //////Player//////
     _model->getPlayerSettings(x, y, w, h);
-
-    //cout <<x<<" "<<y<<" "<<w<<" "<<h;
-
     _player_sprite.Resize(w, h);
     _player_sprite.SetPosition(x, y);
-
     _window->Draw(_player_sprite);
+    //////////////////
 
+    /////Enemies//////
+    for(int i=0; i < _model->getEnemiesSize(); i++)
+    {
+        _model->getEnemySettings(x, y, w, h);
+        _enemy_sprite.Resize(w, h);
+        _enemy_sprite.SetPosition(x, y);
+        _window->Draw(_enemy_sprite);
+        _window->Display();
+    }
+    //////////////////
+
+    /////Tirs///////
+    for(int i=0; i < _model->getEnemiesSize(); i++)
+    {
+        for(int j=0; j < (_model->getEnemy(i))->getShotsSize(); j++)
+        {
+            (_model->getEnemy(i))->getShotSettings(x, y, w, h);
+            _frite_sprite.Resize(w, h);
+            _frite_sprite.SetPosition(x, y);
+            _window->Draw(_frite_sprite);
+            _window->Display();
+        }
+    }
+    for (int k=0; k < (_model->getPlayer())->getShotsSize(); k++)
+    {
+        _model->getPlayer()->getShotSettings(x, y, w, h);
+        _frite_sprite.Resize(w, h);
+        _frite_sprite.SetPosition(x, y);
+        _window->Draw(_frite_sprite);
+        _window->Display();
+    }
+    ////////////////
     _window->Display();
 }
 

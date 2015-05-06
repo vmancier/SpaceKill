@@ -107,6 +107,15 @@ int Shot::getY() const
     return m_yS;
 }
 
+int Shot::getW() const
+{
+    return m_wS;
+}
+
+int Shot::getH() const
+{
+    return m_hS;
+}
 // -- moveShot ----------------------------------
 // Moves the shot
 // ----------------------------------------------

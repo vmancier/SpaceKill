@@ -48,9 +48,9 @@ Enemy::Enemy(int x, int y, int w, int h, float x_speed, float y_speed, int healt
 // * out-parameters :
 // - m_y, int : modified enemy's position
 // ----------------------------------------------
-void Enemy::moveForward()
+void Enemy::moveForward(float timedelta)
 {
-    m_y += m_y_speed;
+    m_y += m_y_speed*timedelta;
 }
 
 // -- getStyle ----------------------------------

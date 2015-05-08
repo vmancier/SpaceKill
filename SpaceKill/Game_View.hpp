@@ -40,7 +40,7 @@ public:
 
     void setModel(Game_Model * model);
     void draw();
-    bool treatEvents();
+    bool treatEvents(sf::Clock &clock);
 
 };
 

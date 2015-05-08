@@ -90,11 +90,11 @@ void Game_View::draw()
     /////Enemies//////
     for(int i=0; i < _model->getEnemiesSize(); i++)
     {
-        _model->getEnemySettings(x, y, w, h);
+        _model->getEnemySettings(x, y, w, h,i);
         _enemy_sprite.Resize(w, h);
         _enemy_sprite.SetPosition(x, y);
         _window->Draw(_enemy_sprite);
-        _window->Display();
+        //_window->Display();
     }
     //////////////////
 
@@ -107,7 +107,7 @@ void Game_View::draw()
             _frite_sprite.Resize(w, h);
             _frite_sprite.SetPosition(x, y);
             _window->Draw(_frite_sprite);
-            _window->Display();
+            //_window->Display();
         }
     }
     for (int k=0; k < (_model->getPlayer())->getShotsSize(); k++)
@@ -116,7 +116,7 @@ void Game_View::draw()
         _frite_sprite.Resize(w, h);
         _frite_sprite.SetPosition(x, y);
         _window->Draw(_frite_sprite);
-        _window->Display();
+        //_window->Display();
     }
     ////////////////
     _window->Display();
@@ -126,23 +126,34 @@ void Game_View::draw()
 // Traitement des evenements
 // Retourne false si un evenement de fin est reçu
 //=======================================
-bool Game_View::treatEvents()
+bool Game_View::treatEvents(Clock &clock)
 {
     bool result = false;
+
+    float timedelta = clock.GetElapsedTime();
+
     if(_window->IsOpened())
     {
         result = true;
         Event event;
-        while (_window->GetEvent(event))
-        {
-            if ((event.Type == Event::Closed) ||
+        _window->GetEvent(event);
+
+        if ((event.Type == Event::Closed) ||
                     ((event.Type == Event::KeyPressed) && (event.Key.Code == sf::Key::Escape)))
-            {
-                _window->Close();
-                result = false;
-            }
+        {
+            _window->Close();
+            result = false;
         }
+
+        // Deplacement du joueur
+        (_model->getPlayer())->moveP(event, timedelta);
+
+        // Deplacement des enemmis
+        _model->moveEnemies(timedelta);
+
     }
+    //Reset ton horloge à chaque frame
+    clock.Reset();
     return result;
 }
 

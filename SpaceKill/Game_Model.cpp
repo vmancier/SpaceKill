@@ -73,16 +73,12 @@ void Game_Model::getEnemyPos() const
     cout << endl;
 }
 
-void Game_Model::getEnemySettings(int &x, int &y, int &w, int &h) const
+void Game_Model::getEnemySettings(int &x, int &y, int &w, int &h, int i) const
 {
-    for(unsigned int i=0; i<enemies.size(); i++)
-    {
-        x = enemies[i]->getX();
-        y = enemies[i]->getY();
-        w = enemies[i]->getW();
-        h = enemies[i]->getH();
-    }
-    cout << endl;
+    x = enemies[i]->getX();
+    y = enemies[i]->getY();
+    w = enemies[i]->getW();
+    h = enemies[i]->getH();
 }
 
 void Game_Model::getPlayerSettings(int &x, int &y, int &w, int &h) const
@@ -100,14 +96,12 @@ void Game_Model::nextStep()
 {
     createEnemy();
     getEnemyPos();
-    shootEnemy();
-    m_player->shot();
-    m_player->getShotsPos();
-    moveShots();
-    moveEnemies();
+    //shootEnemy();
+    //m_player->shot();
+    //m_player->getShotsPos();
+    //moveShots();
+    //moveEnemies();
     getPlayerPos();
-    m_player->moveP();
-
 }
 
 // -- Play --------------------------------------
@@ -132,7 +126,7 @@ void Game_Model::createEnemy()
 {
 
     int xPos = rand() % MODEL_WIDTH;
-    Enemy *myEnemy = new Enemy(xPos, 10, PLAYER_WIDTH, PLAYER_HEIGHT, PLAYER_X_SPEED, 40, 100, 0, 10, 0);
+    Enemy *myEnemy = new Enemy(xPos, 10, PLAYER_WIDTH, PLAYER_HEIGHT, PLAYER_X_SPEED, 100, 100, 0, 10, 0);
     enemies.push_back(myEnemy);
 }
 
@@ -164,12 +158,11 @@ void Game_Model::moveShots()
 // -- moveEnemies ---------------------------------
 // Moves the enemies
 // ----------------------------------------------
-void Game_Model::moveEnemies()
+void Game_Model::moveEnemies(float timedelta)
 {
-
     for(unsigned int i = 0; i<enemies.size(); i++)
     {
-        enemies[i]->moveForward();
+        enemies[i]->moveForward(timedelta);
         if ( enemies[i]->getY()> MODEL_HEIGHT )
         {
             delete enemies[i];

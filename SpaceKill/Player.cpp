@@ -13,6 +13,8 @@
 
 using namespace std;
 
+using namespace sf;
+
 // -- Player -------------------------------------
 // Builds by default an object "player"
 // ----------------------------------------------
@@ -42,39 +44,40 @@ Player::Player(int x, int y, int w, int h, float x_speed, float y_speed, int hea
 // -- moveP -------------------------------------
 // Moves the player
 // ----------------------------------------------
-void Player::moveP()
+void Player::moveP(Event event, float timedelta)
 {
+    /*
     int choice;
     cout <<endl;
     cout << "1 : Gauche"<<endl;
     cout << "2 : Droite"<<endl;
-    cin >> choice;
-    if(choice == 1)
+    cin >> choice;*/
+    if ((event.Type == sf::Event::KeyPressed) && (event.Key.Code == sf::Key::Left))
     {
-        if ((getX()-getX_speed())> 0)
+        if ((getX()-getX_speed()*timedelta)> 0)
         {
-            setX(getX()-getX_speed());
+            setX(getX()-getX_speed()*timedelta);
         }
-        else if((getX()-getX_speed())< 0)
+        else if((getX()-getX_speed()*timedelta)< 0)
         {
             setX(0);
         }
     }
-    else if(choice == 2)
+    else if ((event.Type == sf::Event::KeyPressed) && (event.Key.Code == sf::Key::Right))
     {
-        if (getX()+getX_speed()< MODEL_WIDTH)
+        if ((getX()+getW()+getX_speed()*timedelta)< MODEL_WIDTH)
         {
-            setX(getX()+getX_speed());
+            setX(getX()+getX_speed()*timedelta);
         }
-        else if((getX()+getX_speed())> MODEL_WIDTH)
+        else if((getX()+getW()+getX_speed()*timedelta)> MODEL_WIDTH)
         {
-            setX(MODEL_WIDTH);
+            setX(MODEL_WIDTH-getW());
         }
-    }
+    }/*
     else
     {
         moveP();
-    }
+    }*/
 }
 
 // -- shoot -------------------------------------

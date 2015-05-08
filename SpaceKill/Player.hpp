@@ -10,6 +10,7 @@
 #ifndef PLAYER_HPP_INCLUDED
 #define PLAYER_HPP_INCLUDED
 
+#include <SFML/Window.hpp>
 #include "Ship.hpp"
 
 class Player : public Ship
@@ -20,7 +21,7 @@ public:
     Player(int x, int y, int w, int h, float x_speed, float y_speed, int health, int styleShot);
     Player();
     ~Player();
-    void moveP();
+    void moveP(sf::Event event, float timedelta);
     void shot();
 };
 #endif // PLAYER_HPP_INCLUDED

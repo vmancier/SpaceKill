@@ -33,12 +33,12 @@ public:
     bool Play();
     void getPlayerPos() const;
     void getEnemyPos() const;
-    void getEnemySettings(int &x, int &y, int &w, int &h) const;
+    void getEnemySettings(int &x, int &y, int &w, int &h, int i) const;
     void getPlayerSettings(int &x, int &y, int &w, int &h) const;
     void createEnemy();
     void shootEnemy();
     void moveShots();
-    void moveEnemies();
+    void moveEnemies(float timedelta);
     void Level(int levelStyle);
     int getEnemiesSize() const;
     Enemy* getEnemy(int nb) const;

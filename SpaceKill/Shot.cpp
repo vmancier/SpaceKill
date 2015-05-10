@@ -75,6 +75,15 @@ Shot::Shot(int style, int x, int y, int xSpeed, int ySpeed)
     m_y_speedS = ySpeed;
 }
 
+// -- moveShot ----------------------------------
+// Moves the shot
+// ----------------------------------------------
+void Shot::moveShot()
+{
+    m_xS += m_x_speedS;
+    m_yS += m_y_speedS;
+}
+
 // -- getStyle ----------------------------------
 // Returns the shoot's style
 // ----------------------------------------------
@@ -107,21 +116,18 @@ int Shot::getY() const
     return m_yS;
 }
 
+// -- getW --------------------------------------
+// Returns the shot's width
+// ----------------------------------------------
 int Shot::getW() const
 {
     return m_wS;
 }
 
+// -- getH --------------------------------------
+// Returns the shot's height
+// ----------------------------------------------
 int Shot::getH() const
 {
     return m_hS;
 }
-// -- moveShot ----------------------------------
-// Moves the shot
-// ----------------------------------------------
-void Shot::moveShot()
-{
-    m_xS += m_x_speedS;
-    m_yS += m_y_speedS;
-}
-

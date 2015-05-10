@@ -16,13 +16,15 @@ class Enemy : public Ship
 private:
     int m_style;
     int m_value;
+    int styleShot;
 
 public:
     Enemy();
-    Enemy(int x, int y, int w, int h, float x_speed, float y_speed, int health, int style, int value, int styleShot);
+    Enemy(int x, int y, int w, int h, float x_speed, float y_speed, int health, int value, int styleShot, int style);
+
     void moveForward(float timedelta);
-    int getStyle() const;
     void shoot();
+    int getStyle() const;
 };
 
 #endif // ENEMY_HPP_INCLUDED

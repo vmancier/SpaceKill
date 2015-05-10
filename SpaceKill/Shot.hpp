@@ -13,7 +13,6 @@
 class Shot
 {
 private:
-
     int m_xS;
     int m_yS;
     int m_wS;
@@ -27,8 +26,10 @@ private:
 public:
     Shot();
     Shot(int style, int x, int y, int xSpeed, int ySpeed);
+
     void shotSettings(int style, int x, int y,int xSpeed, int ySpeed);
     void moveShot();
+
     int getStyle() const;
     int getDamages() const;
     int getX()const;

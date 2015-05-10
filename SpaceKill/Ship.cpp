@@ -91,32 +91,6 @@ void Ship::die()
     }
 }
 
-// -- getShotPos --------------------------------
-// Returns the shot's position
-// ----------------------------------------------
-void Ship::getShotsPos()
-{
-    for(unsigned int i=0; i<shots.size(); i++)
-    {
-        int x = shots[i]->getX();
-        int y = shots[i]->getY();
-        cout << "Tir(" << x << "," << y << ")" << endl;
-    }
-}
-
-void Ship::getShotSettings(int &x, int &y, int &w, int &h) const
-{
-    for(unsigned int i=0; i<shots.size(); i++)
-    {
-        x = shots[i]->getX();
-        y = shots[i]->getY();
-        w = shots[i]->getW();
-        h = shots[i]->getH();
-    }
-    cout << endl;
-}
-
-
 // -- moveShotsShip -----------------------------
 // Moves the ship's shots
 // ----------------------------------------------
@@ -131,6 +105,66 @@ void Ship::moveShotsShip()
             shots.erase(shots.begin()+i);
         }
     }
+}
+
+// -- setX --------------------------------------
+// Sets the horizontal ship's position
+// ----------------------------------------------
+void Ship::setX(int x)
+{
+    m_x = x;
+}
+
+// -- setY --------------------------------------
+// Sets the vertical ship's position
+// ----------------------------------------------
+void Ship::setY(int y)
+{
+    m_y = y;
+}
+
+// -- getShot -----------------------------------
+// Returns a specified shot
+// ----------------------------------------------
+Shot* Ship::getShot(int nb) const
+{
+    return shots[nb];
+}
+
+// -- getShotPos --------------------------------
+// Returns the shot's position
+// ----------------------------------------------
+void Ship::getShotsPos()
+{
+    for(unsigned int i=0; i<shots.size(); i++)
+    {
+        int x = shots[i]->getX();
+        int y = shots[i]->getY();
+        cout << "Tir(" << x << "," << y << ")" << endl;
+    }
+}
+
+// -- getShotSettings ---------------------------
+// Return the shot's position and size
+// ----------------------------------------------
+void Ship::getShotSettings(int &x, int &y, int &w, int &h) const
+{
+    for(unsigned int i=0; i<shots.size(); i++)
+    {
+        x = shots[i]->getX();
+        y = shots[i]->getY();
+        w = shots[i]->getW();
+        h = shots[i]->getH();
+    }
+    cout << endl;
+}
+
+// -- getShotsSize ------------------------------
+// Returns the size of the vector "shots", so the number of shots
+// ----------------------------------------------
+int Ship::getShotsSize() const
+{
+    return shots.size();
 }
 
 // -- getLife -----------------------------------
@@ -155,22 +189,6 @@ bool Ship::getAlive()const
 float Ship::getHealth() const
 {
     return m_health;
-}
-
-// -- setX --------------------------------------
-// Sets the horizontal ship's position
-// ----------------------------------------------
-void Ship::setX(int x)
-{
-    m_x = x;
-}
-
-// -- setY --------------------------------------
-// Sets the vertical ship's position
-// ----------------------------------------------
-void Ship::setY(int y)
-{
-    m_y = y;
 }
 
 // -- getX --------------------------------------
@@ -205,7 +223,7 @@ int Ship::getH() const
     return m_h;
 }
 
-// -- getWX_speed -------------------------------
+// -- getX_speed -------------------------------
 // Returns the horizontal ship's speed
 // ----------------------------------------------
 int Ship::getX_speed() const
@@ -213,20 +231,10 @@ int Ship::getX_speed() const
     return m_x_speed;
 }
 
-// -- getWX_speed -------------------------------
+// -- getY_speed -------------------------------
 // Returns the vertical ship's speed
 // ----------------------------------------------
 int Ship::getY_speed() const
 {
     return m_y_speed;
-}
-
-int Ship::getShotsSize() const
-{
-    return shots.size();
-}
-
-Shot* Ship::getShot(int nb) const
-{
-    return shots[nb];
 }

@@ -35,23 +35,27 @@ public:
     Ship();
     Ship(int x, int y, int w, int h, float x_speed, float y_speed, int health,int styleShot);
     ~Ship();
+
     void loseLife(int damages);
     void die();
+    void moveShotsShip();
+
+    void setX(int x);
+    void setY(int y);
+    Shot* getShot(int nb) const;
     void getShotsPos();
     void getShotSettings(int &x, int &y, int &w, int &h) const;
-    void moveShotsShip();
+    int getShotsSize() const;
     int getLife() const;
     bool getAlive() const;
     float getHealth() const;
-    void setX(int x);
-    void setY(int y);
     int getX() const;
     int getY() const;
     int getW() const;
     int getH() const;
     int getX_speed() const;
     int getY_speed() const;
-    int getShotsSize() const;
-    Shot* getShot(int nb) const;
+
+
 };
 #endif // SHIP_HPP_INCLUDED

@@ -34,13 +34,24 @@ Enemy::Enemy()
 // - "y_speed", float : horizontal speed of the enemy
 // - "health", int : level of the enemy's health
 // - "style", int : number of the enemy's style
-// - "value", int : A COMPLETEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEER
+// - "value", int : number of points won by the player when he shots the enemy
 // - "styleShot" : number of the enemy's shoot's style
 // ----------------------------------------------
-Enemy::Enemy(int x, int y, int w, int h, float x_speed, float y_speed, int health, int style, int value, int styleShot)
+Enemy::Enemy(int x, int y, int w, int h, float x_speed, float y_speed, int health, int value, int styleShot, int style)
     :Ship(x, y, w, h, x_speed, y_speed, health, styleShot), m_style(style), m_value(value)
 {
 
+    /*cout << "x : " << x
+    << "\ny : " << y
+    << "\nw : " << w
+    << "\nh : " << h
+    << "\nx_speed : " << x_speed
+    << "\ny_speed : " << y_speed
+    << "\nhealth : " << health
+    << "\nstyleShot : " << styleShot
+    << "\nm_style : " << m_style
+    << "\nm_value : " << m_value
+    << endl;*/
 }
 
 // -- moveForward -------------------------------
@@ -53,6 +64,15 @@ void Enemy::moveForward(float timedelta)
     m_y += m_y_speed*timedelta;
 }
 
+// -- shoot -------------------------------------
+// Makes the enemy shoot
+// ----------------------------------------------
+void Enemy::shoot()
+{
+    Shot* shot = new Shot(m_styleShot, ((getX()+getW())/2), ((getY()+getH())/2), 0, 53);
+    shots.push_back(shot);
+}
+
 // -- getStyle ----------------------------------
 // Gets the number of the enemy's style
 // * out-parameters :
@@ -61,13 +81,4 @@ void Enemy::moveForward(float timedelta)
 int Enemy::getStyle() const
 {
     return m_style;
-}
-
-// -- shoot -------------------------------------
-// Makes the enemy shoot
-// ----------------------------------------------
-void Enemy::shoot()
-{
-    Shot* shot = new Shot(m_styleShot, ((getX()+getW())/2), ((getY()+getH())/2), 0, 53);
-    shots.push_back(shot);
 }

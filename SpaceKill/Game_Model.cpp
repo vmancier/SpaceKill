@@ -37,7 +37,7 @@ Game_Model::Game_Model(): _w(MODEL_WIDTH), _h(MODEL_HEIGHT)
 Game_Model::Game_Model(int w, int h): _w(w), _h(h)
 {
     m_player = new Player((_w/2)-(PLAYER_WIDTH/2), _h-(2*PLAYER_HEIGHT), PLAYER_WIDTH, PLAYER_HEIGHT, PLAYER_X_SPEED, PLAYER_Y_SPEED, 100, 0);
-    Level(8);
+    Level(1);
 }
 
 // -- ~Game_Model --------------------------------
@@ -102,92 +102,10 @@ void Game_Model::createEnemy()
 {
     int exactWidth = MODEL_WIDTH - ENEMY_WIDTH;
     int xPos = rand() % exactWidth;
-
     int style = getLevelNumber();
-    int x_speed = 0;
-    int y_speed = 0;
-    int health = 0;
-    int styleShot = 0;
-    int m_value = 0;
-    int m_w = 0;
-    int m_h = 0;
-    switch(style)
-    {
-    case 1:
-        x_speed = 100;
-        y_speed = 100;
-        health = 100;
-        styleShot = 1;
-        m_value = 10;
-        m_w = 36;
-        m_h = 64;
-        break;
-    case 2:
-        x_speed = 120;
-        y_speed = 120;
-        health = 120;
-        styleShot = 2;
-        m_value = 15;
-        m_w = 31;
-        m_h = 45;
-        break;
-    case 3:
-        x_speed = 140;
-        y_speed = 140;
-        health = 140;
-        styleShot = 3;
-        m_value = 20;
-        m_w = 51;
-        m_h = 53;
-        break;
-    case 4:
-        x_speed = 160;
-        y_speed = 160;
-        health = 160;
-        styleShot = 4;
-        m_value = 25;
-        m_w = 31;
-        m_h = 60;
-        break;
-    case 5:
-        x_speed = 180;
-        y_speed = 180;
-        health = 180;
-        styleShot = 5;
-        m_value = 30;
-        m_w = 31;
-        m_h = 60;
-        break;
-    case 6:
-        x_speed = 200;
-        y_speed = 200;
-        health = 200;
-        styleShot = 6;
-        m_value = 35;
-        m_w = 50;
-        m_h = 50;
-        break;
-    case 7:
-        x_speed = 220;
-        y_speed = 220;
-        health = 220;
-        styleShot = 7;
-        m_value = 40;
-        m_w = 44;
-        m_h = 60;
-        break;
-    case 8:
-        x_speed = 240;
-        y_speed = 240;
-        health = 120;
-        styleShot = 8;
-        m_value = 45;
-        m_w = 50;
-        m_h = 50;
-        break;
-    }
-    Enemy *myEnemy = new Enemy(xPos, 10, m_w, m_h, x_speed, y_speed, health, m_value, styleShot, style);
-    enemies.push_back(myEnemy);
+
+    Enemy *monEnemiTest = new Enemy(xPos, style);
+    enemies.push_back(monEnemiTest);
 }
 
 // -- moveEnemies -------------------------------

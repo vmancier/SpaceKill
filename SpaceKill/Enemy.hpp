@@ -21,10 +21,13 @@ private:
 public:
     Enemy();
     Enemy(int x, int y, int w, int h, float x_speed, float y_speed, int health, int value, int styleShot, int style);
+    Enemy(int x, int style);
 
     void moveForward(float timedelta);
     void shoot();
+    void setEnemySettings(int style);
     int getStyle() const;
+
 };
 
 #endif // ENEMY_HPP_INCLUDED

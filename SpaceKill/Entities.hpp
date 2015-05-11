@@ -25,7 +25,8 @@ const float PLAYER_Y_SPEED = 40.0;
 const int ENEMY_WIDTH = 30;
 const int ENEMY_HEIGHT = 50;
 const float DEFAULT_ENEMY_X_SPEED = 100.0;
-const float DEFAULT_ENEMY_Y_SPEED = 40.0;
+const float DEFAULT_ENEMY_Y_SPEED = 100.0;
+const int DEFAULT_HEALTH = 100;
 
 
 #endif // ENTITIES_HPP_INCLUDED

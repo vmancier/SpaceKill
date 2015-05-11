@@ -54,6 +54,7 @@ public:
 
     void draw();
     void drawEnemies();
+    void drawEnemiesBis(sf::Sprite);
     bool treatEvents(sf::Clock &clock);
     void setModel(Game_Model *model);
 

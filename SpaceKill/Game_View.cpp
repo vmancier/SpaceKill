@@ -133,90 +133,46 @@ void Game_View::draw()
 // ----------------------------------------------
 void Game_View::drawEnemies()
 {
-    int x, y, w, h;
     int style = _model->getLevelNumber();
     switch(style)
     {
     case 1:
-        for(int i=0; i < _model->getEnemiesSize(); i++)
-        {
-            _model->getEnemySettings(x, y, w, h, i);
-            _enemy1_sprite.Resize(w, h);
-            _enemy1_sprite.SetPosition(x, y);
-            _window->Draw(_enemy1_sprite);
-            //_window->Display();
-        }
+        Game_View::drawEnemiesBis(_enemy1_sprite);
         break;
     case 2:
-        for(int i=0; i < _model->getEnemiesSize(); i++)
-        {
-            _model->getEnemySettings(x, y, w, h,i);
-            _enemy2_sprite.Resize(w, h);
-            _enemy2_sprite.SetPosition(x, y);
-            _window->Draw(_enemy2_sprite);
-            //_window->Display();
-        }
+        Game_View::drawEnemiesBis(_enemy2_sprite);
         break;
     case 3:
-        for(int i=0; i < _model->getEnemiesSize(); i++)
-        {
-            _model->getEnemySettings(x, y, w, h,i);
-            _enemy3_sprite.Resize(w, h);
-            _enemy3_sprite.SetPosition(x, y);
-            _window->Draw(_enemy3_sprite);
-            //_window->Display();
-        }
+        Game_View::drawEnemiesBis(_enemy3_sprite);
         break;
     case 4:
-        for(int i=0; i < _model->getEnemiesSize(); i++)
-        {
-            _model->getEnemySettings(x, y, w, h,i);
-            _enemy4_sprite.Resize(w, h);
-            _enemy4_sprite.SetPosition(x, y);
-            _window->Draw(_enemy4_sprite);
-            //_window->Display();
-        }
+        Game_View::drawEnemiesBis(_enemy4_sprite);
         break;
     case 5:
-        for(int i=0; i < _model->getEnemiesSize(); i++)
-        {
-            _model->getEnemySettings(x, y, w, h,i);
-            _enemy5_sprite.Resize(w, h);
-            _enemy5_sprite.SetPosition(x, y);
-            _window->Draw(_enemy5_sprite);
-            //_window->Display();
-        }
+        Game_View::drawEnemiesBis(_enemy5_sprite);
         break;
     case 6:
-        for(int i=0; i < _model->getEnemiesSize(); i++)
-        {
-            _model->getEnemySettings(x, y, w, h,i);
-            _enemy6_sprite.Resize(w, h);
-            _enemy6_sprite.SetPosition(x, y);
-            _window->Draw(_enemy6_sprite);
-            //_window->Display();
-        }
+        Game_View::drawEnemiesBis(_enemy6_sprite);
         break;
     case 7:
-        for(int i=0; i < _model->getEnemiesSize(); i++)
-        {
-            _model->getEnemySettings(x, y, w, h,i);
-            _enemy7_sprite.Resize(w, h);
-            _enemy7_sprite.SetPosition(x, y);
-            _window->Draw(_enemy7_sprite);
-            //_window->Display();
-        }
+        Game_View::drawEnemiesBis(_enemy7_sprite);
         break;
     case 8:
-        for(int i=0; i < _model->getEnemiesSize(); i++)
-        {
-            _model->getEnemySettings(x, y, w, h,i);
-            _enemy8_sprite.Resize(w, h);
-            _enemy8_sprite.SetPosition(x, y);
-            _window->Draw(_enemy8_sprite);
-            //_window->Display();
-        }
+        Game_View::drawEnemiesBis(_enemy8_sprite);
         break;
+    }
+}
+
+void Game_View::drawEnemiesBis(Sprite myEnemySprite)
+{
+    int x, y, w, h;
+    for(int i=0; i < _model->getEnemiesSize(); i++)
+    {
+        _model->getEnemySettings(x, y, w, h, i);
+        myEnemySprite.Resize(w, h);
+        myEnemySprite.SetPosition(x, y);
+        _window->Draw(myEnemySprite);
+        //_window->Display();
     }
 }
 

@@ -162,7 +162,7 @@ void Enemy::moveForward(float timedelta)
 // ----------------------------------------------
 void Enemy::shoot()
 {
-    Shot* shot = new Shot(m_styleShot, ((getX()+getW())/2), ((getY()+getH())/2), 0, 53);
+    Shot* shot = new Shot(m_styleShot, (getX()+getW()/2), (getY()-getH()/2), 0, 200);
     shots.push_back(shot);
 }
 

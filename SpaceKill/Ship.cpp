@@ -94,11 +94,11 @@ void Ship::die()
 // -- moveShotsShip -----------------------------
 // Moves the ship's shots
 // ----------------------------------------------
-void Ship::moveShotsShip()
+void Ship::moveShotsShip(float timedelta)
 {
     for(unsigned int i=0; i<shots.size(); i++)
     {
-        shots[i]->moveShot();
+        shots[i]->moveShot(timedelta);
         if ( shots[i]->getX()< 0 || (shots[i]->getX())> MODEL_WIDTH || shots[i]->getY()< 0 || shots[i]->getY()> MODEL_HEIGHT )
         {
             delete shots[i];
@@ -147,16 +147,12 @@ void Ship::getShotsPos()
 // -- getShotSettings ---------------------------
 // Return the shot's position and size
 // ----------------------------------------------
-void Ship::getShotSettings(int &x, int &y, int &w, int &h) const
+void Ship::getShotSettings(int &x, int &y, int &w, int &h, int i) const
 {
-    for(unsigned int i=0; i<shots.size(); i++)
-    {
-        x = shots[i]->getX();
-        y = shots[i]->getY();
-        w = shots[i]->getW();
-        h = shots[i]->getH();
-    }
-    cout << endl;
+    x = shots[i]->getX();
+    y = shots[i]->getY();
+    w = shots[i]->getW();
+    h = shots[i]->getH();
 }
 
 // -- getShotsSize ------------------------------

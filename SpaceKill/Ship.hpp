@@ -38,13 +38,13 @@ public:
 
     void loseLife(int damages);
     void die();
-    void moveShotsShip();
+    void moveShotsShip(float timedelta);
 
     void setX(int x);
     void setY(int y);
     Shot* getShot(int nb) const;
     void getShotsPos();
-    void getShotSettings(int &x, int &y, int &w, int &h) const;
+    void getShotSettings(int &x, int &y, int &w, int &h, int i) const;
     int getShotsSize() const;
     int getLife() const;
     bool getAlive() const;

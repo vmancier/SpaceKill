@@ -59,7 +59,7 @@ void Game_Model::nextStep()
     createEnemy();
     getEnemyPos();
     //shootEnemy();
-    //m_player->shot();
+    m_player->shot();
     //m_player->getShotsPos();
     //moveShots();
     //moveEnemies();
@@ -142,12 +142,12 @@ void Game_Model::shootEnemy()
 // -- moveShots ---------------------------------
 // Moves the shots
 // ----------------------------------------------
-void Game_Model::moveShots()
+void Game_Model::moveShots(float timedelta)
 {
-    m_player->moveShotsShip();
+    m_player->moveShotsShip(timedelta);
     for(unsigned int i = 0; i<enemies.size(); i++)
     {
-        enemies[i]->moveShotsShip();
+        enemies[i]->moveShotsShip(timedelta);
     }
 }
 

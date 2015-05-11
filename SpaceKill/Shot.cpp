@@ -78,10 +78,10 @@ Shot::Shot(int style, int x, int y, int xSpeed, int ySpeed)
 // -- moveShot ----------------------------------
 // Moves the shot
 // ----------------------------------------------
-void Shot::moveShot()
+void Shot::moveShot(float timedelta)
 {
-    m_xS += m_x_speedS;
-    m_yS += m_y_speedS;
+    m_xS += m_x_speedS* timedelta;
+    m_yS += m_y_speedS* timedelta;
 }
 
 // -- getStyle ----------------------------------

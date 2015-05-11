@@ -91,23 +91,13 @@ void Game_View::draw()
     _window->Clear();
     _window->Draw(_background_sprite);
 
-
-    //////Player//////
-    int x, y, w, h;
-    _model->getPlayerSettings(x, y, w, h);
-    _player_sprite.Resize(w, h);
-    _player_sprite.SetPosition(x, y);
-    _window->Draw(_player_sprite);
-
-    /////Enemies//////
-    Game_View::drawEnemies();
-
+     int x, y, w, h;
     /////Shots///////
     for(int i=0; i < _model->getEnemiesSize(); i++)
     {
         for(int j=0; j < (_model->getEnemy(i))->getShotsSize(); j++)
         {
-            (_model->getEnemy(i))->getShotSettings(x, y, w, h);
+            (_model->getEnemy(i))->getShotSettings(x, y, w, h, j);
             _shot1_sprite.Resize(w, h);
             _shot1_sprite.SetPosition(x, y);
             _window->Draw(_shot1_sprite);
@@ -117,14 +107,24 @@ void Game_View::draw()
 
     for (int k=0; k < (_model->getPlayer())->getShotsSize(); k++)
     {
-        _model->getPlayer()->getShotSettings(x, y, w, h);
+        (_model->getPlayer())->getShotSettings(x, y, w, h, k);
         _shot1_sprite.Resize(w, h);
         _shot1_sprite.SetPosition(x, y);
         _window->Draw(_shot1_sprite);
         //_window->Display();
     }
 
+    //////Player//////
+    _model->getPlayerSettings(x, y, w, h);
+    _player_sprite.Resize(w, h);
+    _player_sprite.SetPosition(x, y);
+    _window->Draw(_player_sprite);
+
+    /////Enemies//////
+    Game_View::drawEnemies();
+
     ////////////////
+
     _window->Display();
 }
 
@@ -204,6 +204,9 @@ bool Game_View::treatEvents(Clock &clock)
 
         // Deplacement des enemmis
         _model->moveEnemies(timedelta);
+
+         // Deplacement des tirs
+         _model->moveShots(timedelta);
 
     }
     //Reset ton horloge à chaque frame

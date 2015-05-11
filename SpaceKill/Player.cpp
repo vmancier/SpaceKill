@@ -85,6 +85,6 @@ void Player::moveP(Event event, float timedelta)
 // ----------------------------------------------
 void Player::shot()
 {
-    Shot* shot = new Shot(m_styleShot, (getX()+getW())/2, (getY()+getH())/2, 0, -20);
+    Shot* shot = new Shot(m_styleShot, (getX()+getW()/2), getY(), 0, -200);
     shots.push_back(shot);
 }

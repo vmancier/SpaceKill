@@ -35,7 +35,7 @@ public:
     void createEnemy();
     void moveEnemies(float timedelta);
     void shootEnemy();
-    void moveShots();
+    void moveShots(float timedelta);
     int getLevelNumber() const;
 
     Player* getPlayer() const;

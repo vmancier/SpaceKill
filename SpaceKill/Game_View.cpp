@@ -38,7 +38,9 @@ Game_View::Game_View(int w, int h, int bpp): _w(w), _h(h)
             !_enemy6_image.LoadFromFile("assets/enemy6.png") ||
             !_enemy7_image.LoadFromFile("assets/enemy7.png") ||
             !_enemy8_image.LoadFromFile("assets/enemy8.png") ||
-            !_shot1_image.LoadFromFile("assets/shot1.png"))
+            !_shot1_image.LoadFromFile("assets/shot1.png") ||
+            !_shot2_image.LoadFromFile("assets/shot2.png") ||
+            !_shot3_image.LoadFromFile("assets/shot3.png"))
     {
         _background_sprite = Sprite ();
         _player_sprite = Sprite();
@@ -51,6 +53,8 @@ Game_View::Game_View(int w, int h, int bpp): _w(w), _h(h)
         _enemy7_sprite = Sprite();
         _enemy8_sprite = Sprite();
         _shot1_sprite = Sprite();
+        _shot2_sprite = Sprite();
+        _shot3_sprite = Sprite();
     }
     else
     {
@@ -68,6 +72,8 @@ Game_View::Game_View(int w, int h, int bpp): _w(w), _h(h)
         _enemy7_sprite = Sprite(_enemy7_image);
         _enemy8_sprite = Sprite(_enemy8_image);
         _shot1_sprite = Sprite(_shot1_image);
+        _shot2_sprite = Sprite(_shot2_image);
+        _shot3_sprite = Sprite(_shot3_image);
     }
 }
 
@@ -90,8 +96,8 @@ void Game_View::draw()
     _window->Clear();
     _window->Draw(_background_sprite);
 
-    Game_View::drawEnemiesShots();
     Game_View::drawPlayerShots();
+    Game_View::drawEnemiesShots();
     Game_View::drawPlayer();
     Game_View::drawEnemies();
 
@@ -105,65 +111,75 @@ void Game_View::drawSprite(int x, int y, int w, int h, Sprite mySprite)
     _window->Draw(mySprite);
 }
 
-// -- drawEnemies -------------------------------
-// Draws all the enemies
-// ----------------------------------------------
-void Game_View::drawEnemies()
+void Game_View::drawPlayerShots()
 {
     int style = _model->getLevelNumber();
     switch(style)
     {
     case 1:
-        Game_View::drawEnemiesSprite(_enemy1_sprite);
+        Game_View::drawPlayerShotsSprites1(_shot1_sprite);
         break;
     case 2:
-        Game_View::drawEnemiesSprite(_enemy2_sprite);
+        Game_View::drawPlayerShotsSprites1(_shot1_sprite);
         break;
     case 3:
-        Game_View::drawEnemiesSprite(_enemy3_sprite);
+        Game_View::drawPlayerShotsSprites2(_shot1_sprite, _shot2_sprite);
         break;
     case 4:
-        Game_View::drawEnemiesSprite(_enemy4_sprite);
+        Game_View::drawPlayerShotsSprites2(_shot1_sprite, _shot2_sprite);
         break;
     case 5:
-        Game_View::drawEnemiesSprite(_enemy5_sprite);
+        Game_View::drawPlayerShotsSprites3(_shot2_sprite, _shot3_sprite);
         break;
     case 6:
-        Game_View::drawEnemiesSprite(_enemy6_sprite);
+        Game_View::drawPlayerShotsSprites3(_shot2_sprite, _shot3_sprite);
         break;
     case 7:
-        Game_View::drawEnemiesSprite(_enemy7_sprite);
+        Game_View::drawPlayerShotsSprites3(_shot2_sprite, _shot3_sprite);
         break;
     case 8:
-        Game_View::drawEnemiesSprite(_enemy8_sprite);
+        Game_View::drawPlayerShotsSprites3(_shot2_sprite, _shot3_sprite);
         break;
     }
 }
 
-void Game_View::drawEnemiesSprite(Sprite myEnemySprite)
-{
-    int x, y, w, h;
-    for(int i=0; i < _model->getEnemiesSize(); i++)
-    {
-        _model->getEnemySettings(x, y, w, h, i);
-        Game_View::drawSprite(x, y, w, h, myEnemySprite);
-    }
-}
-
-void Game_View::drawPlayer()
-{
-    int x, y, w, h;
-    _model->getPlayerSettings(x, y, w, h);
-    Game_View::drawSprite(x, y, w, h, _player_sprite);
-}
-
-void Game_View::drawPlayerShots()
+void Game_View::drawPlayerShotsSprites1(sf::Sprite myPlayerShotSprite)
 {
     int x, y, w, h;
     for (int i=0; i < (_model->getPlayer())->getShotsSize(); i++)
     {
         (_model->getPlayer())->getShotSettings(x, y, w, h, i);
-        Game_View::drawSprite(x, y, w, h, _shot1_sprite);
+        Game_View::drawSprite(x, y, w, h, myPlayerShotSprite);
+    }
+}
+
+void Game_View::drawPlayerShotsSprites2(sf::Sprite myPlayerShotSprite1, sf::Sprite myPlayerShotSprite2)
+{
+    int x, y, w, h;
+    for (int i=0; i < (_model->getPlayer())->getShotsSize(); i++)
+    {
+        (_model->getPlayer())->getShotSettings(x, y, w, h, i);
+        Game_View::drawSprite(x, y, w, h, myPlayerShotSprite1);
+        Game_View::drawSprite((x+PLAYER_WIDTH/2), (y+PLAYER_HEIGHT/4), w, h, myPlayerShotSprite2);
+        Game_View::drawSprite((x-PLAYER_WIDTH/2), (y+PLAYER_HEIGHT/4), w, h, myPlayerShotSprite2);
+    }
+}
+
+void Game_View::drawPlayerShotsSprites3(sf::Sprite myPlayerShotSprite1, sf::Sprite myPlayerShotSprite2)
+{
+    int x, y, w, h;
+    for (int i=0; i < (_model->getPlayer())->getShotsSize(); i++)
+    {
+        (_model->getPlayer())->getShotSettings(x, y, w, h, i);
+        Game_View::drawSprite(x, y, w, h, myPlayerShotSprite1);
+        for (int j=0; j<(_model->getPlayer())->getShotsSize(); j++)
+        {
+            Game_View::drawSprite(x+PLAYER_WIDTH+j, y-j, w, h, myPlayerShotSprite1);
+            Game_View::drawSprite(x-PLAYER_WIDTH-j, y-j, w, h, myPlayerShotSprite1);
+        }
+
+        Game_View::drawSprite((x+PLAYER_WIDTH/2), (y+PLAYER_HEIGHT/4), w, h, myPlayerShotSprite2);
+        Game_View::drawSprite((x-PLAYER_WIDTH/2), (y+PLAYER_HEIGHT/4), w, h, myPlayerShotSprite2);
     }
 }
 
@@ -177,6 +193,58 @@ void Game_View::drawEnemiesShots()
             (_model->getEnemy(i))->getShotSettings(x, y, w, h, j);
             Game_View::drawSprite(x, y, w, h, _shot1_sprite);
         }
+    }
+}
+
+void Game_View::drawPlayer()
+{
+    int x, y, w, h;
+    _model->getPlayerSettings(x, y, w, h);
+    Game_View::drawSprite(x, y, w, h, _player_sprite);
+}
+
+// -- drawEnemies -------------------------------
+// Draws all the enemies
+// ----------------------------------------------
+void Game_View::drawEnemies()
+{
+    int style = _model->getLevelNumber();
+    switch(style)
+    {
+    case 1:
+        Game_View::drawEnemiesSprites(_enemy1_sprite);
+        break;
+    case 2:
+        Game_View::drawEnemiesSprites(_enemy2_sprite);
+        break;
+    case 3:
+        Game_View::drawEnemiesSprites(_enemy3_sprite);
+        break;
+    case 4:
+        Game_View::drawEnemiesSprites(_enemy4_sprite);
+        break;
+    case 5:
+        Game_View::drawEnemiesSprites(_enemy5_sprite);
+        break;
+    case 6:
+        Game_View::drawEnemiesSprites(_enemy6_sprite);
+        break;
+    case 7:
+        Game_View::drawEnemiesSprites(_enemy7_sprite);
+        break;
+    case 8:
+        Game_View::drawEnemiesSprites(_enemy8_sprite);
+        break;
+    }
+}
+
+void Game_View::drawEnemiesSprites(Sprite myEnemySprite)
+{
+    int x, y, w, h;
+    for(int i=0; i < _model->getEnemiesSize(); i++)
+    {
+        _model->getEnemySettings(x, y, w, h, i);
+        Game_View::drawSprite(x, y, w, h, myEnemySprite);
     }
 }
 

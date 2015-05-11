@@ -37,7 +37,7 @@ Game_Model::Game_Model(): _w(MODEL_WIDTH), _h(MODEL_HEIGHT)
 Game_Model::Game_Model(int w, int h): _w(w), _h(h)
 {
     m_player = new Player((_w/2)-(PLAYER_WIDTH/2), _h-(2*PLAYER_HEIGHT), PLAYER_WIDTH, PLAYER_HEIGHT, PLAYER_X_SPEED, PLAYER_Y_SPEED, 100, 0);
-    Level(1);
+    Level(5);
 }
 
 // -- ~Game_Model --------------------------------

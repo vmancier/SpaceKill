@@ -43,5 +43,5 @@ const float COEF_7 = 2.2;
 const float COEF_8 = 2.4;
 
 /************* SHOTS ************/
-
+const float DEFAULT_SHOT_FIRERATE = 0.50;
 #endif // ENTITIES_HPP_INCLUDED

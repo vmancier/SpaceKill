@@ -20,7 +20,7 @@ private:
     int m_x_speedS;
     int m_y_speedS;
     int m_style;
-    float m_damageP;
+    float m_damage;
     float m_fireRate;
 
 public:

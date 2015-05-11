@@ -33,6 +33,8 @@ private:
     sf::Image _enemy7_image;
     sf::Image _enemy8_image;
     sf::Image _shot1_image;
+    sf::Image _shot2_image;
+    sf::Image _shot3_image;
 
     sf::Sprite _background_sprite;
     sf::Sprite _player_sprite;
@@ -45,6 +47,8 @@ private:
     sf::Sprite _enemy7_sprite;
     sf::Sprite _enemy8_sprite;
     sf::Sprite _shot1_sprite;
+    sf::Sprite _shot2_sprite;
+    sf::Sprite _shot3_sprite;
 
     Game_Model *_model;
 
@@ -54,11 +58,15 @@ public:
 
     void draw();
     void drawSprite(int x, int y, int w, int h, sf::Sprite mySprite);
-    void drawEnemies();
-    void drawPlayer();
-    void drawEnemiesSprite(sf::Sprite);
     void drawPlayerShots();
+    void drawPlayerShotsSprites1(sf::Sprite);
+    void drawPlayerShotsSprites2(sf::Sprite, sf::Sprite);
+    void drawPlayerShotsSprites3(sf::Sprite, sf::Sprite);
     void drawEnemiesShots();
+    void drawPlayer();
+    void drawEnemies();
+    void drawEnemiesSprites(sf::Sprite);
+
     bool treatEvents(sf::Clock &clock);
     void setModel(Game_Model *model);
 };

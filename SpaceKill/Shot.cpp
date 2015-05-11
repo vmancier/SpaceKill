@@ -9,6 +9,7 @@
 
 #include <iostream>
 #include "Shot.hpp"
+#include "Entities.hpp"
 
 using namespace std;
 
@@ -23,8 +24,8 @@ Shot::Shot()
     m_hS = 30;
     m_x_speedS = 50;
     m_y_speedS = 0;
-    m_damageP = 30.0;
-    m_fireRate = 0.50;
+    m_damage = 30.0;
+    m_fireRate = DEFAULT_SHOT_FIRERATE;
     m_style = 0;
 }
 
@@ -43,27 +44,27 @@ Shot::Shot(int style, int x, int y, int xSpeed, int ySpeed)
     switch(style)
     {
     case 1:
-        m_damageP = 30.0;
+        m_damage = 30.0;
         m_fireRate = 0.75;
         break;
     case 2:
-        m_damageP = 40.0;
+        m_damage = 40.0;
         m_fireRate = 1.0;
         break;
     case 3:
-        m_damageP = 50.0;
+        m_damage = 50.0;
         m_fireRate = 1.05;
         break;
     case 4:
-        m_damageP = 60.0;
+        m_damage = 60.0;
         m_fireRate = 1.20;
         break;
     case 5:
-        m_damageP = 70.0;
+        m_damage = 70.0;
         m_fireRate = 1.32;
         break;
     case 6:
-        m_damageP = 80.0;
+        m_damage = 80.0;
         m_fireRate = 1.50;
         break;
     }
@@ -97,7 +98,7 @@ int Shot::getStyle() const
 // ----------------------------------------------
 int Shot::getDamages() const
 {
-    return m_damageP;
+    return m_damage;
 }
 
 // -- getX --------------------------------------

@@ -53,11 +53,14 @@ public:
     ~Game_View();
 
     void draw();
+    void drawSprite(int x, int y, int w, int h, sf::Sprite mySprite);
     void drawEnemies();
-    void drawEnemiesBis(sf::Sprite);
+    void drawPlayer();
+    void drawEnemiesSprite(sf::Sprite);
+    void drawPlayerShots();
+    void drawEnemiesShots();
     bool treatEvents(sf::Clock &clock);
     void setModel(Game_Model *model);
-
 };
 
 #endif // GAME_VIEW_HPP_INCLUDED

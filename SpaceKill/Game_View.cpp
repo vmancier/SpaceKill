@@ -87,45 +87,22 @@ Game_View::~Game_View()
 // ----------------------------------------------
 void Game_View::draw()
 {
-    ////Background////
     _window->Clear();
     _window->Draw(_background_sprite);
 
-     int x, y, w, h;
-    /////Shots///////
-    for(int i=0; i < _model->getEnemiesSize(); i++)
-    {
-        for(int j=0; j < (_model->getEnemy(i))->getShotsSize(); j++)
-        {
-            (_model->getEnemy(i))->getShotSettings(x, y, w, h, j);
-            _shot1_sprite.Resize(w, h);
-            _shot1_sprite.SetPosition(x, y);
-            _window->Draw(_shot1_sprite);
-            //_window->Display();
-        }
-    }
-
-    for (int k=0; k < (_model->getPlayer())->getShotsSize(); k++)
-    {
-        (_model->getPlayer())->getShotSettings(x, y, w, h, k);
-        _shot1_sprite.Resize(w, h);
-        _shot1_sprite.SetPosition(x, y);
-        _window->Draw(_shot1_sprite);
-        //_window->Display();
-    }
-
-    //////Player//////
-    _model->getPlayerSettings(x, y, w, h);
-    _player_sprite.Resize(w, h);
-    _player_sprite.SetPosition(x, y);
-    _window->Draw(_player_sprite);
-
-    /////Enemies//////
+    Game_View::drawEnemiesShots();
+    Game_View::drawPlayerShots();
+    Game_View::drawPlayer();
     Game_View::drawEnemies();
 
-    ////////////////
-
     _window->Display();
+}
+
+void Game_View::drawSprite(int x, int y, int w, int h, Sprite mySprite)
+{
+    mySprite.Resize(w, h);
+    mySprite.SetPosition(x, y);
+    _window->Draw(mySprite);
 }
 
 // -- drawEnemies -------------------------------
@@ -137,42 +114,69 @@ void Game_View::drawEnemies()
     switch(style)
     {
     case 1:
-        Game_View::drawEnemiesBis(_enemy1_sprite);
+        Game_View::drawEnemiesSprite(_enemy1_sprite);
         break;
     case 2:
-        Game_View::drawEnemiesBis(_enemy2_sprite);
+        Game_View::drawEnemiesSprite(_enemy2_sprite);
         break;
     case 3:
-        Game_View::drawEnemiesBis(_enemy3_sprite);
+        Game_View::drawEnemiesSprite(_enemy3_sprite);
         break;
     case 4:
-        Game_View::drawEnemiesBis(_enemy4_sprite);
+        Game_View::drawEnemiesSprite(_enemy4_sprite);
         break;
     case 5:
-        Game_View::drawEnemiesBis(_enemy5_sprite);
+        Game_View::drawEnemiesSprite(_enemy5_sprite);
         break;
     case 6:
-        Game_View::drawEnemiesBis(_enemy6_sprite);
+        Game_View::drawEnemiesSprite(_enemy6_sprite);
         break;
     case 7:
-        Game_View::drawEnemiesBis(_enemy7_sprite);
+        Game_View::drawEnemiesSprite(_enemy7_sprite);
         break;
     case 8:
-        Game_View::drawEnemiesBis(_enemy8_sprite);
+        Game_View::drawEnemiesSprite(_enemy8_sprite);
         break;
     }
 }
 
-void Game_View::drawEnemiesBis(Sprite myEnemySprite)
+void Game_View::drawEnemiesSprite(Sprite myEnemySprite)
 {
     int x, y, w, h;
     for(int i=0; i < _model->getEnemiesSize(); i++)
     {
         _model->getEnemySettings(x, y, w, h, i);
-        myEnemySprite.Resize(w, h);
-        myEnemySprite.SetPosition(x, y);
-        _window->Draw(myEnemySprite);
-        //_window->Display();
+        Game_View::drawSprite(x, y, w, h, myEnemySprite);
+    }
+}
+
+void Game_View::drawPlayer()
+{
+    int x, y, w, h;
+    _model->getPlayerSettings(x, y, w, h);
+    Game_View::drawSprite(x, y, w, h, _player_sprite);
+}
+
+void Game_View::drawPlayerShots()
+{
+    int x, y, w, h;
+    for (int i=0; i < (_model->getPlayer())->getShotsSize(); i++)
+    {
+        (_model->getPlayer())->getShotSettings(x, y, w, h, i);
+        Game_View::drawSprite(x, y, w, h, _shot1_sprite);
+    }
+}
+
+void Game_View::drawEnemiesShots()
+{
+    int x, y, w, h;
+    for(int i=0; i < _model->getEnemiesSize(); i++)
+    {
+        for(int j=0; j < (_model->getEnemy(i))->getShotsSize(); j++)
+        {
+            (_model->getEnemy(i))->getShotSettings(x, y, w, h, j);
+            Game_View::drawSprite(x, y, w, h, _shot1_sprite);
+        }
     }
 }
 
@@ -182,7 +186,6 @@ void Game_View::drawEnemiesBis(Sprite myEnemySprite)
 bool Game_View::treatEvents(Clock &clock)
 {
     bool result = false;
-
     float timedelta = clock.GetElapsedTime();
 
     if(_window->IsOpened())
@@ -198,18 +201,11 @@ bool Game_View::treatEvents(Clock &clock)
             _window->Close();
             result = false;
         }
-
-        // Deplacement du joueur
         (_model->getPlayer())->moveP(event, timedelta);
-
-        // Deplacement des enemmis
         _model->moveEnemies(timedelta);
-
-         // Deplacement des tirs
-         _model->moveShots(timedelta);
+        _model->moveShots(timedelta);
 
     }
-    //Reset ton horloge à chaque frame
     clock.Reset();
     return result;
 }
@@ -217,7 +213,7 @@ bool Game_View::treatEvents(Clock &clock)
 // -- setModel ----------------------------------
 // Sets the model
 // ----------------------------------------------
-void Game_View::setModel(Game_Model * model)
+void Game_View::setModel(Game_Model *model)
 {
     _model = model;
 }

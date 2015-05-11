@@ -41,17 +41,6 @@ Enemy::Enemy(int x, int y, int w, int h, float x_speed, float y_speed, int healt
     :Ship(x, y, w, h, x_speed, y_speed, health, styleShot), m_style(style), m_value(value)
 {
 
-    /*cout << "x : " << x
-    << "\ny : " << y
-    << "\nw : " << w
-    << "\nh : " << h
-    << "\nx_speed : " << x_speed
-    << "\ny_speed : " << y_speed
-    << "\nhealth : " << health
-    << "\nstyleShot : " << styleShot
-    << "\nm_style : " << m_style
-    << "\nm_value : " << m_value
-    << endl;*/
 }
 
 Enemy::Enemy(int x, int style)
@@ -94,8 +83,8 @@ void Enemy::setEnemySettings(int style, float coef)
     m_health = DEFAULT_ENEMY_HEALTH*coef;
     m_styleShot = DEFAULT_ENEMY_STYLESHOT*coef;
     m_value = DEFAULT_ENEMY_VALUE*coef;
-    m_w = ENEMY_WIDTH;
-    m_h = ENEMY_HEIGHT;
+    m_w = DEFAULT_ENEMY_WIDTH;
+    m_h = DEFAULT_ENEMY_HEIGHT;
 }
 
 // -- moveForward -------------------------------

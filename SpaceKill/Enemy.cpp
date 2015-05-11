@@ -60,91 +60,42 @@ Enemy::Enemy(int x, int style)
     switch(style)
     {
     case 1:
-        m_x_speed = 100;
-        m_y_speed = 100;
-        m_health = 100;
-        m_styleShot = 1;
-        m_value = 10;
-        m_w = 36;
-        m_h = 64;
+        Enemy::setEnemySettings(1, COEF_1);
         break;
     case 2:
-        m_x_speed = 120;
-        m_y_speed = 120;
-        m_health = 120;
-        m_styleShot = 2;
-        m_value = 15;
-        m_w = 31;
-        m_h = 45;
+        Enemy::setEnemySettings(2, COEF_2);
         break;
     case 3:
-        m_x_speed = 140;
-        m_y_speed = 140;
-        m_health = 140;
-        m_styleShot = 3;
-        m_value = 20;
-        m_w = 51;
-        m_h = 53;
+        Enemy::setEnemySettings(3, COEF_3);
         break;
     case 4:
-        m_x_speed = 160;
-        m_y_speed = 160;
-        m_health = 160;
-        m_styleShot = 4;
-        m_value = 25;
-        m_w = 31;
-        m_h = 60;
+        Enemy::setEnemySettings(4, COEF_4);
         break;
     case 5:
-        m_x_speed = 180;
-        m_y_speed = 180;
-        m_health = 180;
-        m_styleShot = 5;
-        m_value = 30;
-        m_w = 31;
-        m_h = 60;
+        Enemy::setEnemySettings(5, COEF_5);
         break;
     case 6:
-        m_x_speed = 200;
-        m_y_speed = 200;
-        m_health = 200;
-        m_styleShot = 6;
-        m_value = 35;
-        m_w = 50;
-        m_h = 50;
+        Enemy::setEnemySettings(6, COEF_6);
         break;
     case 7:
-        m_x_speed = 220;
-        m_y_speed = 220;
-        m_health = 220;
-        m_styleShot = 7;
-        m_value = 40;
-        m_w = 44;
-        m_h = 60;
+        Enemy::setEnemySettings(7, COEF_7);
         break;
     case 8:
-        m_x_speed = 240;
-        m_y_speed = 240;
-        m_health = 120;
-        m_styleShot = 8;
-        m_value = 45;
-        m_w = 50;
-        m_h = 50;
+        Enemy::setEnemySettings(8, COEF_8);
         break;
     }
     m_x = x;
 }
 
-
-void Enemy::setEnemySettings(int style)
+void Enemy::setEnemySettings(int style, float coef)
 {
-    m_x_speed = DEFAULT_ENEMY_X_SPEED;
-    m_y_speed = DEFAULT_ENEMY_X_SPEED;
-    m_health = 100;
-    m_styleShot = 1;
-    m_value = 10;
-    m_w = 36;
-    m_h = 64;
+    m_x_speed = DEFAULT_ENEMY_X_SPEED*coef;
+    m_y_speed = DEFAULT_ENEMY_X_SPEED*coef;
+    m_health = DEFAULT_ENEMY_HEALTH*coef;
+    m_styleShot = DEFAULT_ENEMY_STYLESHOT*coef;
+    m_value = DEFAULT_ENEMY_VALUE*coef;
+    m_w = ENEMY_WIDTH;
+    m_h = ENEMY_HEIGHT;
 }
 
 // -- moveForward -------------------------------

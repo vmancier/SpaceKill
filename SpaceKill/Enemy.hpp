@@ -16,7 +16,6 @@ class Enemy : public Ship
 private:
     int m_style;
     int m_value;
-    int styleShot;
 
 public:
     Enemy();
@@ -24,7 +23,7 @@ public:
     Enemy(int x, int style);
 
     void moveForward(float timedelta);
-    void shoot();
+    void shoot(float timedelta);
     void setEnemySettings(int style, float coef);
     int getStyle() const;
 

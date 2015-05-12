@@ -27,6 +27,8 @@ protected:
     float m_y_speed;
     float m_health;
     int m_styleShot;
+    float m_fireRate;
+    float m_elapsedTime;
     int m_life;
     bool m_alive;
     std::vector <Shot*> shots;
@@ -40,6 +42,7 @@ public:
     void die();
     void moveShotsShip(float timedelta);
 
+    void setFireRate();
     void setX(int x);
     void setY(int y);
     Shot* getShot(int nb) const;

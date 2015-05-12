@@ -27,6 +27,8 @@ using namespace sf;
 Game_View::Game_View(int w, int h, int bpp): _w(w), _h(h)
 {
     _window = new RenderWindow(sf::VideoMode(w, h, bpp), "SpaceKill", sf::Style::Close);
+    _window->UseVerticalSync(false);
+    _window->SetFramerateLimit(60);
 
     if (!_background_image.LoadFromFile("assets/background.JPG") ||
             !_player_image.LoadFromFile("assets/player0.png") ||
@@ -272,6 +274,8 @@ bool Game_View::treatEvents(Clock &clock)
             result = false;
         }
         (_model->getPlayer())->moveP(event, timedelta);
+        (_model->getPlayer())->shoot(timedelta);
+        //_model->shootEnemy(timedelta);
         _model->moveEnemies(timedelta);
         _model->moveShots(timedelta);
 

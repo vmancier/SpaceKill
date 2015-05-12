@@ -34,7 +34,7 @@ public:
     void Level(int levelStyle);
     void createEnemy();
     void moveEnemies(float timedelta);
-    void shootEnemy();
+    void shootEnemy(float timedelta);
     void moveShots(float timedelta);
     int getLevelNumber() const;
 

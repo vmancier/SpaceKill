@@ -25,7 +25,7 @@ Shot::Shot()
     m_x_speedS = 50;
     m_y_speedS = 0;
     m_damage = 30.0;
-    m_fireRate = DEFAULT_SHOT_FIRERATE;
+    //m_fireRate = DEFAULT_SHOT_FIRERATE;
     m_style = 0;
 }
 
@@ -45,27 +45,27 @@ Shot::Shot(int style, int x, int y, int xSpeed, int ySpeed)
     {
     case 1:
         m_damage = 30.0;
-        m_fireRate = 0.75;
+        //m_fireRate = 0.75;
         break;
     case 2:
         m_damage = 40.0;
-        m_fireRate = 1.0;
+        //m_fireRate = 1.0;
         break;
     case 3:
         m_damage = 50.0;
-        m_fireRate = 1.05;
+        //m_fireRate = 1.05;
         break;
     case 4:
         m_damage = 60.0;
-        m_fireRate = 1.20;
+        //m_fireRate = 1.20;
         break;
     case 5:
         m_damage = 70.0;
-        m_fireRate = 1.32;
+        //m_fireRate = 1.32;
         break;
     case 6:
         m_damage = 80.0;
-        m_fireRate = 1.50;
+        //m_fireRate = 1.50;
         break;
     }
     m_xS = x;

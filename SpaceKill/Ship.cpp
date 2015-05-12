@@ -43,6 +43,7 @@ Ship::Ship(int x, int y, int w, int h, float x_speed, float y_speed, int health,
     : m_x(x), m_y(y), m_w(w), m_h(h), m_x_speed(x_speed), m_y_speed(y_speed), m_health(health), m_styleShot(styleShot)
 {
     m_alive = true;
+    m_fireRate = DEFAULT_SHOT_FIRERATE;
 }
 
 // -- ~Ship -------------------------------------
@@ -105,6 +106,11 @@ void Ship::moveShotsShip(float timedelta)
             shots.erase(shots.begin()+i);
         }
     }
+}
+
+void Ship::setFireRate()
+{
+
 }
 
 // -- setX --------------------------------------

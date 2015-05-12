@@ -23,6 +23,6 @@ public:
     ~Player();
 
     void moveP(sf::Event event, float timedelta);
-    void shot();
+    void shoot(float timedelta);
 };
 #endif // PLAYER_HPP_INCLUDED

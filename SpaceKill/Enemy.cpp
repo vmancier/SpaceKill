@@ -40,7 +40,7 @@ Enemy::Enemy()
 Enemy::Enemy(int x, int y, int w, int h, float x_speed, float y_speed, int health, int value, int styleShot, int style)
     :Ship(x, y, w, h, x_speed, y_speed, health, styleShot), m_style(style), m_value(value)
 {
-
+    m_fireRate = DEFAULT_SHOT_FIRERATE;
 }
 
 Enemy::Enemy(int x, int style)
@@ -85,6 +85,7 @@ void Enemy::setEnemySettings(int style, float coef)
     m_value = DEFAULT_ENEMY_VALUE*coef;
     m_w = DEFAULT_ENEMY_WIDTH;
     m_h = DEFAULT_ENEMY_HEIGHT;
+    m_y = (-m_h);
 }
 
 // -- moveForward -------------------------------
@@ -100,10 +101,15 @@ void Enemy::moveForward(float timedelta)
 // -- shoot -------------------------------------
 // Makes the enemy shoot
 // ----------------------------------------------
-void Enemy::shoot()
+void Enemy::shoot(float timedelta)
 {
-    Shot* shot = new Shot(m_styleShot, (getX()+getW()/2), (getY()-getH()/2), 0, 200);
-    shots.push_back(shot);
+    m_elapsedTime += timedelta;
+    if (m_elapsedTime>m_fireRate)
+    {
+        Shot* shot = new Shot(m_styleShot, (getX()+getW()/2), (getY()-getH()/2), 0, 2000);
+        shots.push_back(shot);
+        m_elapsedTime=0;
+    }
 }
 
 // -- getStyle ----------------------------------

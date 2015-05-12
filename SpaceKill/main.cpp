@@ -13,6 +13,8 @@
 
 #include <cstdlib>
 #include <iostream>
+//#include <windows.h>
+//#include <unistd.h>
 
 using namespace std;
 
@@ -27,12 +29,13 @@ int main()
     Game_View *view = new Game_View(VIEW_WIDTH,VIEW_HEIGHT, VIEW_BPP);
     view->setModel(model);
 
-    Event Event;
     while(view->treatEvents(clock))
     {
         view->draw();
         cout<< endl << "----------DEPLACEMENT SUIVANT----------" << endl <<endl ;
         model->nextStep();
+        //const float a = 0.010;
+        //sf::Sleep(a);
     }
 
     delete view;

@@ -87,12 +87,33 @@ bool Game_Model::Play()
 void Game_Model::Level(int levelStyle)
 {
     _levelStyle = levelStyle;
-
-    /*switch(m_levelStyle)
+    switch(_levelStyle)
     {
     case 1:
-        m_
-    }*/
+        _spawnRate = 2000.0;
+        break;
+    case 2:
+        _spawnRate = 1800.0;
+        break;
+    case 3:
+        _spawnRate = 1600.0;
+        break;
+    case 4:
+        _spawnRate = 1400.0;
+        break;
+    case 5:
+        _spawnRate = 1200.0;
+        break;
+    case 6:
+        _spawnRate = 1000.0;
+        break;
+    case 7:
+        _spawnRate = 800.0;
+        break;
+    case 8:
+        _spawnRate = 600.0;
+        break;
+    }
 }
 
 // -- createEnemy -------------------------------

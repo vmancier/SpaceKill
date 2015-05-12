@@ -21,6 +21,7 @@ class Game_Model
 private:
     int _w, _h;
     int _levelStyle;
+    float _spawnRate;
     Player * m_player;
     std::vector<Enemy*> enemies;
 

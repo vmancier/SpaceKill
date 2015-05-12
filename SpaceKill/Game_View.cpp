@@ -171,13 +171,15 @@ void Game_View::drawPlayerShotsSprites3(sf::Sprite myPlayerShotSprite1, sf::Spri
     for (int i=0; i < (_model->getPlayer())->getShotsSize(); i++)
     {
         (_model->getPlayer())->getShotSettings(x, y, w, h, i);
-        Game_View::drawSprite(x, y, w, h, myPlayerShotSprite1);
-        for (int j=0; j<(_model->getPlayer())->getShotsSize(); j++)
+        for (int j=0; j< (VIEW_WIDTH - (_model->getPlayer()->getX())-60); j++)
         {
             Game_View::drawSprite(x+PLAYER_WIDTH+j, y-j, w, h, myPlayerShotSprite1);
-            Game_View::drawSprite(x-PLAYER_WIDTH-j, y-j, w, h, myPlayerShotSprite1);
         }
-
+        for (int k=0; k< ((_model->getPlayer()->getX())-20); k++)
+        {
+            Game_View::drawSprite(x-PLAYER_WIDTH-k, y-k, w, h, myPlayerShotSprite1);
+        }
+        Game_View::drawSprite(x, y, w, h, myPlayerShotSprite1);
         Game_View::drawSprite((x+PLAYER_WIDTH/2), (y+PLAYER_HEIGHT/4), w, h, myPlayerShotSprite2);
         Game_View::drawSprite((x-PLAYER_WIDTH/2), (y+PLAYER_HEIGHT/4), w, h, myPlayerShotSprite2);
     }

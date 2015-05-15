@@ -19,6 +19,7 @@ class Game_View
 {
 private:
     int _w, _h;
+    int _y_background;
 
     sf::RenderWindow * _window;
 
@@ -57,6 +58,7 @@ public:
     ~Game_View();
 
     void draw();
+    void drawBackground();
     void drawSprite(int x, int y, int w, int h, sf::Sprite mySprite);
     void drawPlayerShots();
     void drawPlayerShotsSprites1(sf::Sprite);
@@ -67,7 +69,7 @@ public:
     void drawEnemies();
     void drawEnemiesSprites(sf::Sprite);
 
-    bool treatEvents(sf::Clock &clock);
+    bool treatEvents(float timedelta);
     void setModel(Game_Model *model);
 };
 

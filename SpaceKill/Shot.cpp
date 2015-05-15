@@ -45,11 +45,9 @@ Shot::Shot(int style, int x, int y, int xSpeed, int ySpeed)
     {
     case 1:
         m_damage = 30.0;
-        //m_fireRate = 0.75;
         break;
     case 2:
         m_damage = 40.0;
-        //m_fireRate = 1.0;
         break;
     case 3:
         m_damage = 50.0;

@@ -60,9 +60,10 @@ Game_View::Game_View(int w, int h, int bpp): _w(w), _h(h)
     }
     else
     {
+        _y_background =0;
         _background_sprite = Sprite(_background_image);
         _background_sprite.Resize(_w, _h);
-        _background_sprite.SetPosition(0,0);
+        _background_sprite.SetPosition(0,_y_background);
 
         _player_sprite = Sprite(_player_image);
         _enemy1_sprite = Sprite(_enemy1_image);
@@ -96,7 +97,7 @@ Game_View::~Game_View()
 void Game_View::draw()
 {
     _window->Clear();
-    _window->Draw(_background_sprite);
+    drawBackground();
 
     Game_View::drawPlayerShots();
     Game_View::drawEnemiesShots();
@@ -104,6 +105,19 @@ void Game_View::draw()
     Game_View::drawEnemies();
 
     _window->Display();
+}
+
+void Game_View::drawBackground()
+{
+    _y_background += PLAYER_Y_SPEED;
+    _background_sprite.SetPosition(0, _y_background);
+    _window->Draw(_background_sprite);
+    _background_sprite.SetPosition(0, -MODEL_HEIGHT +_y_background);
+    _window->Draw(_background_sprite);
+    if (_y_background >=MODEL_HEIGHT)
+    {
+        _y_background=0;
+    }
 }
 
 void Game_View::drawSprite(int x, int y, int w, int h, Sprite mySprite)
@@ -255,32 +269,29 @@ void Game_View::drawEnemiesSprites(Sprite myEnemySprite)
 // -- treatEvents -------------------------------
 // Treat the game's events
 // ----------------------------------------------
-bool Game_View::treatEvents(Clock &clock)
+bool Game_View::treatEvents(float timedelta)
 {
     bool result = false;
-    float timedelta = clock.GetElapsedTime();
-
     if(_window->IsOpened())
     {
         result = true;
         Event event;
         _window->GetEvent(event);
 
-        if ((event.Type == Event::Closed) ||
-                ((event.Type == Event::KeyPressed) &&
-                 (event.Key.Code == sf::Key::Escape)))
+        const sf::Input& input = _window->GetInput();
+        bool EscapeKeyDown = input.IsKeyDown(sf::Key::Escape);
+        bool LeftKeyDown = input.IsKeyDown(sf::Key::Left);
+        bool RightKeyDown = input.IsKeyDown(sf::Key::Right);
+
+        if (EscapeKeyDown)
         {
             _window->Close();
             result = false;
         }
-        (_model->getPlayer())->moveP(event, timedelta);
-        (_model->getPlayer())->shoot(timedelta);
-        //_model->shootEnemy(timedelta);
-        _model->moveEnemies(timedelta);
-        _model->moveShots(timedelta);
+        (_model->getPlayer())->moveP(LeftKeyDown,RightKeyDown, timedelta);
 
     }
-    clock.Reset();
+
     return result;
 }
 

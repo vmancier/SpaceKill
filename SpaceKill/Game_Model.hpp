@@ -30,7 +30,7 @@ public:
     Game_Model(int w, int h);
     ~Game_Model();
 
-    void nextStep();
+    void nextStep(float timedelta);
     bool Play();
     void Level(int levelStyle);
     void createEnemy();

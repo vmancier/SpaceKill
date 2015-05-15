@@ -24,18 +24,21 @@ int main()
 {
     srand(time(NULL));
     Clock clock;
+    float timedelta;
 
     Game_Model *model = new Game_Model(MODEL_WIDTH, MODEL_HEIGHT);
     Game_View *view = new Game_View(VIEW_WIDTH,VIEW_HEIGHT, VIEW_BPP);
     view->setModel(model);
 
-    while(view->treatEvents(clock))
+    while(view->treatEvents(timedelta))
     {
+        clock.Reset();
+
         view->draw();
-        cout<< endl << "----------DEPLACEMENT SUIVANT----------" << endl <<endl ;
-        model->nextStep();
-        //const float a = 0.010;
-        //sf::Sleep(a);
+        //cout<< endl << "----------DEPLACEMENT SUIVANT----------" << endl <<endl ;
+
+        model->nextStep(timedelta);
+        timedelta = clock.GetElapsedTime();
     }
 
     delete view;

@@ -54,15 +54,15 @@ Game_Model::~Game_Model()
 // -- nextStep ----------------------------------
 // Runs the next step
 // ----------------------------------------------
-void Game_Model::nextStep()
+void Game_Model::nextStep(float timedelta)
 {
     createEnemy();
-    getEnemyPos();
-    //shootEnemy();
-    //m_player->shoot();
+    //getEnemyPos();
+    shootEnemy(timedelta);
+    m_player->shoot(timedelta);
     //m_player->getShotsPos();
-    //moveShots();
-    //moveEnemies();
+    moveShots(timedelta);
+    moveEnemies(timedelta);
     //getPlayerPos();
 }
 

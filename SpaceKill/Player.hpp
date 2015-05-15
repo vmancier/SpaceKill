@@ -22,7 +22,7 @@ public:
     Player();
     ~Player();
 
-    void moveP(sf::Event event, float timedelta);
+    void moveP(bool LeftKeyDown, bool RightKeyDown, float timedelta);
     void shoot(float timedelta);
 };
 #endif // PLAYER_HPP_INCLUDED

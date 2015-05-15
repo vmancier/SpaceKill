@@ -45,7 +45,7 @@ Player::Player(int x, int y, int w, int h, float x_speed, float y_speed, int hea
 // -- moveP -------------------------------------
 // Moves the player
 // ----------------------------------------------
-void Player::moveP(Event event, float timedelta)
+void Player::moveP(bool LeftKeyDown, bool RightKeyDown, float timedelta)
 {
     /*
     int choice;
@@ -53,26 +53,32 @@ void Player::moveP(Event event, float timedelta)
     cout << "1 : Gauche"<<endl;
     cout << "2 : Droite"<<endl;
     cin >> choice;*/
-    if ((event.Type == sf::Event::KeyPressed) && (event.Key.Code == sf::Key::Left))
+    if (LeftKeyDown)
     {
-        if ((getX()-getX_speed()*timedelta)> 0)
+        if (m_x-m_x_speed*timedelta > 0)
         {
-            setX(getX()-getX_speed()*timedelta);
+            setX(m_x-m_x_speed*timedelta);
+
+            cout << m_x_speed*timedelta<<endl;
         }
-        else if((getX()-getX_speed()*timedelta)< 0)
+        else if(m_x-m_x_speed*timedelta < 0)
         {
             setX(0);
         }
     }
-    else if ((event.Type == sf::Event::KeyPressed) && (event.Key.Code == sf::Key::Right))
+
+    if (RightKeyDown)
     {
-        if ((getX()+getW()+getX_speed()*timedelta)< MODEL_WIDTH)
+        int limit = m_x+m_w+m_x_speed*timedelta;
+        if (limit < MODEL_WIDTH)
         {
-            setX(getX()+getX_speed()*timedelta);
+            setX(m_x+m_x_speed*timedelta);
+
+            cout << m_x_speed*timedelta<<endl;
         }
-        else if((getX()+getW()+getX_speed()*timedelta)> MODEL_WIDTH)
+        else if(limit> MODEL_WIDTH)
         {
-            setX(MODEL_WIDTH-getW());
+            setX(MODEL_WIDTH-m_w);
         }
     }
 }

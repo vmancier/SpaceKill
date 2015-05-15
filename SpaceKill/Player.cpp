@@ -45,7 +45,7 @@ Player::Player(int x, int y, int w, int h, float x_speed, float y_speed, int hea
 // -- moveP -------------------------------------
 // Moves the player
 // ----------------------------------------------
-void Player::moveP(bool LeftKeyDown, bool RightKeyDown, float timedelta)
+void Player::moveP(bool LeftKeyDown, bool RightKeyDown, bool UpKeyDown, bool DownKeyDown, float timedelta)
 {
     /*
     int choice;
@@ -58,8 +58,6 @@ void Player::moveP(bool LeftKeyDown, bool RightKeyDown, float timedelta)
         if (m_x-m_x_speed*timedelta > 0)
         {
             setX(m_x-m_x_speed*timedelta);
-
-            cout << m_x_speed*timedelta<<endl;
         }
         else if(m_x-m_x_speed*timedelta < 0)
         {
@@ -73,13 +71,37 @@ void Player::moveP(bool LeftKeyDown, bool RightKeyDown, float timedelta)
         if (limit < MODEL_WIDTH)
         {
             setX(m_x+m_x_speed*timedelta);
-
-            cout << m_x_speed*timedelta<<endl;
         }
         else if(limit> MODEL_WIDTH)
         {
             setX(MODEL_WIDTH-m_w);
         }
+    }
+
+    if(UpKeyDown)
+    {
+        if (m_y-m_y_speed*timedelta > 0)
+        {
+            setY(m_y-m_y_speed*timedelta);
+        }
+        else if (m_y-m_y_speed*timedelta < 0)
+        {
+            setY(0);
+        }
+    }
+
+    if(DownKeyDown)
+    {
+        int limit = m_y+m_h+m_y_speed*timedelta;
+        if (limit < MODEL_HEIGHT)
+        {
+            setY(m_y+m_y_speed*timedelta);
+        }
+        else if (limit > MODEL_HEIGHT)
+        {
+            setY(MODEL_HEIGHT -m_h);
+        }
+
     }
 }
 

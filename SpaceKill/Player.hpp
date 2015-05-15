@@ -22,7 +22,7 @@ public:
     Player();
     ~Player();
 
-    void moveP(bool LeftKeyDown, bool RightKeyDown, float timedelta);
+    void moveP(bool LeftKeyDown, bool RightKeyDown, bool UpKeyDown, bool DownKeyDown, float timedelta);
     void shoot(float timedelta);
 };
 #endif // PLAYER_HPP_INCLUDED

@@ -60,9 +60,8 @@ Game_View::Game_View(int w, int h, int bpp): _w(w), _h(h)
     }
     else
     {
-        _y_background =0;
+        _y_background = 0;
         _background_sprite = Sprite(_background_image);
-        _background_sprite.Resize(_w, _h);
         _background_sprite.SetPosition(0,_y_background);
 
         _player_sprite = Sprite(_player_image);
@@ -99,24 +98,24 @@ void Game_View::draw()
     _window->Clear();
     drawBackground();
 
-    Game_View::drawPlayerShots();
-    Game_View::drawEnemiesShots();
-    Game_View::drawPlayer();
-    Game_View::drawEnemies();
+    drawPlayerShots();
+    //drawEnemiesShots();
+    drawPlayer();
+    //drawEnemies();
 
     _window->Display();
 }
 
 void Game_View::drawBackground()
 {
-    _y_background += PLAYER_Y_SPEED;
+    _y_background += 20;
     _background_sprite.SetPosition(0, _y_background);
     _window->Draw(_background_sprite);
-    _background_sprite.SetPosition(0, -MODEL_HEIGHT +_y_background);
+    _background_sprite.SetPosition(0, - MODEL_HEIGHT + _y_background);
     _window->Draw(_background_sprite);
-    if (_y_background >=MODEL_HEIGHT)
+    if (_y_background >= MODEL_HEIGHT)
     {
-        _y_background=0;
+        _y_background = -MODEL_HEIGHT;
     }
 }
 
@@ -165,7 +164,7 @@ void Game_View::drawPlayerShotsSprites1(sf::Sprite myPlayerShotSprite)
     for (int i=0; i < (_model->getPlayer())->getShotsSize(); i++)
     {
         (_model->getPlayer())->getShotSettings(x, y, w, h, i);
-        Game_View::drawSprite(x, y, w, h, myPlayerShotSprite);
+        Game_View::drawSprite(x-5, y, w, h, myPlayerShotSprite);
     }
 }
 
@@ -175,9 +174,9 @@ void Game_View::drawPlayerShotsSprites2(sf::Sprite myPlayerShotSprite1, sf::Spri
     for (int i=0; i < (_model->getPlayer())->getShotsSize(); i++)
     {
         (_model->getPlayer())->getShotSettings(x, y, w, h, i);
-        Game_View::drawSprite(x, y, w, h, myPlayerShotSprite1);
-        Game_View::drawSprite((x+PLAYER_WIDTH/2), (y+PLAYER_HEIGHT/4), w, h, myPlayerShotSprite2);
-        Game_View::drawSprite((x-PLAYER_WIDTH/2), (y+PLAYER_HEIGHT/4), w, h, myPlayerShotSprite2);
+        Game_View::drawSprite(x-5, y, w, h, myPlayerShotSprite1);
+        Game_View::drawSprite((x+PLAYER_WIDTH/2)-5, (y+PLAYER_HEIGHT/4), w, h, myPlayerShotSprite2);
+        Game_View::drawSprite((x-PLAYER_WIDTH/2)-5, (y+PLAYER_HEIGHT/4), w, h, myPlayerShotSprite2);
     }
 }
 
@@ -187,17 +186,12 @@ void Game_View::drawPlayerShotsSprites3(sf::Sprite myPlayerShotSprite1, sf::Spri
     for (int i=0; i < (_model->getPlayer())->getShotsSize(); i++)
     {
         (_model->getPlayer())->getShotSettings(x, y, w, h, i);
-        for (int j=0; j< (VIEW_WIDTH - (_model->getPlayer()->getX())-60); j++)
-        {
-            Game_View::drawSprite(x+PLAYER_WIDTH+j, y-j, w, h, myPlayerShotSprite1);
-        }
-        for (int k=0; k< ((_model->getPlayer()->getX())-20); k++)
-        {
-            Game_View::drawSprite(x-PLAYER_WIDTH-k, y-k, w, h, myPlayerShotSprite1);
-        }
-        Game_View::drawSprite(x, y, w, h, myPlayerShotSprite1);
-        Game_View::drawSprite((x+PLAYER_WIDTH/2), (y+PLAYER_HEIGHT/4), w, h, myPlayerShotSprite2);
-        Game_View::drawSprite((x-PLAYER_WIDTH/2), (y+PLAYER_HEIGHT/4), w, h, myPlayerShotSprite2);
+
+        Game_View::drawSprite((x+PLAYER_WIDTH)-5, y, w, h, myPlayerShotSprite1);
+        Game_View::drawSprite((x-PLAYER_WIDTH)-5, y, w, h, myPlayerShotSprite1);
+        Game_View::drawSprite(x-5, y, w, h, myPlayerShotSprite1);
+        Game_View::drawSprite((x+PLAYER_WIDTH/2)-5, (y+PLAYER_HEIGHT/4), w, h, myPlayerShotSprite2);
+        Game_View::drawSprite((x-PLAYER_WIDTH/2)-5, (y+PLAYER_HEIGHT/4), w, h, myPlayerShotSprite2);
     }
 }
 
@@ -282,13 +276,15 @@ bool Game_View::treatEvents(float timedelta)
         bool EscapeKeyDown = input.IsKeyDown(sf::Key::Escape);
         bool LeftKeyDown = input.IsKeyDown(sf::Key::Left);
         bool RightKeyDown = input.IsKeyDown(sf::Key::Right);
+        bool UpKeyDown = input.IsKeyDown(sf::Key::Up);
+        bool DownKeyDown = input.IsKeyDown(sf::Key::Down);
 
         if (EscapeKeyDown)
         {
             _window->Close();
             result = false;
         }
-        (_model->getPlayer())->moveP(LeftKeyDown,RightKeyDown, timedelta);
+        (_model->getPlayer())->moveP(LeftKeyDown, RightKeyDown, UpKeyDown, DownKeyDown, timedelta);
 
     }
 

@@ -38,6 +38,7 @@ public:
     void shootEnemy(float timedelta);
     void moveShots(float timedelta);
     int getLevelNumber() const;
+    void collisions();
 
     Player* getPlayer() const;
     void getPlayerPos() const;
@@ -47,6 +48,7 @@ public:
     int getEnemiesSize() const;
     void getEnemyPos() const;
     void getEnemySettings(int &x, int &y, int &w, int &h, int i) const;
+
 };
 
 #endif // GAME_MODEL_HPP_INCLUDED

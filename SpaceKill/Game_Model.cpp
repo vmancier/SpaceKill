@@ -58,12 +58,13 @@ void Game_Model::nextStep(float timedelta)
 {
     createEnemy();
     //getEnemyPos();
-    shootEnemy(timedelta);
+    //shootEnemy(timedelta);
     m_player->shoot(timedelta);
     //m_player->getShotsPos();
     moveShots(timedelta);
     moveEnemies(timedelta);
     //getPlayerPos();
+    collisions();
 }
 
 // -- Play --------------------------------------
@@ -74,10 +75,7 @@ void Game_Model::nextStep(float timedelta)
 bool Game_Model::Play()
 {
     bool result = false;
-    if(m_player->getAlive())
-    {
-        result = true;
-    }
+
     return result;
 }
 
@@ -175,6 +173,66 @@ void Game_Model::moveShots(float timedelta)
 int Game_Model::getLevelNumber() const
 {
     return _levelStyle;
+}
+
+void Game_Model::collisions()
+{
+    int x, y, w, h;
+
+    int leftShot, leftShip;
+    int rightShot, rightShip;
+    int topShot, topShip;
+    int bottomShot, bottomShip;
+    bool collision;
+
+    for(unsigned int i=0; i<m_player->getShotsSize(); i++)
+    {
+        m_player->getShotSettings(x, y, w, h, i);
+        leftShot = x;
+        rightShot = x+w;
+        topShot = y;
+        bottomShot = y+h;
+
+        for(unsigned int j=0; j<enemies.size(); j++)
+        {
+            leftShip = enemies[j]->getX();
+            rightShip = leftShip + enemies[j]->getW();
+            topShip = enemies[j]->getY();
+            bottomShip = topShip + enemies[j]->getH();
+            collision = true;
+            if(bottomShot <= topShip)
+                collision =false;
+            if(topShot >= bottomShip)
+                collision =false;
+            if(rightShot <= leftShip)
+                collision =false;
+            if(leftShot >= rightShip)
+                collision =false;
+
+            if (collision)
+            {
+                //enemies[j]->loseLife(4);
+                // (enemies[j]->die()==true)
+                //{
+                    delete enemies[j];
+                    enemies.erase(enemies.begin()+j);
+                //}
+                delete m_player->getShot(i);
+                m_player->eraseShot(i);
+            }
+        }
+    }
+    /*
+    if(bottomS <= topE)
+        return false;
+    if(topS >= bottomE)
+        return false;
+    if(rightS <= leftE)
+        return false;
+    if(leftS >= rightE)
+        return false;
+
+    return true;*/
 }
 
 // -- getPlayer ---------------------------------

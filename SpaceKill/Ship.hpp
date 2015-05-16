@@ -30,7 +30,6 @@ protected:
     float m_fireRate;
     float m_elapsedTime;
     int m_life;
-    bool m_alive;
     std::vector <Shot*> shots;
 
 public:
@@ -39,18 +38,18 @@ public:
     ~Ship();
 
     void loseLife(int damages);
-    void die();
+    bool die();
     void moveShotsShip(float timedelta);
 
     void setFireRate();
     void setX(int x);
     void setY(int y);
     Shot* getShot(int nb) const;
+    void eraseShot(int nb);
     void getShotsPos();
     void getShotSettings(int &x, int &y, int &w, int &h, int i) const;
     int getShotsSize() const;
     int getLife() const;
-    bool getAlive() const;
     float getHealth() const;
     int getX() const;
     int getY() const;

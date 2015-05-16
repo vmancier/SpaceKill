@@ -25,7 +25,6 @@ Shot::Shot()
     m_x_speedS = 50;
     m_y_speedS = 0;
     m_damage = 30.0;
-    //m_fireRate = DEFAULT_SHOT_FIRERATE;
     m_style = 0;
 }
 

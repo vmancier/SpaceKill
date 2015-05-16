@@ -24,7 +24,6 @@ Ship::Ship()
     m_x_speed = 20.0;
     m_y_speed = 0;
     m_health = 100;
-    m_alive = true;
 }
 
 // -- Ship --------------------------------------
@@ -42,7 +41,6 @@ Ship::Ship()
 Ship::Ship(int x, int y, int w, int h, float x_speed, float y_speed, int health, int styleShot)
     : m_x(x), m_y(y), m_w(w), m_h(h), m_x_speed(x_speed), m_y_speed(y_speed), m_health(health), m_styleShot(styleShot)
 {
-    m_alive = true;
     m_fireRate = DEFAULT_SHOT_FIRERATE;
 }
 
@@ -84,12 +82,13 @@ void Ship::loseLife(int damages)
 // -- die ---------------------------------------
 // Makes the ship die
 // ----------------------------------------------
-void Ship::die()
+bool Ship::die()
 {
-    if (m_life == 0)
+    if (m_life <= 0)
     {
-        m_alive = false;
+        return true;
     }
+    return false;
 }
 
 // -- moveShotsShip -----------------------------
@@ -169,20 +168,17 @@ int Ship::getShotsSize() const
     return shots.size();
 }
 
+void Ship::eraseShot(int nb)
+{
+    shots.erase(shots.begin()+nb);
+}
+
 // -- getLife -----------------------------------
 // Returns the ship's life
 // ----------------------------------------------
 int Ship::getLife() const
 {
     return m_life;
-}
-
-// -- getAlive ----------------------------------
-// Returns the ship's state
-// ----------------------------------------------
-bool Ship::getAlive()const
-{
-    return m_alive;
 }
 
 // -- getHealth ---------------------------------

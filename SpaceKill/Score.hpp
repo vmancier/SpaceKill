@@ -10,6 +10,9 @@
 #ifndef SCORE_HPP_INCLUDED
 #define SCORE_HPP_INCLUDED
 
+#include <string>
+#include <iostream>
+
 class Score
 {
 
@@ -18,7 +21,9 @@ private:
 public:
     Score();    //constructeur par défaut
     ~Score();   //destructeur
+
     void scoreCalculation();
+    std::string toString() const;
 };
 
 #endif // SCORE_HPP_INCLUDED

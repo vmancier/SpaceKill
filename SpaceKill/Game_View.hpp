@@ -24,6 +24,8 @@ private:
     sf::RenderWindow * _window;
 
     sf::Image _background_image;
+    sf::Image _headband_image;
+    sf::Image _healthbar_image;
     sf::Image _player_image;
     sf::Image _enemy1_image;
     sf::Image _enemy2_image;
@@ -38,6 +40,8 @@ private:
     sf::Image _shot3_image;
 
     sf::Sprite _background_sprite;
+    sf::Sprite _headband_sprite;
+    sf::Sprite _healthbar_sprite;
     sf::Sprite _player_sprite;
     sf::Sprite _enemy1_sprite;
     sf::Sprite _enemy2_sprite;
@@ -50,6 +54,8 @@ private:
     sf::Sprite _shot1_sprite;
     sf::Sprite _shot2_sprite;
     sf::Sprite _shot3_sprite;
+
+    sf::Font _score_font;
 
     Game_Model *_model;
 
@@ -68,6 +74,11 @@ public:
     void drawPlayer();
     void drawEnemies();
     void drawEnemiesSprites(sf::Sprite);
+    void drawHeadBand();
+    void drawLife();
+    void drawHealth();
+    void drawHealthLevel(int x);
+    void drawScore();
 
     bool treatEvents(float timedelta);
     void setModel(Game_Model *model);

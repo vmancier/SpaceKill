@@ -185,7 +185,7 @@ void Game_Model::collisions()
     int bottomShot, bottomShip;
     bool collision;
 
-    for(unsigned int i=0; i<m_player->getShotsSize(); i++)
+    for(int i=0; i<m_player->getShotsSize(); i++)
     {
         m_player->getShotSettings(x, y, w, h, i);
         leftShot = x;

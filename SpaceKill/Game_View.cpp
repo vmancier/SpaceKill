@@ -31,6 +31,8 @@ Game_View::Game_View(int w, int h, int bpp): _w(w), _h(h)
     _window->SetFramerateLimit(60);
 
     if (!_background_image.LoadFromFile("assets/background.JPG") ||
+            !_headband_image.LoadFromFile("assets/headband.png") ||
+            !_healthbar_image.LoadFromFile("assets/healthbar.png") ||
             !_player_image.LoadFromFile("assets/player0.png") ||
             !_enemy1_image.LoadFromFile("assets/enemy1.png") ||
             !_enemy2_image.LoadFromFile("assets/enemy2.png") ||
@@ -42,9 +44,12 @@ Game_View::Game_View(int w, int h, int bpp): _w(w), _h(h)
             !_enemy8_image.LoadFromFile("assets/enemy8.png") ||
             !_shot1_image.LoadFromFile("assets/shot1.png") ||
             !_shot2_image.LoadFromFile("assets/shot2.png") ||
-            !_shot3_image.LoadFromFile("assets/shot3.png"))
+            !_shot3_image.LoadFromFile("assets/shot3.png") ||
+            !_score_font.LoadFromFile("assets/minimal.ttf"))
     {
-        _background_sprite = Sprite ();
+        _background_sprite = Sprite();
+        _headband_sprite = Sprite();
+        _healthbar_sprite = Sprite();
         _player_sprite = Sprite();
         _enemy1_sprite = Sprite();
         _enemy2_sprite = Sprite();
@@ -57,12 +62,16 @@ Game_View::Game_View(int w, int h, int bpp): _w(w), _h(h)
         _shot1_sprite = Sprite();
         _shot2_sprite = Sprite();
         _shot3_sprite = Sprite();
+        _score_font = Font();
     }
     else
     {
         _y_background = 0;
         _background_sprite = Sprite(_background_image);
         _background_sprite.SetPosition(0,_y_background);
+
+        _headband_sprite = Sprite(_headband_image);
+        _healthbar_sprite = Sprite(_healthbar_image);
 
         _player_sprite = Sprite(_player_image);
         _enemy1_sprite = Sprite(_enemy1_image);
@@ -98,10 +107,12 @@ void Game_View::draw()
     _window->Clear();
     drawBackground();
 
+
     drawPlayerShots();
     //drawEnemiesShots();
     drawPlayer();
-    //drawEnemies();
+    drawEnemies();
+    drawHeadBand();
 
     _window->Display();
 }
@@ -171,6 +182,7 @@ void Game_View::drawPlayerShotsSprites1(sf::Sprite myPlayerShotSprite)
 void Game_View::drawPlayerShotsSprites2(sf::Sprite myPlayerShotSprite1, sf::Sprite myPlayerShotSprite2)
 {
     int x, y, w, h;
+
     for (int i=0; i < (_model->getPlayer())->getShotsSize(); i++)
     {
         (_model->getPlayer())->getShotSettings(x, y, w, h, i);
@@ -187,8 +199,12 @@ void Game_View::drawPlayerShotsSprites3(sf::Sprite myPlayerShotSprite1, sf::Spri
     {
         (_model->getPlayer())->getShotSettings(x, y, w, h, i);
 
+
+        myPlayerShotSprite1.SetRotation(-20);
         Game_View::drawSprite((x+PLAYER_WIDTH)-5, y, w, h, myPlayerShotSprite1);
+        myPlayerShotSprite1.SetRotation(20);
         Game_View::drawSprite((x-PLAYER_WIDTH)-5, y, w, h, myPlayerShotSprite1);
+        myPlayerShotSprite1.SetRotation(0);
         Game_View::drawSprite(x-5, y, w, h, myPlayerShotSprite1);
         Game_View::drawSprite((x+PLAYER_WIDTH/2)-5, (y+PLAYER_HEIGHT/4), w, h, myPlayerShotSprite2);
         Game_View::drawSprite((x-PLAYER_WIDTH/2)-5, (y+PLAYER_HEIGHT/4), w, h, myPlayerShotSprite2);
@@ -212,7 +228,7 @@ void Game_View::drawPlayer()
 {
     int x, y, w, h;
     _model->getPlayerSettings(x, y, w, h);
-    Game_View::drawSprite(x, y, w, h, _player_sprite);
+    drawSprite(x, y, w, h, _player_sprite);
 }
 
 // -- drawEnemies -------------------------------
@@ -258,6 +274,89 @@ void Game_View::drawEnemiesSprites(Sprite myEnemySprite)
         _model->getEnemySettings(x, y, w, h, i);
         Game_View::drawSprite(x, y, w, h, myEnemySprite);
     }
+}
+
+void Game_View::drawHeadBand()
+{
+    drawSprite(0, 0, 440, 20, _headband_sprite);
+    drawLife();
+    drawHealth();
+    drawScore();
+}
+
+void Game_View::drawLife()  //nombre de vies
+{
+    int lifeNumber = (_model->getPlayer())->getLife();
+    switch (lifeNumber)
+    {
+
+    case 1:
+        drawSprite(2, 0, 19, 19, _player_sprite);
+        break;
+    case 2:
+        drawSprite(2, 0, 19, 19, _player_sprite);
+        drawSprite(27, 0, 19, 19, _player_sprite);
+        break;
+    case 3:
+        drawSprite(2, 0, 19, 19, _player_sprite);
+        drawSprite(27, 0, 19, 19, _player_sprite);
+        drawSprite(52, 0, 19, 19, _player_sprite);
+        break;
+    }
+}
+
+void Game_View::drawHealth()    //niveau de la vie en cours
+{
+    int lifeLevel = (_model->getPlayer()->getHealth());
+    switch (lifeLevel)
+    {
+    case 100:
+        drawHealthLevel(200);
+        break;
+    case 90:
+        drawHealthLevel(179);
+        break;
+    case 80:
+        drawHealthLevel(159);
+        break;
+    case 70:
+        drawHealthLevel(139);
+        break;
+    case 60:
+        drawHealthLevel(119);
+        break;
+    case 50:
+        drawHealthLevel(99);
+        break;
+    case 40:
+        drawHealthLevel(79);
+        break;
+    case 30:
+        drawHealthLevel(59);
+        break;
+    case 20:
+        drawHealthLevel(39);
+        break;
+    case 10:
+        drawHealthLevel(19);
+        break;
+    }
+}
+
+void Game_View::drawHealthLevel(int x)
+{
+    _healthbar_sprite.SetSubRect(sf::IntRect(0, 0, x, 10));
+    drawSprite(100, 5, x, 10, _healthbar_sprite);
+}
+
+void Game_View::drawScore()
+{
+    sf::String _score_string = String("score");
+    _score_string.SetFont(_score_font);
+    _score_string.SetSize(30);
+    _score_string.SetPosition(_w-80, -15);
+    _score_string.SetColor(sf::Color(0, 0, 0));
+    _window->Draw(_score_string);
 }
 
 // -- treatEvents -------------------------------

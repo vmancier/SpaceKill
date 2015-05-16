@@ -23,7 +23,7 @@ const int VIEW_BPP = 32;
 const int PLAYER_WIDTH = 30;
 const int PLAYER_HEIGHT = 50;
 const float PLAYER_X_SPEED = 200.0;
-const float PLAYER_Y_SPEED = 40.0;
+const float PLAYER_Y_SPEED = 200.0;
 
 /************* ENEMY ************/
 const int DEFAULT_ENEMY_WIDTH = 30;

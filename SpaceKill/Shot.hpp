@@ -28,6 +28,7 @@ public:
 
     void shotSettings(int style, int x, int y,int xSpeed, int ySpeed);
     void moveShot(float timedelta);
+    void moveShot2(float timedelta);
 
     int getStyle() const;
     int getDamages() const;

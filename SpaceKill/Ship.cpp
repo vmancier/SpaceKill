@@ -99,7 +99,7 @@ void Ship::moveShotsShip(float timedelta)
     for(unsigned int i=0; i<shots.size(); i++)
     {
         shots[i]->moveShot(timedelta);
-        if ( shots[i]->getX()< 0 || (shots[i]->getX())> MODEL_WIDTH || shots[i]->getY()< 0 || shots[i]->getY()> MODEL_HEIGHT )
+        if ( shots[i]->getX()< 0 || (shots[i]->getX())> MODEL_WIDTH || shots[i]->getY()< 0 || shots[i]->getY()> MODEL_HEIGHT)
         {
             delete shots[i];
             shots.erase(shots.begin()+i);

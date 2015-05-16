@@ -82,6 +82,12 @@ void Shot::moveShot(float timedelta)
     m_yS += m_y_speedS *timedelta;
 }
 
+void Shot::moveShot2(float timedelta)
+{
+    m_xS += 10 *timedelta;
+    m_yS += 0 *timedelta;
+}
+
 // -- getStyle ----------------------------------
 // Returns the shoot's style
 // ----------------------------------------------

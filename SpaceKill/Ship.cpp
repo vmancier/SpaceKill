@@ -68,7 +68,7 @@ void Ship::loseLife(int damages)
     }
     else if (m_health == damages)
     {
-        m_health =1100;
+        m_health =100;
         m_life--;
     }
     else

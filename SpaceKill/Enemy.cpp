@@ -109,7 +109,7 @@ void Enemy::shoot(float timedelta)
     m_elapsedTime += timedelta;
     if (m_elapsedTime>m_fireRate)
     {
-        Shot* shot = new Shot(m_styleShot, (getX()+getW()/2), (getY()-getH()/2), 0, 2000);
+        Shot* shot = new Shot(m_styleShot, (getX()+getW()/2), (getY()-getH()/2), 0, 200);
         shots.push_back(shot);
         m_elapsedTime=0;
     }

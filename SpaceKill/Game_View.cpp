@@ -33,7 +33,7 @@ Game_View::Game_View(int w, int h, int bpp): _w(w), _h(h)
     if (!_background_image.LoadFromFile("assets/background.JPG") ||
             !_headband_image.LoadFromFile("assets/headband.png") ||
             !_healthbar_image.LoadFromFile("assets/healthbar.png") ||
-            !_player_image.LoadFromFile("assets/player0.png") ||
+            !_player_image.LoadFromFile("assets/player.png") ||
             !_enemy1_image.LoadFromFile("assets/enemy1.png") ||
             !_enemy2_image.LoadFromFile("assets/enemy2.png") ||
             !_enemy3_image.LoadFromFile("assets/enemy3.png") ||
@@ -45,7 +45,7 @@ Game_View::Game_View(int w, int h, int bpp): _w(w), _h(h)
             !_shot1_image.LoadFromFile("assets/shot1.png") ||
             !_shot2_image.LoadFromFile("assets/shot2.png") ||
             !_shot3_image.LoadFromFile("assets/shot3.png") ||
-            !_score_font.LoadFromFile("assets/minimal.ttf"))
+            !_minimal_font.LoadFromFile("assets/minimal.ttf"))
     {
         _background_sprite = Sprite();
         _headband_sprite = Sprite();
@@ -62,7 +62,7 @@ Game_View::Game_View(int w, int h, int bpp): _w(w), _h(h)
         _shot1_sprite = Sprite();
         _shot2_sprite = Sprite();
         _shot3_sprite = Sprite();
-        _score_font = Font();
+        _minimal_font = Font();
     }
     else
     {
@@ -99,14 +99,52 @@ Game_View::~Game_View()
     }
 }
 
-// -- draw --------------------------------------
-// Draws all the necessary elements for the game
-// ----------------------------------------------
-void Game_View::draw()
+void Game_View::drawIntro()
 {
     _window->Clear();
     drawBackground();
+    drawAnimation();
+    drawTitle();
+}
 
+void Game_View::drawBackground()
+{
+    drawSprite(0,_y_background, MODEL_WIDTH, MODEL_HEIGHT,_background_sprite);
+    drawSprite(0,-MODEL_HEIGHT+_y_background, MODEL_WIDTH, MODEL_HEIGHT,_background_sprite);
+    _y_background += 1 ;
+    if (_y_background >= MODEL_HEIGHT)
+    {
+        _y_background =0;
+    }
+}
+
+void Game_View::drawAnimation()
+{
+
+}
+
+void Game_View::drawTitle()
+{
+    _title_string = String("SpaceKill");
+    _title_string.SetFont(_minimal_font);
+    _title_string.SetSize(50);
+    _title_string.SetPosition(VIEW_WIDTH/2, VIEW_HEIGHT/2);
+    _title_string.SetColor(sf::Color(0, 0, 0));
+    _window->Draw(_title_string);
+}
+
+void Game_View::drawMenu()
+{
+    _window->Clear();
+}
+
+// -- drawGame ----------------------------------
+// Draws all the necessary elements for the game
+// ----------------------------------------------
+void Game_View::drawGame()
+{
+    _window->Clear();
+    drawBackground();
 
     drawPlayerShots();
     drawEnemiesShots();
@@ -117,23 +155,14 @@ void Game_View::draw()
     _window->Display();
 }
 
-void Game_View::drawBackground()
-{
-    drawSprite(0,_y_background, MODEL_WIDTH, MODEL_HEIGHT,_background_sprite);
-    drawSprite(0,-MODEL_HEIGHT+_y_background, MODEL_WIDTH, MODEL_HEIGHT,_background_sprite);
-    _y_background += 1 ;
-    if (_y_background >=MODEL_HEIGHT)
-    {
-        _y_background =0;
-    }
-}
-
 void Game_View::drawSprite(int x, int y, int w, int h, Sprite mySprite)
 {
     mySprite.Resize(w, h);
     mySprite.SetPosition(x, y);
     _window->Draw(mySprite);
 }
+
+
 
 void Game_View::drawPlayerShots()
 {
@@ -349,8 +378,8 @@ void Game_View::drawHealthLevel(int x)
 
 void Game_View::drawScore()
 {
-    sf::String _score_string = String("score");
-    _score_string.SetFont(_score_font);
+    _score_string = String("score");
+    _score_string.SetFont(_minimal_font);
     _score_string.SetSize(30);
     _score_string.SetPosition(_w-80, -15);
     _score_string.SetColor(sf::Color(0, 0, 0));

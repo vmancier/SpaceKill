@@ -55,7 +55,10 @@ private:
     sf::Sprite _shot2_sprite;
     sf::Sprite _shot3_sprite;
 
-    sf::Font _score_font;
+    sf::Font _minimal_font;
+
+    sf::String _score_string;
+    sf::String _title_string;
 
     Game_Model *_model;
 
@@ -63,9 +66,20 @@ public:
     Game_View(int w, int h, int bpp);
     ~Game_View();
 
-    void draw();
-    void drawBackground();
     void drawSprite(int x, int y, int w, int h, sf::Sprite mySprite);
+
+    /** Introduction **/
+    void drawIntro();
+    void drawBackground();
+    void drawAnimation();
+    void drawTitle();
+
+
+    /** Menu **/
+    void drawMenu();
+
+    /** Game **/
+    void drawGame();
     void drawPlayerShots();
     void drawPlayerShotsSprites1(sf::Sprite);
     void drawPlayerShotsSprites2(sf::Sprite, sf::Sprite);

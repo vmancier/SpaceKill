@@ -24,17 +24,23 @@ int main()
 {
     srand(time(NULL));
     Clock clock;
-    float timedelta;
+    float timedelta = 0.0;
 
     Game_Model *model = new Game_Model(MODEL_WIDTH, MODEL_HEIGHT);
     Game_View *view = new Game_View(VIEW_WIDTH,VIEW_HEIGHT, VIEW_BPP);
     view->setModel(model);
 
+    while(timedelta < 5.0)
+    {
+        view->drawIntro();
+        timedelta = clock.GetElapsedTime();
+    }
+
     while(view->treatEvents(timedelta))
     {
         clock.Reset();
 
-        view->draw();
+        view->drawGame();
         //cout<< endl << "----------DEPLACEMENT SUIVANT----------" << endl <<endl ;
 
         model->nextStep(timedelta);
@@ -43,7 +49,6 @@ int main()
 
     delete view;
     delete model;
-
     return 0;
 }
 

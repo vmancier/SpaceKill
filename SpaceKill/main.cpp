@@ -30,11 +30,11 @@ int main()
     Game_View *view = new Game_View(VIEW_WIDTH,VIEW_HEIGHT, VIEW_BPP);
     view->setModel(model);
 
-    while(timedelta < 5.0)
+    /*while(timedelta < 5.0)
     {
         view->drawIntro();
         timedelta = clock.GetElapsedTime();
-    }
+    }*/
 
     while(view->treatEvents(timedelta))
     {

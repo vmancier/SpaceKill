@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_layout_file>
+	<ActiveTarget name="Release" />
+	<File name="Enemy.cpp" open="0" top="0" tabpos="3">
+		<Cursor position="2799" topLine="71" />
+	</File>
+	<File name="Enemy.hpp" open="0" top="0" tabpos="4">
+		<Cursor position="701" topLine="6" />
+	</File>
+	<File name="Entities.hpp" open="1" top="0" tabpos="4">
+		<Cursor position="623" topLine="7" />
+	</File>
+	<File name="Game_Model.cpp" open="1" top="0" tabpos="2">
+		<Cursor position="1178" topLine="44" />
+	</File>
+	<File name="Game_Model.hpp" open="0" top="0" tabpos="2">
+		<Cursor position="758" topLine="12" />
+	</File>
+	<File name="Game_View.cpp" open="1" top="1" tabpos="1">
+		<Cursor position="1814" topLine="113" />
+	</File>
+	<File name="Game_View.hpp" open="1" top="0" tabpos="3">
+		<Cursor position="2141" topLine="33" />
+	</File>
+	<File name="Player.cpp" open="0" top="0" tabpos="2">
+		<Cursor position="986" topLine="21" />
+	</File>
+	<File name="Player.hpp" open="0" top="0" tabpos="4">
+		<Cursor position="696" topLine="5" />
+	</File>
+	<File name="Score.cpp" open="0" top="0" tabpos="1">
+		<Cursor position="589" topLine="1" />
+	</File>
+	<File name="Score.hpp" open="0" top="0" tabpos="2">
+		<Cursor position="624" topLine="6" />
+	</File>
+	<File name="Ship.cpp" open="0" top="0" tabpos="2">
+		<Cursor position="2292" topLine="59" />
+	</File>
+	<File name="Ship.hpp" open="0" top="0" tabpos="7">
+		<Cursor position="1458" topLine="40" />
+	</File>
+	<File name="Shot.cpp" open="0" top="0" tabpos="6">
+		<Cursor position="2349" topLine="18" />
+	</File>
+	<File name="Shot.hpp" open="0" top="0" tabpos="3">
+		<Cursor position="678" topLine="18" />
+	</File>
+	<File name="main.cpp" open="1" top="0" tabpos="5">
+		<Cursor position="984" topLine="6" />
+	</File>
+</CodeBlocks_layout_file>

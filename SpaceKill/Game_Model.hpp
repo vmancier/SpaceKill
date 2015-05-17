@@ -21,7 +21,9 @@ class Game_Model
 private:
     int _w, _h;
     int _levelStyle;
-    float _spawnRate;
+    int _spawnRate;
+    int _levelProgress;
+    float _lastSpawn;
     Player * m_player;
     std::vector<Enemy*> enemies;
 
@@ -33,7 +35,7 @@ public:
     void nextStep(float timedelta);
     bool Play();
     void Level(int levelStyle);
-    void createEnemy();
+    void createEnemy(float timedelta);
     void moveEnemies(float timedelta);
     void shootEnemy(float timedelta);
     void moveShots(float timedelta);

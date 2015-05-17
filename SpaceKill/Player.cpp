@@ -48,12 +48,6 @@ Player::Player(int x, int y, int w, int h, float x_speed, float y_speed, int hea
 // ----------------------------------------------
 void Player::moveP(bool LeftKeyDown, bool RightKeyDown, bool UpKeyDown, bool DownKeyDown, float timedelta)
 {
-    /*
-    int choice;
-    cout <<endl;
-    cout << "1 : Gauche"<<endl;
-    cout << "2 : Droite"<<endl;
-    cin >> choice;*/
     if (LeftKeyDown)
     {
         if (m_x-m_x_speed*timedelta > 0)

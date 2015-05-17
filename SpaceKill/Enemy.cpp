@@ -41,11 +41,14 @@ Enemy::Enemy(int x, int y, int w, int h, float x_speed, float y_speed, int healt
     :Ship(x, y, w, h, x_speed, y_speed, health, styleShot), m_style(style), m_value(value)
 {
     m_fireRate = DEFAULT_SHOT_FIRERATE;
+    m_elapsedTime=0;
 }
 
 Enemy::Enemy(int x, int style)
 {
     m_style = style;
+    m_elapsedTime=0;
+    m_fireRate = DEFAULT_SHOT_FIRERATE;
     switch(style)
     {
     case 1:

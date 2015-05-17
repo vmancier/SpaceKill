@@ -109,7 +109,7 @@ void Game_View::draw()
 
 
     drawPlayerShots();
-    //drawEnemiesShots();
+    drawEnemiesShots();
     drawPlayer();
     drawEnemies();
     drawHeadBand();
@@ -119,14 +119,12 @@ void Game_View::draw()
 
 void Game_View::drawBackground()
 {
-    _y_background += 20;
-    _background_sprite.SetPosition(0, _y_background);
-    _window->Draw(_background_sprite);
-    _background_sprite.SetPosition(0, - MODEL_HEIGHT + _y_background);
-    _window->Draw(_background_sprite);
-    if (_y_background >= MODEL_HEIGHT)
+    drawSprite(0,_y_background, MODEL_WIDTH, MODEL_HEIGHT,_background_sprite);
+    drawSprite(0,-MODEL_HEIGHT+_y_background, MODEL_WIDTH, MODEL_HEIGHT,_background_sprite);
+    _y_background += 1 ;
+    if (_y_background >=MODEL_HEIGHT)
     {
-        _y_background = -MODEL_HEIGHT;
+        _y_background =0;
     }
 }
 

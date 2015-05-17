@@ -12,6 +12,7 @@
 #include "Entities.hpp"
 
 #include <cstdlib>  //necessaire pour le rand() du x
+#include <math.h>
 
 using namespace std;
 
@@ -24,6 +25,8 @@ Game_Model::Game_Model(): _w(MODEL_WIDTH), _h(MODEL_HEIGHT)
 {
     m_player = new Player();
     Level(1);
+    _levelProgress=0;
+    _lastSpawn=0;
 }
 
 // -- Game_Model --------------------------------
@@ -37,7 +40,9 @@ Game_Model::Game_Model(): _w(MODEL_WIDTH), _h(MODEL_HEIGHT)
 Game_Model::Game_Model(int w, int h): _w(w), _h(h)
 {
     m_player = new Player((_w/2)-(PLAYER_WIDTH/2), _h-(2*PLAYER_HEIGHT), PLAYER_WIDTH, PLAYER_HEIGHT, PLAYER_X_SPEED, PLAYER_Y_SPEED, 100, 0);
-    Level(5);
+    Level(3);
+    _levelProgress=0;
+    _lastSpawn=0;
 }
 
 // -- ~Game_Model --------------------------------
@@ -56,9 +61,9 @@ Game_Model::~Game_Model()
 // ----------------------------------------------
 void Game_Model::nextStep(float timedelta)
 {
-    createEnemy();
+    createEnemy(timedelta);
     //getEnemyPos();
-    //shootEnemy(timedelta);
+    shootEnemy(timedelta);
     m_player->shoot(timedelta);
     //m_player->getShotsPos();
     moveShots(timedelta);
@@ -88,28 +93,28 @@ void Game_Model::Level(int levelStyle)
     switch(_levelStyle)
     {
     case 1:
-        _spawnRate = 2000.0;
+        _spawnRate = 2;
         break;
     case 2:
-        _spawnRate = 1800.0;
+        _spawnRate = 1.0;
         break;
     case 3:
-        _spawnRate = 1600.0;
+        _spawnRate = 1.6;
         break;
     case 4:
-        _spawnRate = 1400.0;
+        _spawnRate = 1.4;
         break;
     case 5:
-        _spawnRate = 1200.0;
+        _spawnRate = 1.2;
         break;
     case 6:
-        _spawnRate = 1000.0;
+        _spawnRate = 1.0;
         break;
     case 7:
-        _spawnRate = 800.0;
+        _spawnRate = 0.8;
         break;
     case 8:
-        _spawnRate = 600.0;
+        _spawnRate = 0.6;
         break;
     }
 }
@@ -117,14 +122,21 @@ void Game_Model::Level(int levelStyle)
 // -- createEnemy -------------------------------
 // Creates an enemy according to his style
 // ----------------------------------------------
-void Game_Model::createEnemy()
+void Game_Model::createEnemy(float timedelta)
 {
-    int exactWidth = MODEL_WIDTH - DEFAULT_ENEMY_WIDTH;
-    int xPos = rand() % exactWidth;
-    int style = getLevelNumber();
+    _levelProgress+=timedelta;
+    _lastSpawn+=timedelta;
+    if (_lastSpawn >=_spawnRate)
+    {
+        int exactWidth = MODEL_WIDTH - DEFAULT_ENEMY_WIDTH;
+        int xPos = rand() % exactWidth;
+        int style = getLevelNumber();
 
-    Enemy *myEnemy = new Enemy(xPos, style);
-    enemies.push_back(myEnemy);
+        Enemy *myEnemy = new Enemy(xPos, style);
+        enemies.push_back(myEnemy);
+
+        _lastSpawn=0;
+    }
 }
 
 // -- moveEnemies -------------------------------
@@ -212,10 +224,10 @@ void Game_Model::collisions()
             if (collision)
             {
                 //enemies[j]->loseLife(4);
-                // (enemies[j]->die()==true)
+                //if (enemies[j]->die()==true)
                 //{
-                    delete enemies[j];
-                    enemies.erase(enemies.begin()+j);
+                delete enemies[j];
+                enemies.erase(enemies.begin()+j);
                 //}
                 delete m_player->getShot(i);
                 m_player->eraseShot(i);

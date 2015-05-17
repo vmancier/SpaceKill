@@ -22,7 +22,7 @@ public:
     Score();    //constructeur par défaut
     ~Score();   //destructeur
 
-    void scoreCalculation();
+    void scoreCalculation(int value);
     std::string toString() const;
 };
 

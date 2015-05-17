@@ -19,6 +19,11 @@ Score::Score()
     m_score = 1000;
 }
 
+void Score::scoreCalculation(int value)
+{
+    m_score +=value;
+}
+
 /*string Score::toString() const {
     return "(" + to_string(m_score) + ",";
 }*/

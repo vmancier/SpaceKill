@@ -223,28 +223,55 @@ void Game_Model::collisions()
 
             if (collision)
             {
-                //enemies[j]->loseLife(4);
-                //if (enemies[j]->die()==true)
-                //{
-                delete enemies[j];
-                enemies.erase(enemies.begin()+j);
-                //}
+                enemies[j]->loseLife((m_player->getShot(i))->getDamages());
+                if (enemies[j]->die()==true)
+                {
+                    delete enemies[j];
+                    enemies.erase(enemies.begin()+j);
+                }
                 delete m_player->getShot(i);
                 m_player->eraseShot(i);
             }
         }
     }
-    /*
-    if(bottomS <= topE)
-        return false;
-    if(topS >= bottomE)
-        return false;
-    if(rightS <= leftE)
-        return false;
-    if(leftS >= rightE)
-        return false;
 
-    return true;*/
+    leftShip = m_player->getX();
+    rightShip = leftShip + m_player->getW();
+    topShip = m_player->getY();
+    bottomShip = topShip + m_player->getH();
+
+    for(unsigned int j=0; j<enemies.size(); j++)
+    {
+        for(int i=0; i<enemies[j]->getShotsSize(); i++)
+        {
+            enemies[j]->getShotSettings(x, y, w, h, i);
+            leftShot = x;
+            rightShot = x+w;
+            topShot = y;
+            bottomShot = y+h;
+            collision = true;
+
+            if(bottomShot <= topShip)
+                collision =false;
+            if(topShot >= bottomShip)
+                collision =false;
+            if(rightShot <= leftShip)
+                collision =false;
+            if(leftShot >= rightShip)
+                collision =false;
+
+            if (collision)
+            {
+                m_player->loseLife((enemies[j]->getShot(i))->getDamages());
+                if (m_player->die()==true)
+                {
+                    delete m_player;
+                }
+                delete enemies[j]->getShot(i);
+                enemies[j]->eraseShot(i);
+            }
+        }
+    }
 }
 
 // -- getPlayer ---------------------------------

@@ -83,7 +83,8 @@ void Enemy::setEnemySettings(int style, float coef)
 {
     m_x_speed = DEFAULT_ENEMY_X_SPEED*coef;
     m_y_speed = DEFAULT_ENEMY_X_SPEED*coef;
-    m_health = DEFAULT_ENEMY_HEALTH*coef;
+    m_health = 1;//DEFAULT_ENEMY_HEALTH*coef;
+    m_life =1;
     m_styleShot = DEFAULT_ENEMY_STYLESHOT*coef;
     m_value = DEFAULT_ENEMY_VALUE*coef;
     m_w = DEFAULT_ENEMY_WIDTH;
@@ -123,4 +124,9 @@ void Enemy::shoot(float timedelta)
 int Enemy::getStyle() const
 {
     return m_style;
+}
+
+int Enemy::getValue() const
+{
+    return m_value;
 }

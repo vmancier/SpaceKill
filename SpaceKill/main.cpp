@@ -35,9 +35,7 @@ int main()
     {
         view->drawIntro();
         timedelta = clock.GetElapsedTime();
-        cout <<timedelta<<endl;
         x+=timedelta;
-
     }
 
     timedelta=0;

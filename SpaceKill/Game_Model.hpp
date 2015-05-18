@@ -20,6 +20,7 @@ class Game_Model
 {
 private:
     int _w, _h;
+    int m_score;
     int _levelStyle;
     int _spawnRate;
     int _levelProgress;

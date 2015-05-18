@@ -27,6 +27,7 @@ Game_Model::Game_Model(): _w(MODEL_WIDTH), _h(MODEL_HEIGHT)
     Level(1);
     _levelProgress=0;
     _lastSpawn=0;
+    m_score = 0;
 }
 
 // -- Game_Model --------------------------------
@@ -43,6 +44,7 @@ Game_Model::Game_Model(int w, int h): _w(w), _h(h)
     Level(3);
     _levelProgress=0;
     _lastSpawn=0;
+    m_score=0;
 }
 
 // -- ~Game_Model --------------------------------
@@ -63,13 +65,14 @@ void Game_Model::nextStep(float timedelta)
 {
     createEnemy(timedelta);
     //getEnemyPos();
-    shootEnemy(timedelta);
+    //shootEnemy(timedelta);
     m_player->shoot(timedelta);
     //m_player->getShotsPos();
     moveShots(timedelta);
     moveEnemies(timedelta);
     //getPlayerPos();
     collisions();
+    //cout <<m_score<<endl;
 }
 
 // -- Play --------------------------------------
@@ -93,22 +96,22 @@ void Game_Model::Level(int levelStyle)
     switch(_levelStyle)
     {
     case 1:
-        _spawnRate = 2;
+        _spawnRate = 20;
         break;
     case 2:
-        _spawnRate = 1.0;
+        _spawnRate = 10.0;
         break;
     case 3:
-        _spawnRate = 1.6;
+        _spawnRate = 10.6;
         break;
     case 4:
-        _spawnRate = 1.4;
+        _spawnRate = 10.4;
         break;
     case 5:
-        _spawnRate = 1.2;
+        _spawnRate = 10.2;
         break;
     case 6:
-        _spawnRate = 1.0;
+        _spawnRate = 10.0;
         break;
     case 7:
         _spawnRate = 0.8;
@@ -197,6 +200,7 @@ void Game_Model::collisions()
     int bottomShot, bottomShip;
     bool collision;
 
+    /*collisions between enemies and player's shots*/
     for(int i=0; i<m_player->getShotsSize(); i++)
     {
         m_player->getShotSettings(x, y, w, h, i);
@@ -212,20 +216,21 @@ void Game_Model::collisions()
             topShip = enemies[j]->getY();
             bottomShip = topShip + enemies[j]->getH();
             collision = true;
-            if(bottomShot <= topShip)
+
+            if(bottomShot <= topShip || leftShot >= rightShip || topShot >= bottomShip || rightShot <= leftShip)
+            {
                 collision =false;
-            if(topShot >= bottomShip)
-                collision =false;
-            if(rightShot <= leftShip)
-                collision =false;
-            if(leftShot >= rightShip)
-                collision =false;
+            }
 
             if (collision)
             {
+
                 enemies[j]->loseLife((m_player->getShot(i))->getDamages());
-                if (enemies[j]->die()==true)
+                cout <<enemies[j]->getHealth()<<endl;
+                if (enemies[j]->die())
                 {
+                    cout <<"ennemi mort"<<endl;
+                    m_score +=enemies[j]->getValue();
                     delete enemies[j];
                     enemies.erase(enemies.begin()+j);
                 }
@@ -234,7 +239,7 @@ void Game_Model::collisions()
             }
         }
     }
-
+    /*collisions between player and enemies's shots*/
     leftShip = m_player->getX();
     rightShip = leftShip + m_player->getW();
     topShip = m_player->getY();
@@ -251,14 +256,10 @@ void Game_Model::collisions()
             bottomShot = y+h;
             collision = true;
 
-            if(bottomShot <= topShip)
+            if(bottomShot <= topShip || leftShot >= rightShip || topShot >= bottomShip || rightShot <= leftShip)
+            {
                 collision =false;
-            if(topShot >= bottomShip)
-                collision =false;
-            if(rightShot <= leftShip)
-                collision =false;
-            if(leftShot >= rightShip)
-                collision =false;
+            }
 
             if (collision)
             {

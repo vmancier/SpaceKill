@@ -16,7 +16,6 @@
 class Player : public Ship
 {
 private:
-    int m_scoreP;
 public:
     Player(int x, int y, int w, int h, float x_speed, float y_speed, int health, int styleShot);
     Player();

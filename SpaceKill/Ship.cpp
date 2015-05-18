@@ -68,14 +68,14 @@ void Ship::loseLife(int damages)
     }
     else if (m_health == damages)
     {
-        m_health =100;
+        m_health =1;//00;
         m_life--;
     }
-    else
+    else if (damages > m_health)
     {
         m_life--;
         int tmp = m_health-damages;
-        m_health = 100-tmp;
+        m_health = 1;//-tmp;
     }
 }
 
@@ -84,11 +84,11 @@ void Ship::loseLife(int damages)
 // ----------------------------------------------
 bool Ship::die()
 {
-    if (m_life <= 0)
+    if (m_life > 0)
     {
-        return true;
+        return false;
     }
-    return false;
+    return true;
 }
 
 // -- moveShotsShip -----------------------------

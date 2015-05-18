@@ -26,7 +26,7 @@ public:
     void shoot(float timedelta);
     void setEnemySettings(int style, float coef);
     int getStyle() const;
-
+    int getValue() const;
 };
 
 #endif // ENEMY_HPP_INCLUDED

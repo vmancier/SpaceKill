@@ -34,6 +34,8 @@ Game_View::Game_View(int w, int h, int bpp): _w(w), _h(h)
             !_headband_image.LoadFromFile("assets/headband.png") ||
             !_healthbar_image.LoadFromFile("assets/healthbar.png") ||
             !_player_image.LoadFromFile("assets/player.png") ||
+            !_player1_image.LoadFromFile("assets/player1.png") ||
+            !_player2_image.LoadFromFile("assets/player2.png") ||
             !_enemy1_image.LoadFromFile("assets/enemy1.png") ||
             !_enemy2_image.LoadFromFile("assets/enemy2.png") ||
             !_enemy3_image.LoadFromFile("assets/enemy3.png") ||
@@ -51,6 +53,8 @@ Game_View::Game_View(int w, int h, int bpp): _w(w), _h(h)
         _headband_sprite = Sprite();
         _healthbar_sprite = Sprite();
         _player_sprite = Sprite();
+        _player1_sprite = Sprite();
+        _player2_sprite = Sprite();
         _enemy1_sprite = Sprite();
         _enemy2_sprite = Sprite();
         _enemy3_sprite = Sprite();
@@ -74,6 +78,8 @@ Game_View::Game_View(int w, int h, int bpp): _w(w), _h(h)
         _healthbar_sprite = Sprite(_healthbar_image);
 
         _player_sprite = Sprite(_player_image);
+        _player1_sprite = Sprite(_player1_image);
+        _player2_sprite = Sprite(_player2_image);
         _enemy1_sprite = Sprite(_enemy1_image);
         _enemy2_sprite = Sprite(_enemy2_image);
         _enemy3_sprite = Sprite(_enemy3_image);
@@ -122,16 +128,24 @@ void Game_View::drawBackground()
 
 void Game_View::drawAnimation()
 {
-
+    for(int i =0; i < 200; i++)
+    {
+        drawSprite(100+i, 540-i, 150, 150, _player1_sprite);
+        _player1_sprite.SetRotation(-50);
+        drawSprite(VIEW_WIDTH-200-i, 650-i, 150, 150, _player2_sprite);
+        _player2_sprite.SetRotation(50);
+        _window->Display();
+        _window->Clear();
+    }
 }
 
 void Game_View::drawTitle()
 {
     _title_string = String("SpaceKill");
     _title_string.SetFont(_minimal_font);
-    _title_string.SetSize(50);
-    _title_string.SetPosition(VIEW_WIDTH/2, VIEW_HEIGHT/2);
-    _title_string.SetColor(sf::Color(0, 0, 0));
+    _title_string.SetSize(100);
+    _title_string.SetPosition(VIEW_WIDTH/2-100, 50);
+    _title_string.SetColor(sf::Color(255, 255, 255));
     _window->Draw(_title_string);
 }
 

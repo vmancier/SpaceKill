@@ -105,6 +105,8 @@ void Game_View::drawIntro()
     drawBackground();
     drawAnimation();
     drawTitle();
+    _window->Display();
+
 }
 
 void Game_View::drawBackground()

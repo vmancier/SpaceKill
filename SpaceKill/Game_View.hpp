@@ -27,6 +27,8 @@ private:
     sf::Image _headband_image;
     sf::Image _healthbar_image;
     sf::Image _player_image;
+    sf::Image _player1_image;
+    sf::Image _player2_image;
     sf::Image _enemy1_image;
     sf::Image _enemy2_image;
     sf::Image _enemy3_image;
@@ -43,6 +45,8 @@ private:
     sf::Sprite _headband_sprite;
     sf::Sprite _healthbar_sprite;
     sf::Sprite _player_sprite;
+    sf::Sprite _player1_sprite;
+    sf::Sprite _player2_sprite;
     sf::Sprite _enemy1_sprite;
     sf::Sprite _enemy2_sprite;
     sf::Sprite _enemy3_sprite;

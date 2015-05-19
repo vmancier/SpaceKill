@@ -51,6 +51,7 @@ public:
     int getEnemiesSize() const;
     void getEnemyPos() const;
     void getEnemySettings(int &x, int &y, int &w, int &h, int i) const;
+    int getScore() const;
 
 };
 

@@ -51,40 +51,40 @@ Enemy::Enemy(int x, int style)
     m_fireRate = DEFAULT_SHOT_FIRERATE;
     switch(style)
     {
+    case 0:
+        Enemy::setEnemySettings( COEF_0);
+        break;
     case 1:
-        Enemy::setEnemySettings(1, COEF_1);
+        Enemy::setEnemySettings( COEF_1);
         break;
     case 2:
-        Enemy::setEnemySettings(2, COEF_2);
+        Enemy::setEnemySettings( COEF_2);
         break;
     case 3:
-        Enemy::setEnemySettings(3, COEF_3);
+        Enemy::setEnemySettings( COEF_3);
         break;
     case 4:
-        Enemy::setEnemySettings(4, COEF_4);
+        Enemy::setEnemySettings( COEF_4);
         break;
     case 5:
-        Enemy::setEnemySettings(5, COEF_5);
+        Enemy::setEnemySettings( COEF_5);
         break;
     case 6:
-        Enemy::setEnemySettings(6, COEF_6);
+        Enemy::setEnemySettings( COEF_6);
         break;
     case 7:
-        Enemy::setEnemySettings(7, COEF_7);
-        break;
-    case 8:
-        Enemy::setEnemySettings(8, COEF_8);
+        Enemy::setEnemySettings( COEF_7);
         break;
     }
     m_x = x;
     m_currentHealth=m_healthMax;
 }
 
-void Enemy::setEnemySettings(int style, float coef)
+void Enemy::setEnemySettings(float coef)
 {
     m_x_speed = DEFAULT_ENEMY_X_SPEED*coef;
     m_y_speed = DEFAULT_ENEMY_X_SPEED*coef;
-    m_healthMax = 100;//DEFAULT_ENEMY_HEALTH*coef;
+    m_healthMax = DEFAULT_ENEMY_HEALTH*coef;
     m_life =1;
     m_styleShot = DEFAULT_ENEMY_STYLESHOT*coef;
     m_value = DEFAULT_ENEMY_VALUE*coef;

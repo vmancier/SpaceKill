@@ -94,28 +94,28 @@ void Game_Model::Level(int levelStyle)
     _levelStyle = levelStyle;
     switch(_levelStyle)
     {
-    case 1:
+    case 0:
         _spawnRate = 20;
         break;
-    case 2:
+    case 1:
         _spawnRate = 10.0;
         break;
-    case 3:
+    case 2:
         _spawnRate = 10.6;
         break;
-    case 4:
+    case 3:
         _spawnRate = 10.4;
         break;
-    case 5:
+    case 4:
         _spawnRate = 10.2;
         break;
-    case 6:
+    case 5:
         _spawnRate = 10.0;
         break;
-    case 7:
+    case 6:
         _spawnRate = 0.8;
         break;
-    case 8:
+    case 7:
         _spawnRate = 0.6;
         break;
     }

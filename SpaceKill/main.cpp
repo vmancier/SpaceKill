@@ -30,17 +30,7 @@ int main()
     Game_View *view = new Game_View(VIEW_WIDTH,VIEW_HEIGHT, VIEW_BPP);
     view->setModel(model);
 
-
-    /*** Intro ***/
-    /*float t = 0.0;
-    while(t < 5.0)
-    {
-        view->drawIntro();
-        timedelta = clock.GetElapsedTime();
-        cout <<timedelta<<endl;
-        t+=timedelta;
-    }*/
-    /************/
+    view->drawIntro(clock);
 
     /*** Menu ***/
     while(view->treatMenuEvents())

@@ -33,14 +33,14 @@ const float DEFAULT_ENEMY_Y_SPEED = 100.0;
 const int DEFAULT_ENEMY_HEALTH = 100;
 const int DEFAULT_ENEMY_STYLESHOT = 1;
 const int DEFAULT_ENEMY_VALUE = 10;
-const float COEF_1 = 1.0;
-const float COEF_2 = 1.2;
-const float COEF_3 = 1.4;
-const float COEF_4 = 1.6;
-const float COEF_5 = 1.8;
-const float COEF_6 = 2.0;
-const float COEF_7 = 2.2;
-const float COEF_8 = 2.4;
+const float COEF_0 = 1.0;
+const float COEF_1 = 1.2;
+const float COEF_2 = 1.4;
+const float COEF_3 = 1.6;
+const float COEF_4 = 1.8;
+const float COEF_5 = 2.0;
+const float COEF_6 = 2.2;
+const float COEF_7 = 2.4;
 
 /************* SHOTS ************/
 const float DEFAULT_SHOT_FIRERATE = 0.50;

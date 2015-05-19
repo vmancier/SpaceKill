@@ -40,17 +40,17 @@ Game_View::Game_View(int w, int h, int bpp): _w(w), _h(h)
             !_player_image.LoadFromFile("assets/player.png") ||
             !_player1_image.LoadFromFile("assets/player1.png") ||
             !_player2_image.LoadFromFile("assets/player2.png") ||
-            !_enemy1_image.LoadFromFile("assets/enemy1.png") ||
-            !_enemy2_image.LoadFromFile("assets/enemy2.png") ||
-            !_enemy3_image.LoadFromFile("assets/enemy3.png") ||
-            !_enemy4_image.LoadFromFile("assets/enemy4.png") ||
-            !_enemy5_image.LoadFromFile("assets/enemy5.png") ||
-            !_enemy6_image.LoadFromFile("assets/enemy6.png") ||
-            !_enemy7_image.LoadFromFile("assets/enemy7.png") ||
-            !_enemy8_image.LoadFromFile("assets/enemy8.png") ||
-            !_shot1_image.LoadFromFile("assets/shot1.png") ||
-            !_shot2_image.LoadFromFile("assets/shot2.png") ||
-            !_shot3_image.LoadFromFile("assets/shot3.png") ||
+            !_enemy0_image.LoadFromFile("assets/enemy1.png") ||
+            !_enemy1_image.LoadFromFile("assets/enemy2.png") ||
+            !_enemy2_image.LoadFromFile("assets/enemy3.png") ||
+            !_enemy3_image.LoadFromFile("assets/enemy4.png") ||
+            !_enemy4_image.LoadFromFile("assets/enemy5.png") ||
+            !_enemy5_image.LoadFromFile("assets/enemy6.png") ||
+            !_enemy6_image.LoadFromFile("assets/enemy7.png") ||
+            !_enemy7_image.LoadFromFile("assets/enemy8.png") ||
+            !_shot0_image.LoadFromFile("assets/shot1.png") ||
+            !_shot1_image.LoadFromFile("assets/shot2.png") ||
+            !_shot2_image.LoadFromFile("assets/shot3.png") ||
             !_minimal_font.LoadFromFile("assets/minimal.ttf"))
     {
         _background_sprite = Sprite();
@@ -61,6 +61,7 @@ Game_View::Game_View(int w, int h, int bpp): _w(w), _h(h)
         _player_sprite = Sprite();
         _player1_sprite = Sprite();
         _player2_sprite = Sprite();
+        _enemy0_sprite = Sprite();
         _enemy1_sprite = Sprite();
         _enemy2_sprite = Sprite();
         _enemy3_sprite = Sprite();
@@ -68,10 +69,9 @@ Game_View::Game_View(int w, int h, int bpp): _w(w), _h(h)
         _enemy5_sprite = Sprite();
         _enemy6_sprite = Sprite();
         _enemy7_sprite = Sprite();
-        _enemy8_sprite = Sprite();
+        _shot0_sprite = Sprite();
         _shot1_sprite = Sprite();
         _shot2_sprite = Sprite();
-        _shot3_sprite = Sprite();
         _minimal_font = Font();
     }
     else
@@ -89,6 +89,7 @@ Game_View::Game_View(int w, int h, int bpp): _w(w), _h(h)
         _player_sprite = Sprite(_player_image);
         _player1_sprite = Sprite(_player1_image);
         _player2_sprite = Sprite(_player2_image);
+        _enemy0_sprite = Sprite(_enemy0_image);
         _enemy1_sprite = Sprite(_enemy1_image);
         _enemy2_sprite = Sprite(_enemy2_image);
         _enemy3_sprite = Sprite(_enemy3_image);
@@ -96,10 +97,9 @@ Game_View::Game_View(int w, int h, int bpp): _w(w), _h(h)
         _enemy5_sprite = Sprite(_enemy5_image);
         _enemy6_sprite = Sprite(_enemy6_image);
         _enemy7_sprite = Sprite(_enemy7_image);
-        _enemy8_sprite = Sprite(_enemy8_image);
+        _shot0_sprite = Sprite(_shot0_image);
         _shot1_sprite = Sprite(_shot1_image);
         _shot2_sprite = Sprite(_shot2_image);
-        _shot3_sprite = Sprite(_shot3_image);
     }
 }
 
@@ -114,13 +114,20 @@ Game_View::~Game_View()
     }
 }
 
-void Game_View::drawIntro()
+void Game_View::drawIntro(Clock clock)
 {
-    _window->Clear();
-    drawBackground();
-    drawAnimation();
-    drawTitle();
-    _window->Display();
+    float timedelta;
+    float t = 0.0;
+    while(t < 500.0)
+    {
+        _window->Clear();
+        drawBackground();
+        drawAnimation(t);
+        drawTitle();
+        _window->Display();
+        timedelta = clock.GetElapsedTime();
+        t+=timedelta;
+    }
 
 }
 
@@ -135,17 +142,13 @@ void Game_View::drawBackground()
     }
 }
 
-void Game_View::drawAnimation()
+void Game_View::drawAnimation(float t)
 {
-    for(int i =0; i < 200; i++)
-    {
-        drawSprite(100+i, 540-i, 150, 150, _player1_sprite);
-        _player1_sprite.SetRotation(-50);
-        drawSprite(VIEW_WIDTH-200-i, 650-i, 150, 150, _player2_sprite);
-        _player2_sprite.SetRotation(50);
-        _window->Display();
-        _window->Clear();
-    }
+    drawSprite(100+t, 540-t, 150, 150, _player1_sprite);
+    _player1_sprite.SetRotation(-50);
+    drawSprite(VIEW_WIDTH-200-t, 650-t, 150, 150, _player2_sprite);
+    _player2_sprite.SetRotation(50);
+
 }
 
 void Game_View::drawTitle()
@@ -197,34 +200,34 @@ void Game_View::drawPlayerShots()
     int style = _model->getLevelNumber();
     switch(style)
     {
+    case 0:
+        Game_View::drawPlayerShotsSprites0(_shot0_sprite);
+        break;
     case 1:
-        Game_View::drawPlayerShotsSprites1(_shot1_sprite);
+        Game_View::drawPlayerShotsSprites0(_shot0_sprite);
         break;
     case 2:
-        Game_View::drawPlayerShotsSprites1(_shot1_sprite);
+        Game_View::drawPlayerShotsSprites1(_shot0_sprite, _shot1_sprite);
         break;
     case 3:
-        Game_View::drawPlayerShotsSprites2(_shot1_sprite, _shot2_sprite);
+        Game_View::drawPlayerShotsSprites1(_shot0_sprite, _shot1_sprite);
         break;
     case 4:
         Game_View::drawPlayerShotsSprites2(_shot1_sprite, _shot2_sprite);
         break;
     case 5:
-        Game_View::drawPlayerShotsSprites3(_shot2_sprite, _shot3_sprite);
+        Game_View::drawPlayerShotsSprites2(_shot1_sprite, _shot2_sprite);
         break;
     case 6:
-        Game_View::drawPlayerShotsSprites3(_shot2_sprite, _shot3_sprite);
+        Game_View::drawPlayerShotsSprites2(_shot1_sprite, _shot2_sprite);
         break;
     case 7:
-        Game_View::drawPlayerShotsSprites3(_shot2_sprite, _shot3_sprite);
-        break;
-    case 8:
-        Game_View::drawPlayerShotsSprites3(_shot2_sprite, _shot3_sprite);
+        Game_View::drawPlayerShotsSprites2(_shot1_sprite, _shot2_sprite);
         break;
     }
 }
 
-void Game_View::drawPlayerShotsSprites1(sf::Sprite myPlayerShotSprite)
+void Game_View::drawPlayerShotsSprites0(sf::Sprite myPlayerShotSprite)
 {
     int x, y, w, h;
     for (int i=0; i < (_model->getPlayer())->getShotsSize(); i++)
@@ -234,7 +237,7 @@ void Game_View::drawPlayerShotsSprites1(sf::Sprite myPlayerShotSprite)
     }
 }
 
-void Game_View::drawPlayerShotsSprites2(sf::Sprite myPlayerShotSprite1, sf::Sprite myPlayerShotSprite2)
+void Game_View::drawPlayerShotsSprites1(sf::Sprite myPlayerShotSprite1, sf::Sprite myPlayerShotSprite2)
 {
     int x, y, w, h;
 
@@ -247,7 +250,7 @@ void Game_View::drawPlayerShotsSprites2(sf::Sprite myPlayerShotSprite1, sf::Spri
     }
 }
 
-void Game_View::drawPlayerShotsSprites3(sf::Sprite myPlayerShotSprite1, sf::Sprite myPlayerShotSprite2)
+void Game_View::drawPlayerShotsSprites2(sf::Sprite myPlayerShotSprite1, sf::Sprite myPlayerShotSprite2)
 {
     int x, y, w, h;
     for (int i=0; i < (_model->getPlayer())->getShotsSize(); i++)
@@ -294,6 +297,9 @@ void Game_View::drawEnemies()
     int style = _model->getLevelNumber();
     switch(style)
     {
+    case 0:
+        Game_View::drawEnemiesSprites(_enemy0_sprite);
+        break;
     case 1:
         Game_View::drawEnemiesSprites(_enemy1_sprite);
         break;
@@ -314,9 +320,6 @@ void Game_View::drawEnemies()
         break;
     case 7:
         Game_View::drawEnemiesSprites(_enemy7_sprite);
-        break;
-    case 8:
-        Game_View::drawEnemiesSprites(_enemy8_sprite);
         break;
     }
 }
@@ -362,7 +365,7 @@ void Game_View::drawLife()  //nombre de vies
 
 void Game_View::drawHealth()    //niveau de la vie en cours
 {
-    int lifeLevel = (_model->getPlayer()->getHealth());
+    int lifeLevel = (_model->getPlayer()->getCurrentHealth()/_model->getPlayer()->getHealthMax())*100;
     switch (lifeLevel)
     {
     case 100:

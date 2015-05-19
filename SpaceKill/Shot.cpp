@@ -42,6 +42,9 @@ Shot::Shot(int style, int x, int y, int xSpeed, int ySpeed)
     m_style = style;
     switch(style)
     {
+    case 0:
+        m_damage = 150.0;
+        break;
     case 1:
         m_damage = 150.0;
         break;
@@ -49,17 +52,14 @@ Shot::Shot(int style, int x, int y, int xSpeed, int ySpeed)
         m_damage = 150.0;
         break;
     case 3:
-        m_damage = 150.0;
-        break;
-    case 4:
         m_damage = 600.0;
         //m_fireRate = 1.20;
         break;
-    case 5:
+    case 4:
         m_damage = 700.0;
         //m_fireRate = 1.32;
         break;
-    case 6:
+    case 5:
         m_damage = 800.0;
         //m_fireRate = 1.50;
         break;

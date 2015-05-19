@@ -51,7 +51,8 @@ public:
     void getShotSettings(int &x, int &y, int &w, int &h, int i) const;
     int getShotsSize() const;
     int getLife() const;
-    float getHealth() const;
+    float getHealthMax() const;
+    float getCurrentHealth() const;
     int getX() const;
     int getY() const;
     int getW() const;

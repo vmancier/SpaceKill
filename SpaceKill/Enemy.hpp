@@ -24,7 +24,7 @@ public:
 
     void moveForward(float timedelta);
     void shoot(float timedelta);
-    void setEnemySettings(int style, float coef);
+    void setEnemySettings(float coef);
     int getStyle() const;
     int getValue() const;
 };

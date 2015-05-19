@@ -31,6 +31,7 @@ private:
     sf::Image _player_image;
     sf::Image _player1_image;
     sf::Image _player2_image;
+    sf::Image _enemy0_image;
     sf::Image _enemy1_image;
     sf::Image _enemy2_image;
     sf::Image _enemy3_image;
@@ -38,10 +39,9 @@ private:
     sf::Image _enemy5_image;
     sf::Image _enemy6_image;
     sf::Image _enemy7_image;
-    sf::Image _enemy8_image;
+    sf::Image _shot0_image;
     sf::Image _shot1_image;
     sf::Image _shot2_image;
-    sf::Image _shot3_image;
 
     sf::Sprite _background_sprite;
     sf::Sprite _button1_sprite;
@@ -51,6 +51,7 @@ private:
     sf::Sprite _player_sprite;
     sf::Sprite _player1_sprite;
     sf::Sprite _player2_sprite;
+    sf::Sprite _enemy0_sprite;
     sf::Sprite _enemy1_sprite;
     sf::Sprite _enemy2_sprite;
     sf::Sprite _enemy3_sprite;
@@ -58,10 +59,9 @@ private:
     sf::Sprite _enemy5_sprite;
     sf::Sprite _enemy6_sprite;
     sf::Sprite _enemy7_sprite;
-    sf::Sprite _enemy8_sprite;
+    sf::Sprite _shot0_sprite;
     sf::Sprite _shot1_sprite;
     sf::Sprite _shot2_sprite;
-    sf::Sprite _shot3_sprite;
 
     sf::Font _minimal_font;
 
@@ -77,9 +77,9 @@ public:
     void drawSprite(int x, int y, int w, int h, sf::Sprite mySprite);
 
     /** Introduction **/
-    void drawIntro();
+    void drawIntro(sf::Clock clock);
     void drawBackground();
-    void drawAnimation();
+    void drawAnimation(float t);
     void drawTitle();
 
 
@@ -89,9 +89,9 @@ public:
     /** Game **/
     void drawGame();
     void drawPlayerShots();
-    void drawPlayerShotsSprites1(sf::Sprite);
+    void drawPlayerShotsSprites0(sf::Sprite);
+    void drawPlayerShotsSprites1(sf::Sprite, sf::Sprite);
     void drawPlayerShotsSprites2(sf::Sprite, sf::Sprite);
-    void drawPlayerShotsSprites3(sf::Sprite, sf::Sprite);
     void drawEnemiesShots();
     void drawPlayer();
     void drawEnemies();

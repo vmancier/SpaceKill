@@ -42,7 +42,7 @@ Ship::Ship(int x, int y, int w, int h, float x_speed, float y_speed, int health,
     : m_x(x), m_y(y), m_w(w), m_h(h), m_x_speed(x_speed), m_y_speed(y_speed), m_healthMax(health), m_styleShot(styleShot)
 {
     m_fireRate = DEFAULT_SHOT_FIRERATE;
-    m_currentHealth =m_healthMax;
+    m_currentHealth = m_healthMax;
 }
 
 // -- ~Ship -------------------------------------
@@ -187,12 +187,17 @@ int Ship::getLife() const
     return m_life;
 }
 
-// -- getHealth ---------------------------------
-// Returns the ship's health
+// -- getCurrentHealth ---------------------------------
+// Returns the ship's current health
 // ----------------------------------------------
-float Ship::getHealth() const
+float Ship::getCurrentHealth() const
 {
     return m_currentHealth;
+}
+
+float Ship::getHealthMax() const
+{
+    return m_healthMax;
 }
 
 // -- getX --------------------------------------

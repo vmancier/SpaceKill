@@ -30,47 +30,38 @@ int main()
     Game_View *view = new Game_View(VIEW_WIDTH,VIEW_HEIGHT, VIEW_BPP);
     view->setModel(model);
 
-    float t = 0.0;
+
+    /*** Intro ***/
+    /*float t = 0.0;
     while(t < 5.0)
     {
         view->drawIntro();
         timedelta = clock.GetElapsedTime();
         cout <<timedelta<<endl;
         t+=timedelta;
+    }*/
+    /************/
 
-    }
+    /*** Menu ***/
+    /*while(view->treatMenuEvents())
+    {
+        view->drawMenu();
+    }*/
+    /************/
 
-
+    /*** Game ***/
     timedelta=0;
-
     while(view->treatEvents(timedelta))
     {
         clock.Reset();
-
         view->drawGame();
         //cout<< endl << "----------DEPLACEMENT SUIVANT----------" << endl <<endl ;
-
         model->nextStep(timedelta);
         timedelta = clock.GetElapsedTime();
     }
+    /************/
 
     delete view;
     delete model;
     return 0;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

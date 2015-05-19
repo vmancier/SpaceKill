@@ -24,6 +24,8 @@ private:
     sf::RenderWindow * _window;
 
     sf::Image _background_image;
+    sf::Image _button1_image;
+    sf::Image _button11_image;
     sf::Image _headband_image;
     sf::Image _healthbar_image;
     sf::Image _player_image;
@@ -42,6 +44,8 @@ private:
     sf::Image _shot3_image;
 
     sf::Sprite _background_sprite;
+    sf::Sprite _button1_sprite;
+    sf::Sprite _button11_sprite;
     sf::Sprite _headband_sprite;
     sf::Sprite _healthbar_sprite;
     sf::Sprite _player_sprite;
@@ -99,6 +103,7 @@ public:
     void drawScore();
 
     bool treatEvents(float timedelta);
+    bool treatMenuEvents();
     void setModel(Game_Model *model);
 };
 

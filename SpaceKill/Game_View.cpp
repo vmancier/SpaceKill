@@ -12,6 +12,8 @@
 #include "Entities.hpp"
 
 #include <iostream>
+#include <sstream>
+#include <string>
 
 using namespace std;
 
@@ -31,6 +33,8 @@ Game_View::Game_View(int w, int h, int bpp): _w(w), _h(h)
     _window->SetFramerateLimit(60);
 
     if (!_background_image.LoadFromFile("assets/background.JPG") ||
+            !_button1_image.LoadFromFile("assets/button1.png") ||
+            !_button11_image.LoadFromFile("assets/button11.png") ||
             !_headband_image.LoadFromFile("assets/headband.png") ||
             !_healthbar_image.LoadFromFile("assets/healthbar.png") ||
             !_player_image.LoadFromFile("assets/player.png") ||
@@ -50,6 +54,8 @@ Game_View::Game_View(int w, int h, int bpp): _w(w), _h(h)
             !_minimal_font.LoadFromFile("assets/minimal.ttf"))
     {
         _background_sprite = Sprite();
+        _button1_sprite = Sprite();
+        _button11_sprite = Sprite();
         _headband_sprite = Sprite();
         _healthbar_sprite = Sprite();
         _player_sprite = Sprite();
@@ -73,6 +79,9 @@ Game_View::Game_View(int w, int h, int bpp): _w(w), _h(h)
         _y_background = 0;
         _background_sprite = Sprite(_background_image);
         _background_sprite.SetPosition(0,_y_background);
+
+        _button1_sprite = Sprite(_button1_image);
+        _button11_sprite = Sprite(_button11_image);
 
         _headband_sprite = Sprite(_headband_image);
         _healthbar_sprite = Sprite(_healthbar_image);
@@ -152,6 +161,9 @@ void Game_View::drawTitle()
 void Game_View::drawMenu()
 {
     _window->Clear();
+    drawBackground();
+    drawSprite(0, 0, 200, 50, _button1_sprite);
+    _window->Display();
 }
 
 // -- drawGame ----------------------------------
@@ -392,12 +404,23 @@ void Game_View::drawHealthLevel(int x)
     drawSprite(100, 5, x, 10, _healthbar_sprite);
 }
 
+template <typename T>
+std::string to_string(T value)
+{
+    std::ostringstream oss;
+    oss << value;
+    return oss.str();
+}
+
 void Game_View::drawScore()
 {
-    _score_string = String("score");
+    std::string str = "Score : ";
+    //str += to_string();
+
+    _score_string.SetText(str);
     _score_string.SetFont(_minimal_font);
-    _score_string.SetSize(30);
-    _score_string.SetPosition(_w-80, -15);
+    _score_string.SetSize(20);
+    _score_string.SetPosition(310, -5);
     _score_string.SetColor(sf::Color(0, 0, 0));
     _window->Draw(_score_string);
 }
@@ -427,10 +450,32 @@ bool Game_View::treatEvents(float timedelta)
             result = false;
         }
         (_model->getPlayer())->moveP(LeftKeyDown, RightKeyDown, UpKeyDown, DownKeyDown, timedelta);
-
     }
-
     return result;
+}
+
+bool Game_View::treatMenuEvents()
+{
+    bool runGame = true;
+    sf::Event _menu_event;
+    _window->GetEvent(_menu_event);
+
+    const sf::Input &menuInput = _window->GetInput();
+    bool LeftMouseKeyDown = menuInput.IsMouseButtonDown(sf::Mouse::Left);
+
+    if ((_menu_event.MouseButton.X > 0 && _menu_event.MouseButton.X < 200) && (_menu_event.MouseButton.Y > 0) && (_menu_event.MouseButton.Y < 50))
+        //if ((*menuInput.GetMouseX > 0) && (*menuInput.GetMouseX < 100) && (*menuInput.GetMouseY > 0) && (*menuInput.GetMouseY < 100))
+    {
+        drawSprite(0, 0, 200, 50, _button11_sprite);
+        _window->Display();
+
+        if((LeftMouseKeyDown))
+        {
+            runGame = false;
+            cout << runGame << endl;
+        }
+    }
+    return runGame;
 }
 
 // -- setModel ----------------------------------

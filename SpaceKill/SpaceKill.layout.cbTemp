@@ -11,13 +11,13 @@
 		<Cursor position="623" topLine="7" />
 	</File>
 	<File name="Game_Model.cpp" open="1" top="0" tabpos="1">
-		<Cursor position="1178" topLine="0" />
+		<Cursor position="595" topLine="319" />
 	</File>
 	<File name="Game_Model.hpp" open="0" top="0" tabpos="2">
 		<Cursor position="758" topLine="12" />
 	</File>
 	<File name="Game_View.cpp" open="1" top="0" tabpos="2">
-		<Cursor position="13297" topLine="423" />
+		<Cursor position="14424" topLine="157" />
 	</File>
 	<File name="Game_View.hpp" open="1" top="0" tabpos="3">
 		<Cursor position="897" topLine="18" />
@@ -41,6 +41,6 @@
 		<Cursor position="678" topLine="18" />
 	</File>
 	<File name="main.cpp" open="1" top="1" tabpos="4">
-		<Cursor position="1050" topLine="15" />
+		<Cursor position="1321" topLine="30" />
 	</File>
 </CodeBlocks_layout_file>

@@ -464,7 +464,7 @@ bool Game_View::treatMenuEvents()
     bool LeftMouseKeyDown = menuInput.IsMouseButtonDown(sf::Mouse::Left);
 
     if ((_menu_event.MouseButton.X > 0 && _menu_event.MouseButton.X < 200) && (_menu_event.MouseButton.Y > 0) && (_menu_event.MouseButton.Y < 50))
-        //if ((*menuInput.GetMouseX > 0) && (*menuInput.GetMouseX < 100) && (*menuInput.GetMouseY > 0) && (*menuInput.GetMouseY < 100))
+    //    if ((&menuInput.GetMouseX > 0) && (&menuInput.GetMouseX < 100) && (&menuInput.GetMouseY > 0) && (&menuInput.GetMouseY < 100))
     {
         drawSprite(0, 0, 200, 50, _button11_sprite);
         _window->Display();

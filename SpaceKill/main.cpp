@@ -43,10 +43,10 @@ int main()
     /************/
 
     /*** Menu ***/
-    /*while(view->treatMenuEvents())
+    while(view->treatMenuEvents())
     {
         view->drawMenu();
-    }*/
+    }
     /************/
 
     /*** Game ***/

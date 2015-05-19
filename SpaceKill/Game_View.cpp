@@ -478,10 +478,7 @@ bool Game_View::treatMenuEvents()
 
     const sf::Input &menuInput = _window->GetInput();
     bool LeftMouseKeyDown = menuInput.IsMouseButtonDown(sf::Mouse::Left);
-            cout << "x : " << _button1_sprite.GetPosition().x << endl;
-    cout << "w : " << _button1_sprite.GetSize().x << endl;
-    cout << "y : " << _button1_sprite.GetPosition().y << endl;
-    cout << "h : " << _button1_sprite.GetSize().y << endl;
+
     if ((_menu_event.MouseButton.X > _button1_sprite.GetPosition().x) && (_menu_event.MouseButton.X < (_button1_sprite.GetSize().x)+(_button1_sprite.GetPosition().x)) && (_menu_event.MouseButton.Y > _button1_sprite.GetPosition().y) && (_menu_event.MouseButton.Y < _button1_sprite.GetSize().y+(_button1_sprite.GetPosition().y)))
 //    if ((&menuInput.GetMouseX > 0) && (&menuInput.GetMouseX < 100) && (&menuInput.GetMouseY > 0) && (&menuInput.GetMouseY < 100))
     {
@@ -490,9 +487,7 @@ bool Game_View::treatMenuEvents()
 
         if((LeftMouseKeyDown))
         {
-            //runMenu = false;
-            //cout << runMenu << endl;
-
+            runMenu = false;
         }
     }
     return runMenu;

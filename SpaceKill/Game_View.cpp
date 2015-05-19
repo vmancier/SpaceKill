@@ -415,12 +415,12 @@ std::string to_string(T value)
 void Game_View::drawScore()
 {
     std::string str = "Score : ";
-    //str += to_string();
+    str += to_string(_model->getScore());
 
     _score_string.SetText(str);
     _score_string.SetFont(_minimal_font);
     _score_string.SetSize(20);
-    _score_string.SetPosition(310, -5);
+    _score_string.SetPosition(320, -5);
     _score_string.SetColor(sf::Color(0, 0, 0));
     _window->Draw(_score_string);
 }
@@ -456,7 +456,7 @@ bool Game_View::treatEvents(float timedelta)
 
 bool Game_View::treatMenuEvents()
 {
-    bool runGame = true;
+    bool runMenu = true;
     sf::Event _menu_event;
     _window->GetEvent(_menu_event);
 
@@ -464,18 +464,18 @@ bool Game_View::treatMenuEvents()
     bool LeftMouseKeyDown = menuInput.IsMouseButtonDown(sf::Mouse::Left);
 
     if ((_menu_event.MouseButton.X > 0 && _menu_event.MouseButton.X < 200) && (_menu_event.MouseButton.Y > 0) && (_menu_event.MouseButton.Y < 50))
-    //    if ((&menuInput.GetMouseX > 0) && (&menuInput.GetMouseX < 100) && (&menuInput.GetMouseY > 0) && (&menuInput.GetMouseY < 100))
+//    if ((&menuInput.GetMouseX > 0) && (&menuInput.GetMouseX < 100) && (&menuInput.GetMouseY > 0) && (&menuInput.GetMouseY < 100))
     {
         drawSprite(0, 0, 200, 50, _button11_sprite);
         _window->Display();
 
         if((LeftMouseKeyDown))
         {
-            runGame = false;
-            cout << runGame << endl;
+            runMenu = false;
+            //cout << runMenu << endl;
         }
     }
-    return runGame;
+    return runMenu;
 }
 
 // -- setModel ----------------------------------

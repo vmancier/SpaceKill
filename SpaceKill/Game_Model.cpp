@@ -341,3 +341,8 @@ void Game_Model::getEnemySettings(int &x, int &y, int &w, int &h, int i) const
     w = enemies[i]->getW();
     h = enemies[i]->getH();
 }
+
+int Game_Model::getScore() const
+{
+    return m_score;
+}

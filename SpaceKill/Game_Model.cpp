@@ -40,7 +40,7 @@ Game_Model::Game_Model(): _w(MODEL_WIDTH), _h(MODEL_HEIGHT)
 // ----------------------------------------------
 Game_Model::Game_Model(int w, int h): _w(w), _h(h)
 {
-    m_player = new Player((_w/2)-(PLAYER_WIDTH/2), _h-(2*PLAYER_HEIGHT), PLAYER_WIDTH, PLAYER_HEIGHT, PLAYER_X_SPEED, PLAYER_Y_SPEED, 100, 0);
+    m_player = new Player((_w/2)-(PLAYER_WIDTH/2), _h-(2*PLAYER_HEIGHT), PLAYER_WIDTH, PLAYER_HEIGHT, PLAYER_X_SPEED, PLAYER_Y_SPEED, 100, 1);
     Level(3);
     _levelProgress=0;
     _lastSpawn=0;
@@ -72,7 +72,6 @@ void Game_Model::nextStep(float timedelta)
     moveEnemies(timedelta);
     //getPlayerPos();
     collisions();
-    //cout <<m_score<<endl;
 }
 
 // -- Play --------------------------------------
@@ -224,9 +223,7 @@ void Game_Model::collisions()
 
             if (collision)
             {
-
-                enemies[j]->loseLife((m_player->getShot(i))->getDamages());
-                cout <<enemies[j]->getHealth()<<endl;
+                enemies[j]->loseLife(m_player->getShot(i)->getDamages());
                 if (enemies[j]->die())
                 {
                     cout <<"ennemi mort"<<endl;

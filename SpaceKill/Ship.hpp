@@ -25,7 +25,8 @@ protected:
     int m_h;
     float m_x_speed;
     float m_y_speed;
-    float m_health;
+    float m_healthMax;
+    float m_currentHealth;
     int m_styleShot;
     float m_fireRate;
     float m_elapsedTime;
@@ -44,7 +45,7 @@ public:
     void setFireRate();
     void setX(int x);
     void setY(int y);
-    Shot* getShot(int nb) const;
+    Shot* getShot(int nb);
     void eraseShot(int nb);
     void getShotsPos();
     void getShotSettings(int &x, int &y, int &w, int &h, int i) const;

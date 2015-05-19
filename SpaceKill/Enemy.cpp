@@ -77,13 +77,14 @@ Enemy::Enemy(int x, int style)
         break;
     }
     m_x = x;
+    m_currentHealth=m_healthMax;
 }
 
 void Enemy::setEnemySettings(int style, float coef)
 {
     m_x_speed = DEFAULT_ENEMY_X_SPEED*coef;
     m_y_speed = DEFAULT_ENEMY_X_SPEED*coef;
-    m_health = 1;//DEFAULT_ENEMY_HEALTH*coef;
+    m_healthMax = 100;//DEFAULT_ENEMY_HEALTH*coef;
     m_life =1;
     m_styleShot = DEFAULT_ENEMY_STYLESHOT*coef;
     m_value = DEFAULT_ENEMY_VALUE*coef;

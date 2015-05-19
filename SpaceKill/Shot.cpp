@@ -43,13 +43,13 @@ Shot::Shot(int style, int x, int y, int xSpeed, int ySpeed)
     switch(style)
     {
     case 1:
-        m_damage = 300.0;
+        m_damage = 150.0;
         break;
     case 2:
-        m_damage = 400.0;
+        m_damage = 150.0;
         break;
     case 3:
-        m_damage = 500.0;
+        m_damage = 150.0;
         break;
     case 4:
         m_damage = 600.0;

@@ -23,7 +23,7 @@ Ship::Ship()
     m_h = 1;
     m_x_speed = 20.0;
     m_y_speed = 0;
-    m_health = 100;
+    m_healthMax = 100;
 }
 
 // -- Ship --------------------------------------
@@ -39,9 +39,10 @@ Ship::Ship()
 // - "styleShot" : number of the ship's shoot's style
 // ----------------------------------------------
 Ship::Ship(int x, int y, int w, int h, float x_speed, float y_speed, int health, int styleShot)
-    : m_x(x), m_y(y), m_w(w), m_h(h), m_x_speed(x_speed), m_y_speed(y_speed), m_health(health), m_styleShot(styleShot)
+    : m_x(x), m_y(y), m_w(w), m_h(h), m_x_speed(x_speed), m_y_speed(y_speed), m_healthMax(health), m_styleShot(styleShot)
 {
     m_fireRate = DEFAULT_SHOT_FIRERATE;
+    m_currentHealth =m_healthMax;
 }
 
 // -- ~Ship -------------------------------------
@@ -62,20 +63,25 @@ Ship::~Ship()
 // ----------------------------------------------
 void Ship::loseLife(int damages)
 {
-    if (m_health > damages)
+    //cout <<damages<<endl;
+    if (m_currentHealth > damages)
     {
-        m_health -= damages;
+        //cout <<"truc 3"<<endl;
+        m_currentHealth = m_currentHealth-damages;
+        //cout <<m_currentHealth<<endl;
     }
-    else if (m_health == damages)
+    else if (m_currentHealth == damages)
     {
-        m_health =1;//00;
+        m_currentHealth =m_healthMax;
+        //cout <<"truc 1"<<endl;
         m_life--;
     }
-    else if (damages > m_health)
+    else if (damages > m_currentHealth)
     {
+        //cout <<"truc 2"<<endl;
+        int tmp = damages-m_currentHealth;
+        m_currentHealth =m_healthMax -tmp;
         m_life--;
-        int tmp = m_health-damages;
-        m_health = 1;//-tmp;
     }
 }
 
@@ -84,11 +90,11 @@ void Ship::loseLife(int damages)
 // ----------------------------------------------
 bool Ship::die()
 {
-    if (m_life > 0)
+    if (m_life <= 0)
     {
-        return false;
+        return true;
     }
-    return true;
+    return false;
 }
 
 // -- moveShotsShip -----------------------------
@@ -131,7 +137,7 @@ void Ship::setY(int y)
 // -- getShot -----------------------------------
 // Returns a specified shot
 // ----------------------------------------------
-Shot* Ship::getShot(int nb) const
+Shot* Ship::getShot(int nb)
 {
     return shots[nb];
 }
@@ -186,7 +192,7 @@ int Ship::getLife() const
 // ----------------------------------------------
 float Ship::getHealth() const
 {
-    return m_health;
+    return m_currentHealth;
 }
 
 // -- getX --------------------------------------

@@ -35,6 +35,8 @@ Game_View::Game_View(int w, int h, int bpp): _w(w), _h(h)
     if (!_background_image.LoadFromFile("assets/background.JPG") ||
             !_button1_image.LoadFromFile("assets/button1.png") ||
             !_button11_image.LoadFromFile("assets/button11.png") ||
+            !_button2_image.LoadFromFile("assets/button2.png") ||
+            !_button21_image.LoadFromFile("assets/button21.png") ||
             !_headband_image.LoadFromFile("assets/headband.png") ||
             !_healthbar_image.LoadFromFile("assets/healthbar.png") ||
             !_player_image.LoadFromFile("assets/player.png") ||
@@ -56,6 +58,8 @@ Game_View::Game_View(int w, int h, int bpp): _w(w), _h(h)
         _background_sprite = Sprite();
         _button1_sprite = Sprite();
         _button11_sprite = Sprite();
+        _button2_sprite = Sprite();
+        _button21_sprite = Sprite();
         _headband_sprite = Sprite();
         _healthbar_sprite = Sprite();
         _player_sprite = Sprite();
@@ -82,6 +86,8 @@ Game_View::Game_View(int w, int h, int bpp): _w(w), _h(h)
 
         _button1_sprite = Sprite(_button1_image);
         _button11_sprite = Sprite(_button11_image);
+        _button2_sprite = Sprite(_button2_image);
+        _button21_sprite = Sprite(_button21_image);
 
         _headband_sprite = Sprite(_headband_image);
         _healthbar_sprite = Sprite(_healthbar_image);
@@ -162,10 +168,17 @@ void Game_View::drawMenu()
 {
     _window->Clear();
     drawBackground();
-    drawSprite(0, 0, 200, 50, _button1_sprite);
+    drawButtons();
     _window->Display();
 }
 
+void Game_View::drawButtons()
+{
+
+    drawSprite(VIEW_WIDTH/2-(_button1_sprite.GetSize().x)/2, VIEW_HEIGHT/2, _button1_sprite.GetSize().x, _button1_sprite.GetSize().y, _button1_sprite);
+    _button1_sprite.SetPosition(VIEW_WIDTH/2-(_button1_sprite.GetSize().x)/2, VIEW_HEIGHT/2);
+
+}
 // -- drawGame ----------------------------------
 // Draws all the necessary elements for the game
 // ----------------------------------------------
@@ -462,17 +475,21 @@ bool Game_View::treatMenuEvents()
 
     const sf::Input &menuInput = _window->GetInput();
     bool LeftMouseKeyDown = menuInput.IsMouseButtonDown(sf::Mouse::Left);
-
-    if ((_menu_event.MouseButton.X > 0 && _menu_event.MouseButton.X < 200) && (_menu_event.MouseButton.Y > 0) && (_menu_event.MouseButton.Y < 50))
+            cout << "x : " << _button1_sprite.GetPosition().x << endl;
+    cout << "w : " << _button1_sprite.GetSize().x << endl;
+    cout << "y : " << _button1_sprite.GetPosition().y << endl;
+    cout << "h : " << _button1_sprite.GetSize().y << endl;
+    if ((_menu_event.MouseButton.X > _button1_sprite.GetPosition().x) && (_menu_event.MouseButton.X < (_button1_sprite.GetSize().x)+(_button1_sprite.GetPosition().x)) && (_menu_event.MouseButton.Y > _button1_sprite.GetPosition().y) && (_menu_event.MouseButton.Y < _button1_sprite.GetSize().y+(_button1_sprite.GetPosition().y)))
 //    if ((&menuInput.GetMouseX > 0) && (&menuInput.GetMouseX < 100) && (&menuInput.GetMouseY > 0) && (&menuInput.GetMouseY < 100))
     {
-        drawSprite(0, 0, 200, 50, _button11_sprite);
+        drawSprite(VIEW_WIDTH/2-(_button1_sprite.GetSize().x)/2, VIEW_HEIGHT/2, _button1_sprite.GetSize().x, _button1_sprite.GetSize().y, _button11_sprite);
         _window->Display();
 
         if((LeftMouseKeyDown))
         {
-            runMenu = false;
+            //runMenu = false;
             //cout << runMenu << endl;
+
         }
     }
     return runMenu;

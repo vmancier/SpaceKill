@@ -42,17 +42,17 @@ Game_View::Game_View(int w, int h, int bpp): _w(w), _h(h)
             !_player_image.LoadFromFile("assets/player.png") ||
             !_player1_image.LoadFromFile("assets/player1.png") ||
             !_player2_image.LoadFromFile("assets/player2.png") ||
-            !_enemy0_image.LoadFromFile("assets/enemy1.png") ||
-            !_enemy1_image.LoadFromFile("assets/enemy2.png") ||
-            !_enemy2_image.LoadFromFile("assets/enemy3.png") ||
-            !_enemy3_image.LoadFromFile("assets/enemy4.png") ||
-            !_enemy4_image.LoadFromFile("assets/enemy5.png") ||
-            !_enemy5_image.LoadFromFile("assets/enemy6.png") ||
-            !_enemy6_image.LoadFromFile("assets/enemy7.png") ||
-            !_enemy7_image.LoadFromFile("assets/enemy8.png") ||
-            !_shot0_image.LoadFromFile("assets/shot1.png") ||
-            !_shot1_image.LoadFromFile("assets/shot2.png") ||
-            !_shot2_image.LoadFromFile("assets/shot3.png") ||
+            !_enemy0_image.LoadFromFile("assets/enemy0.png") ||
+            !_enemy1_image.LoadFromFile("assets/enemy1.png") ||
+            !_enemy2_image.LoadFromFile("assets/enemy2.png") ||
+            !_enemy3_image.LoadFromFile("assets/enemy3.png") ||
+            !_enemy4_image.LoadFromFile("assets/enemy4.png") ||
+            !_enemy5_image.LoadFromFile("assets/enemy5.png") ||
+            !_enemy6_image.LoadFromFile("assets/enemy6.png") ||
+            !_enemy7_image.LoadFromFile("assets/enemy7.png") ||
+            !_shot0_image.LoadFromFile("assets/shot0.png") ||
+            !_shot1_image.LoadFromFile("assets/shot1.png") ||
+            !_shot2_image.LoadFromFile("assets/shot2.png") ||
             !_minimal_font.LoadFromFile("assets/minimal.ttf"))
     {
         _background_sprite = Sprite();

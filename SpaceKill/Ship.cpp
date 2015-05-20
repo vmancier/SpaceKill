@@ -63,22 +63,17 @@ Ship::~Ship()
 // ----------------------------------------------
 void Ship::loseLife(int damages)
 {
-    //cout <<damages<<endl;
     if (m_currentHealth > damages)
     {
-        //cout <<"truc 3"<<endl;
         m_currentHealth = m_currentHealth-damages;
-        //cout <<m_currentHealth<<endl;
     }
     else if (m_currentHealth == damages)
     {
         m_currentHealth =m_healthMax;
-        //cout <<"truc 1"<<endl;
         m_life--;
     }
     else if (damages > m_currentHealth)
     {
-        //cout <<"truc 2"<<endl;
         int tmp = damages-m_currentHealth;
         m_currentHealth =m_healthMax -tmp;
         m_life--;
@@ -113,9 +108,76 @@ void Ship::moveShotsShip(float timedelta)
     }
 }
 
-void Ship::setFireRate()
+// -- shoot -------------------------------------
+// Makes the ship shoot
+// ----------------------------------------------
+void Ship::shoot(float timedelta)
 {
+    m_elapsedTime += timedelta;
+    if (m_elapsedTime>m_fireRate)
+    {
 
+        switch(m_styleShot)
+        {
+        case 0:
+        {
+            Shot* shot0 = new Shot(0, m_x+m_w/2, m_y, 0, m_direction*200);
+            shots.push_back(shot0);
+        }
+        break;
+        case 1:
+        {
+            Shot* shot1 = new Shot(1, m_x+m_w/2, m_y, 0, m_direction*200);
+            shots.push_back(shot1);
+        }
+        break;
+        case 2:
+        {
+            Shot* shot2 = new Shot(1, m_x+m_w/2, m_y, 0, m_direction*200);
+            shots.push_back(shot2);
+            Shot* shotLeft2 = new Shot(2, m_x, m_y+m_h/2, 0, m_direction*200);
+            shots.push_back(shotLeft2);
+            Shot* shotRight2 = new Shot(2, m_x+m_w, m_y+m_h/2, 0, m_direction*200);
+            shots.push_back(shotRight2);
+        }
+        break;
+        case 3:
+        {
+            Shot* shot3 = new Shot(2, m_x+m_w/2, m_y, 0, m_direction*200);
+            shots.push_back(shot3);
+            Shot* shotLeft3 = new Shot(3, m_x, m_y+m_h/2,0, m_direction*200);
+            shots.push_back(shotLeft3);
+            Shot* shotRight3 = new Shot(3, m_x+m_w, m_y+m_h/2, 0, m_direction*200);
+            shots.push_back(shotRight3);
+        }
+        break;
+        case 4:
+        {
+            Shot* shot4 = new Shot(3, m_x+m_w/2, m_y, 0, m_direction*200);
+            shots.push_back(shot4);
+            Shot* shotLeftD4 = new Shot(4, m_x, m_y+m_h/2, m_direction*200, m_direction*200);
+            shots.push_back(shotLeftD4);
+            Shot* shotRightD4 = new Shot(4, m_x+m_w, m_y+m_h/2, -m_direction*200, m_direction*200);
+            shots.push_back(shotRightD4);
+        }
+        break;
+        case 5:
+        {
+            Shot* shot5 = new Shot(3, m_x+m_w/2, m_y, 0, m_direction*200);
+            shots.push_back(shot5);
+            Shot* shotLeft5 = new Shot(4, m_x, m_y+m_h/2, 0, m_direction*200);
+            shots.push_back(shotLeft5);
+            Shot* shotRight5 = new Shot(4, m_x+m_w, m_y+m_h/2, 0, m_direction*200);
+            shots.push_back(shotRight5);
+            Shot* shotLeftD5 = new Shot(5, m_x, m_y+m_h/2, m_direction*200, m_direction*200);
+            shots.push_back(shotLeftD5);
+            Shot* shotRightD5 = new Shot(5, m_x+m_w, m_y+m_h/2, -m_direction*200, m_direction*200);
+            shots.push_back(shotRightD5);
+        }
+        break;
+        }
+        m_elapsedTime=0;
+    }
 }
 
 // -- setX --------------------------------------
@@ -134,25 +196,28 @@ void Ship::setY(int y)
     m_y = y;
 }
 
+void Ship::setStyleShot(int styleShot)
+{
+    if(styleShot<=0)
+    {
+        m_styleShot=0;
+    }
+    else if(styleShot>=5)
+    {
+        m_styleShot=5;
+    }
+    else
+    {
+        m_styleShot=styleShot;
+    }
+}
+
 // -- getShot -----------------------------------
 // Returns a specified shot
 // ----------------------------------------------
 Shot* Ship::getShot(int nb)
 {
     return shots[nb];
-}
-
-// -- getShotPos --------------------------------
-// Returns the shot's position
-// ----------------------------------------------
-void Ship::getShotsPos()
-{
-    for(unsigned int i=0; i<shots.size(); i++)
-    {
-        int x = shots[i]->getX();
-        int y = shots[i]->getY();
-        cout << "Tir(" << x << "," << y << ")" << endl;
-    }
 }
 
 // -- getShotSettings ---------------------------
@@ -246,4 +311,9 @@ int Ship::getX_speed() const
 int Ship::getY_speed() const
 {
     return m_y_speed;
+}
+
+int Ship::getStyleShot() const
+{
+    return m_styleShot;
 }

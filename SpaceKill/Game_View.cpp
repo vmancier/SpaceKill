@@ -202,74 +202,35 @@ void Game_View::drawSprite(int x, int y, int w, int h, Sprite mySprite)
 
 void Game_View::drawPlayerShots()
 {
-    int style = _model->getLevelNumber();
-    switch(style)
-    {
-    case 0:
-        Game_View::drawPlayerShotsSprites0(_shot0_sprite);
-        break;
-    case 1:
-        Game_View::drawPlayerShotsSprites0(_shot0_sprite);
-        break;
-    case 2:
-        Game_View::drawPlayerShotsSprites1(_shot0_sprite, _shot1_sprite);
-        break;
-    case 3:
-        Game_View::drawPlayerShotsSprites1(_shot0_sprite, _shot1_sprite);
-        break;
-    case 4:
-        Game_View::drawPlayerShotsSprites2(_shot1_sprite, _shot2_sprite);
-        break;
-    case 5:
-        Game_View::drawPlayerShotsSprites2(_shot1_sprite, _shot2_sprite);
-        break;
-    case 6:
-        Game_View::drawPlayerShotsSprites2(_shot1_sprite, _shot2_sprite);
-        break;
-    case 7:
-        Game_View::drawPlayerShotsSprites2(_shot1_sprite, _shot2_sprite);
-        break;
-    }
-}
-
-void Game_View::drawPlayerShotsSprites0(sf::Sprite myPlayerShotSprite)
-{
+    sf::Sprite myPlayerShotSprite;
     int x, y, w, h;
+    int style;
     for (int i=0; i < (_model->getPlayer())->getShotsSize(); i++)
     {
-        (_model->getPlayer())->getShotSettings(x, y, w, h, i);
-        Game_View::drawSprite(x-5, y, w, h, myPlayerShotSprite);
-        //playShotSound();
-    }
-}
-
-void Game_View::drawPlayerShotsSprites1(sf::Sprite myPlayerShotSprite1, sf::Sprite myPlayerShotSprite2)
-{
-    int x, y, w, h;
-    for (int i=0; i < (_model->getPlayer())->getShotsSize(); i++)
-    {
-        (_model->getPlayer())->getShotSettings(x, y, w, h, i);
-        Game_View::drawSprite(x-5, y, w, h, myPlayerShotSprite1);
-        Game_View::drawSprite((x+PLAYER_WIDTH/2)-5, (y+PLAYER_HEIGHT/4), w, h, myPlayerShotSprite2);
-        Game_View::drawSprite((x-PLAYER_WIDTH/2)-5, (y+PLAYER_HEIGHT/4), w, h, myPlayerShotSprite2);
-    }
-}
-
-void Game_View::drawPlayerShotsSprites2(sf::Sprite myPlayerShotSprite1, sf::Sprite myPlayerShotSprite2)
-{
-    int x, y, w, h;
-    for (int i=0; i < (_model->getPlayer())->getShotsSize(); i++)
-    {
-        (_model->getPlayer())->getShotSettings(x, y, w, h, i);
-        myPlayerShotSprite1.SetRotation(-20);
-        Game_View::drawSprite((x+PLAYER_WIDTH)-5, y, w, h, myPlayerShotSprite1);
-        myPlayerShotSprite1.SetRotation(20);
-        Game_View::drawSprite((x-PLAYER_WIDTH)-5, y, w, h, myPlayerShotSprite1);
-        myPlayerShotSprite1.SetRotation(0);
-        Game_View::drawSprite(x-5, y, w, h, myPlayerShotSprite1);
-        Game_View::drawSprite((x+PLAYER_WIDTH/2)-5, (y+PLAYER_HEIGHT/4), w, h, myPlayerShotSprite2);
-        Game_View::drawSprite((x-PLAYER_WIDTH/2)-5, (y+PLAYER_HEIGHT/4), w, h, myPlayerShotSprite2);
-        //playShotSound();
+        style = _model->getPlayer()->getShot(i)->getStyle();
+        _model->getPlayer()->getShotSettings(x, y, w, h, i);
+        if(style==0 ||style==1)
+        {
+            myPlayerShotSprite =_shot0_sprite;
+        }
+        else if (style==2 || style==3)
+        {
+            myPlayerShotSprite =_shot1_sprite;
+        }
+        else
+        {
+            myPlayerShotSprite =_shot2_sprite;
+        }
+        int xSpeed =_model->getPlayer()->getShot(i)->getXSpeed();
+        if(xSpeed>0)
+        {
+            myPlayerShotSprite.SetRotation(-45);
+        }
+        else if (xSpeed<0)
+        {
+            myPlayerShotSprite.SetRotation(45);
+        }
+        drawSprite(x, y, w, h, myPlayerShotSprite);
     }
 }
 
@@ -298,7 +259,7 @@ void Game_View::drawPlayer()
 // ----------------------------------------------
 void Game_View::drawEnemies()
 {
-    int style = _model->getLevelNumber();
+    int style = _model->getLevelNumber()%8;
     switch(style)
     {
     case 0:

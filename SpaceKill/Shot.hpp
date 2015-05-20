@@ -17,18 +17,17 @@ private:
     int m_yS;
     int m_wS;
     int m_hS;
-    int m_x_speedS;
-    int m_y_speedS;
+    float m_x_speedS;
+    float m_y_speedS;
     int m_style;
     float m_damage;
 
 public:
     Shot();
-    Shot(int style, int x, int y, int xSpeed, int ySpeed);
+    Shot(int style, int x, int y, float xSpeed, float ySpeed);
 
-    void shotSettings(int style, int x, int y,int xSpeed, int ySpeed);
+    void shotSettings(int style, int x, int y,float xSpeed, float ySpeed);
     void moveShot(float timedelta);
-    void moveShot2(float timedelta);
 
     int getStyle() const;
     int getDamages() const;
@@ -36,6 +35,7 @@ public:
     int getY()const;
     int getW()const;
     int getH()const;
+    float getXSpeed() const;
 };
 
 #endif // SHOT_HPP_INCLUDED

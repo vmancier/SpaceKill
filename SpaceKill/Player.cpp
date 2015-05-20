@@ -10,6 +10,7 @@
 #include <iostream>
 #include "Player.hpp"
 #include "Ship.hpp"
+#include "Game_View.hpp"
 
 using namespace std;
 
@@ -110,6 +111,15 @@ void Player::shoot(float timedelta)
     {
         Shot* shot = new Shot(m_styleShot, (getX()+getW()/2), getY(), 0, -200);
         shots.push_back(shot);
+        playShotSound();
         m_elapsedTime=0;
     }
+}
+
+void Player::playShotSound()
+{
+    !_shot_buffer.LoadFromFile("assets/shot.ogg");
+    _shot_sound.SetBuffer(_shot_buffer);
+    _shot_sound.SetVolume(3.0);
+    _shot_sound.Play();
 }

@@ -12,6 +12,7 @@
 #include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
+#include <SFML/Audio.hpp>
 
 class Game_Model;
 
@@ -44,6 +45,7 @@ private:
     sf::Image _shot0_image;
     sf::Image _shot1_image;
     sf::Image _shot2_image;
+    sf::Image _title_image;
 
     sf::Sprite _background_sprite;
     sf::Sprite _button1_sprite;
@@ -66,11 +68,14 @@ private:
     sf::Sprite _shot0_sprite;
     sf::Sprite _shot1_sprite;
     sf::Sprite _shot2_sprite;
+    sf::Sprite _title_sprite;
 
     sf::Font _minimal_font;
 
     sf::String _score_string;
-    sf::String _title_string;
+
+    sf::Music _music;
+
 
     Game_Model *_model;
 
@@ -110,6 +115,8 @@ public:
     bool treatEvents(float timedelta);
     bool treatMenuEvents();
     void setModel(Game_Model *model);
+    void playMusic(bool loop);
+
 };
 
 #endif // GAME_VIEW_HPP_INCLUDED

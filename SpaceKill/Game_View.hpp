@@ -26,9 +26,7 @@ private:
 
     sf::Image _background_image;
     sf::Image _button1_image;
-    sf::Image _button11_image;
     sf::Image _button2_image;
-    sf::Image _button21_image;
     sf::Image _headband_image;
     sf::Image _healthbar_image;
     sf::Image _player_image;
@@ -49,9 +47,7 @@ private:
 
     sf::Sprite _background_sprite;
     sf::Sprite _button1_sprite;
-    sf::Sprite _button11_sprite;
     sf::Sprite _button2_sprite;
-    sf::Sprite _button21_sprite;
     sf::Sprite _headband_sprite;
     sf::Sprite _healthbar_sprite;
     sf::Sprite _player_sprite;
@@ -71,11 +67,8 @@ private:
     sf::Sprite _title_sprite;
 
     sf::Font _minimal_font;
-
     sf::String _score_string;
-
     sf::Music _music;
-
 
     Game_Model *_model;
 

@@ -34,6 +34,7 @@ protected:
     int m_life;
     std::vector <Shot*> shots;
 
+
 public:
     Ship();
     Ship(int x, int y, int w, int h, float x_speed, float y_speed, int health,int styleShot);
@@ -61,6 +62,5 @@ public:
     int getX_speed() const;
     int getY_speed() const;
     int getStyleShot() const;
-
 };
 #endif // SHIP_HPP_INCLUDED

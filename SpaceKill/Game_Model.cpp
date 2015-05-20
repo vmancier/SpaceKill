@@ -66,6 +66,7 @@ void Game_Model::nextStep(float timedelta)
     createEnemy(timedelta);
     shootEnemy(timedelta);
     m_player->shoot(timedelta);
+    playShotSound();
     moveShots(timedelta);
     moveEnemies(timedelta);
     collisions();
@@ -299,3 +300,12 @@ int Game_Model::getScore() const
 {
     return m_score;
 }
+
+void Game_Model::playShotSound()
+{
+    !_shot_buffer.LoadFromFile("assets/shot.ogg");
+    _shot_sound.SetBuffer(_shot_buffer);
+    _shot_sound.SetVolume(3.0);
+    _shot_sound.Play();
+}
+

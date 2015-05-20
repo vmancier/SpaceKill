@@ -37,7 +37,7 @@ Shot::Shot()
 // - "xSpeed", float : horizontal speed of the shot
 // - "ySpeed", float : horizontal speed of the shot
 // ----------------------------------------------
-Shot::Shot(int style, int x, int y, int xSpeed, int ySpeed)
+Shot::Shot(int style, int x, int y, float xSpeed, float ySpeed)
 {
     m_style = style;
     switch(style)
@@ -64,10 +64,10 @@ Shot::Shot(int style, int x, int y, int xSpeed, int ySpeed)
         //m_fireRate = 1.50;
         break;
     }
-    m_xS = x;
-    m_yS = y;
     m_wS = 10;
     m_hS = 30;
+    m_xS = x-m_wS/2;
+    m_yS = y-m_hS/2;
     m_x_speedS = xSpeed;
     m_y_speedS = ySpeed;
 }
@@ -79,12 +79,6 @@ void Shot::moveShot(float timedelta)
 {
     m_xS += m_x_speedS *timedelta;
     m_yS += m_y_speedS *timedelta;
-}
-
-void Shot::moveShot2(float timedelta)
-{
-    m_xS += 10 *timedelta;
-    m_yS += 0 *timedelta;
 }
 
 // -- getStyle ----------------------------------
@@ -133,4 +127,9 @@ int Shot::getW() const
 int Shot::getH() const
 {
     return m_hS;
+}
+
+float Shot::getXSpeed() const
+{
+    return m_x_speedS;
 }

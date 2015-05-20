@@ -22,8 +22,9 @@ private:
     int _w, _h;
     int m_score;
     int _levelStyle;
-    int _spawnRate;
-    int _levelProgress;
+    int _spawnRateMax;
+    float _spawnRate;
+    float _levelProgress;
     float _lastSpawn;
     Player * m_player;
     std::vector<Enemy*> enemies;
@@ -34,25 +35,23 @@ public:
     ~Game_Model();
 
     void nextStep(float timedelta);
-    bool Play();
     void Level(int levelStyle);
     void createEnemy(float timedelta);
     void moveEnemies(float timedelta);
     void shootEnemy(float timedelta);
     void moveShots(float timedelta);
-    int getLevelNumber() const;
     void collisions();
+    bool collision(const Ship* a, const Ship* b, int i);
 
     Player* getPlayer() const;
-    void getPlayerPos() const;
     void getPlayerSettings(int &x, int &y, int &w, int &h) const;
 
     Enemy* getEnemy(int nb) const;
     int getEnemiesSize() const;
-    void getEnemyPos() const;
     void getEnemySettings(int &x, int &y, int &w, int &h, int i) const;
-    int getScore() const;
 
+    int getLevelNumber() const;
+    int getScore() const;
 };
 
 #endif // GAME_MODEL_HPP_INCLUDED

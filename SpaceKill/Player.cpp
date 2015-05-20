@@ -39,6 +39,7 @@ Player::Player(int x, int y, int w, int h, float x_speed, float y_speed, int hea
     :Ship(x, y, w, h, x_speed, y_speed, health, styleShot)
 {
     m_life = 3;
+    m_direction=-1;
     m_elapsedTime=0;
     m_fireRate = DEFAULT_SHOT_FIRERATE;
 }
@@ -97,19 +98,5 @@ void Player::moveP(bool LeftKeyDown, bool RightKeyDown, bool UpKeyDown, bool Dow
             setY(MODEL_HEIGHT -m_h);
         }
 
-    }
-}
-
-// -- shoot -------------------------------------
-// Makes the player shoot
-// ----------------------------------------------
-void Player::shoot(float timedelta)
-{
-    m_elapsedTime += timedelta;
-    if (m_elapsedTime>m_fireRate)
-    {
-        Shot* shot = new Shot(m_styleShot, (getX()+getW()/2), getY(), 0, -200);
-        shots.push_back(shot);
-        m_elapsedTime=0;
     }
 }

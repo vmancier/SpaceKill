@@ -23,6 +23,7 @@ protected:
     int m_y;
     int m_w;
     int m_h;
+    int m_direction;
     float m_x_speed;
     float m_y_speed;
     float m_healthMax;
@@ -41,13 +42,13 @@ public:
     void loseLife(int damages);
     bool die();
     void moveShotsShip(float timedelta);
+    void shoot(float timedelta);
 
-    void setFireRate();
     void setX(int x);
     void setY(int y);
+    void setStyleShot(int styleShot);
     Shot* getShot(int nb);
     void eraseShot(int nb);
-    void getShotsPos();
     void getShotSettings(int &x, int &y, int &w, int &h, int i) const;
     int getShotsSize() const;
     int getLife() const;
@@ -59,7 +60,7 @@ public:
     int getH() const;
     int getX_speed() const;
     int getY_speed() const;
-
+    int getStyleShot() const;
 
 };
 #endif // SHIP_HPP_INCLUDED

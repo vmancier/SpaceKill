@@ -19,9 +19,7 @@ private:
 public:
     Player(int x, int y, int w, int h, float x_speed, float y_speed, int health, int styleShot);
     Player();
-    //~Player();
 
     void moveP(bool LeftKeyDown, bool RightKeyDown, bool UpKeyDown, bool DownKeyDown, float timedelta);
-    void shoot(float timedelta);
 };
 #endif // PLAYER_HPP_INCLUDED

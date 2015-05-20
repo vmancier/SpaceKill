@@ -94,9 +94,6 @@ public:
     /** Game **/
     void drawGame();
     void drawPlayerShots();
-    void drawPlayerShotsSprites0(sf::Sprite);
-    void drawPlayerShotsSprites1(sf::Sprite, sf::Sprite);
-    void drawPlayerShotsSprites2(sf::Sprite, sf::Sprite);
     void drawEnemiesShots();
     void drawPlayer();
     void drawEnemies();

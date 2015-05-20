@@ -53,7 +53,9 @@ Game_View::Game_View(int w, int h, int bpp): _w(w), _h(h)
             !_shot0_image.LoadFromFile("assets/shot0.png") ||
             !_shot1_image.LoadFromFile("assets/shot1.png") ||
             !_shot2_image.LoadFromFile("assets/shot2.png") ||
-            !_minimal_font.LoadFromFile("assets/minimal.ttf"))
+            !_title_image.LoadFromFile("assets/title.png") ||
+            !_minimal_font.LoadFromFile("assets/minimal.ttf") ||
+            !_music.OpenFromFile("assets/music.ogg"))
     {
         _background_sprite = Sprite();
         _button1_sprite = Sprite();
@@ -76,6 +78,7 @@ Game_View::Game_View(int w, int h, int bpp): _w(w), _h(h)
         _shot0_sprite = Sprite();
         _shot1_sprite = Sprite();
         _shot2_sprite = Sprite();
+        _title_sprite = Sprite();
         _minimal_font = Font();
     }
     else
@@ -106,6 +109,7 @@ Game_View::Game_View(int w, int h, int bpp): _w(w), _h(h)
         _shot0_sprite = Sprite(_shot0_image);
         _shot1_sprite = Sprite(_shot1_image);
         _shot2_sprite = Sprite(_shot2_image);
+        _title_sprite = Sprite(_title_image);
     }
 }
 
@@ -159,28 +163,24 @@ void Game_View::drawAnimation(float t)
 
 void Game_View::drawTitle()
 {
-    _title_string = String("SpaceKill");
-    _title_string.SetFont(_minimal_font);
-    _title_string.SetSize(100);
-    _title_string.SetPosition(VIEW_WIDTH/2-100, 50);
-    _title_string.SetColor(sf::Color(255, 255, 255));
-    _window->Draw(_title_string);
+    drawSprite(0, 0, 440, 150, _title_sprite);
 }
 
 void Game_View::drawMenu()
 {
     _window->Clear();
     drawBackground();
+    drawTitle();
     drawButtons();
     _window->Display();
 }
 
 void Game_View::drawButtons()
 {
-
     drawSprite(VIEW_WIDTH/2-(_button1_sprite.GetSize().x)/2, VIEW_HEIGHT/2, _button1_sprite.GetSize().x, _button1_sprite.GetSize().y, _button1_sprite);
     _button1_sprite.SetPosition(VIEW_WIDTH/2-(_button1_sprite.GetSize().x)/2, VIEW_HEIGHT/2);
-
+    drawSprite(VIEW_WIDTH/2-(_button2_sprite.GetSize().x)/2, VIEW_HEIGHT-_button1_sprite.GetSize().x, _button2_sprite.GetSize().x, _button2_sprite.GetSize().y, _button2_sprite);
+    _button2_sprite.SetPosition(VIEW_WIDTH/2-(_button2_sprite.GetSize().x)/2, VIEW_HEIGHT-_button1_sprite.GetSize().x);
 }
 // -- drawGame ----------------------------------
 // Draws all the necessary elements for the game
@@ -298,7 +298,7 @@ void Game_View::drawEnemies()
 void Game_View::drawEnemiesSprites(Sprite myEnemySprite)
 {
     int x, y, w, h;
-    for(int i=0; i < _model->getEnemiesSize(); i++)
+    for (int i=0; i < _model->getEnemiesSize(); i++)
     {
         _model->getEnemySettings(x, y, w, h, i);
         Game_View::drawSprite(x, y, w, h, myEnemySprite);
@@ -436,9 +436,10 @@ bool Game_View::treatMenuEvents()
 
     const sf::Input &menuInput = _window->GetInput();
     bool LeftMouseKeyDown = menuInput.IsMouseButtonDown(sf::Mouse::Left);
+    bool EscapeKeyDown = menuInput.IsKeyDown(sf::Key::Escape);
 
-    if ((_menu_event.MouseButton.X > _button1_sprite.GetPosition().x) && (_menu_event.MouseButton.X < (_button1_sprite.GetSize().x)+(_button1_sprite.GetPosition().x)) && (_menu_event.MouseButton.Y > _button1_sprite.GetPosition().y) && (_menu_event.MouseButton.Y < _button1_sprite.GetSize().y+(_button1_sprite.GetPosition().y)))
-//    if ((&menuInput.GetMouseX > 0) && (&menuInput.GetMouseX < 100) && (&menuInput.GetMouseY > 0) && (&menuInput.GetMouseY < 100))
+    if ((_menu_event.MouseButton.X > _button1_sprite.GetPosition().x) && (_menu_event.MouseButton.X < (_button1_sprite.GetSize().x)+(_button1_sprite.GetPosition().x)) && (_menu_event.MouseButton.Y > _button1_sprite.GetPosition().y) && (_menu_event.MouseButton.Y < (_button1_sprite.GetSize().y)+(_button1_sprite.GetPosition().y)))
+//    if ((&menuInput.GetMouseX > _button1_sprite.GetPosition().x) && (&menuInput.GetMouseX < (_button1_sprite.GetSize().x)+(_button1_sprite.GetPosition().x)) && (&menuInput.GetMouseY > _button1_sprite.GetPosition().y) && (&menuInput.GetMouseY < (_button1_sprite.GetSize().y)+(_button1_sprite.GetPosition().y)))
     {
         drawSprite(VIEW_WIDTH/2-(_button1_sprite.GetSize().x)/2, VIEW_HEIGHT/2, _button1_sprite.GetSize().x, _button1_sprite.GetSize().y, _button11_sprite);
         _window->Display();
@@ -447,6 +448,20 @@ bool Game_View::treatMenuEvents()
         {
             runMenu = false;
         }
+    }
+    if ((_menu_event.MouseButton.X > _button2_sprite.GetPosition().x) && (_menu_event.MouseButton.X < (_button2_sprite.GetSize().x)+(_button2_sprite.GetPosition().x)) && (_menu_event.MouseButton.Y > _button2_sprite.GetPosition().y) && (_menu_event.MouseButton.Y < (_button2_sprite.GetSize().y)+(_button2_sprite.GetPosition().y)))
+    {
+        drawSprite(VIEW_WIDTH/2-(_button2_sprite.GetSize().x)/2, VIEW_HEIGHT-_button1_sprite.GetSize().x, _button2_sprite.GetSize().x, _button2_sprite.GetSize().y, _button21_sprite);
+        _window->Display();
+
+        if((LeftMouseKeyDown))
+        {
+            _window->Close();
+        }
+    }
+    if (EscapeKeyDown)
+    {
+        _window->Close();
     }
     return runMenu;
 }
@@ -457,4 +472,14 @@ bool Game_View::treatMenuEvents()
 void Game_View::setModel(Game_Model *model)
 {
     _model = model;
+}
+
+void Game_View::playMusic(bool loop)
+{
+    if(loop)
+    {
+        _music.SetLoop(true);
+    }
+    _music.SetVolume(10.0);
+    _music.Play();
 }

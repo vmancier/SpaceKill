@@ -33,6 +33,7 @@ int main()
     view->drawIntro(clock);
 
     /*** Menu ***/
+    view->playMusic(true);
     while(view->treatMenuEvents())
     {
         view->drawMenu();

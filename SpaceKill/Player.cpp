@@ -10,6 +10,7 @@
 #include <iostream>
 #include "Player.hpp"
 #include "Ship.hpp"
+#include "Game_View.hpp"
 
 using namespace std;
 
@@ -99,4 +100,12 @@ void Player::moveP(bool LeftKeyDown, bool RightKeyDown, bool UpKeyDown, bool Dow
         }
 
     }
+}
+
+void Player::playShotSound()
+{
+    !_shot_buffer.LoadFromFile("assets/shot.ogg");
+    _shot_sound.SetBuffer(_shot_buffer);
+    _shot_sound.SetVolume(3.0);
+    _shot_sound.Play();
 }

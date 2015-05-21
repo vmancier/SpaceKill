@@ -116,7 +116,6 @@ void Ship::shoot(float timedelta)
     m_elapsedTime += timedelta;
     if (m_elapsedTime>m_fireRate)
     {
-
         switch(m_styleShot)
         {
         case 0:
@@ -155,9 +154,9 @@ void Ship::shoot(float timedelta)
         {
             Shot* shot4 = new Shot(3, m_x+m_w/2, m_y, 0, m_direction*200);
             shots.push_back(shot4);
-            Shot* shotLeftD4 = new Shot(4, m_x, m_y+m_h/2, m_direction*200, m_direction*200);
+            Shot* shotLeftD4 = new Shot(4, m_x-10, m_y+m_h/2, m_direction*200, m_direction*200);
             shots.push_back(shotLeftD4);
-            Shot* shotRightD4 = new Shot(4, m_x+m_w, m_y+m_h/2, -m_direction*200, m_direction*200);
+            Shot* shotRightD4 = new Shot(4, m_x+m_w+10, m_y+m_h/2, -m_direction*200, m_direction*200);
             shots.push_back(shotRightD4);
         }
         break;
@@ -169,9 +168,9 @@ void Ship::shoot(float timedelta)
             shots.push_back(shotLeft5);
             Shot* shotRight5 = new Shot(4, m_x+m_w, m_y+m_h/2, 0, m_direction*200);
             shots.push_back(shotRight5);
-            Shot* shotLeftD5 = new Shot(5, m_x, m_y+m_h/2, m_direction*200, m_direction*200);
+            Shot* shotLeftD5 = new Shot(5, m_x-10, m_y+m_h/2, m_direction*200, m_direction*200);
             shots.push_back(shotLeftD5);
-            Shot* shotRightD5 = new Shot(5, m_x+m_w, m_y+m_h/2, -m_direction*200, m_direction*200);
+            Shot* shotRightD5 = new Shot(5, m_x+m_w+10, m_y+m_h/2, -m_direction*200, m_direction*200);
             shots.push_back(shotRightD5);
         }
         break;

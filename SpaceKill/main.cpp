@@ -49,6 +49,14 @@ int main()
         //cout<< endl << "----------DEPLACEMENT SUIVANT----------" << endl <<endl ;
         model->nextStep(timedelta);
         timedelta = clock.GetElapsedTime();
+        /****/
+        bool levelchange = model->getLevelChange();
+        if(levelchange)
+        {
+            model->setLevelChange(false);
+            view->drawTransition(clock);
+        }
+        /****/
     }
     /************/
 

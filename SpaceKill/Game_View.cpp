@@ -498,17 +498,23 @@ void Game_View::drawTransition(sf::Clock m_clock)
 void Game_View::drawGameOver()
 {
     bool dead = _model->getPlayer()->die();
+    sf::Event _gameover_event;
+
     if(dead)
     {
-        //float time = 0.0;
-        //float duration = 50.0;
-        //float timetogo = duration;
-        while(true)//timetogo > 0.0)
+        while(true)
         {
-            //time = m_clock.GetElapsedTime();
             drawSprite(0, 0, 440, 720, _gameover_sprite);
             _window->Display();
-            //timetogo -= time;
+
+            _window->GetEvent(_gameover_event);
+            const sf::Input &gameoverInput = _window->GetInput();
+            bool EscapeKeyDown = gameoverInput.IsKeyDown(sf::Key::Escape);
+            if (EscapeKeyDown)
+            {
+                _window->Close();
+            }
         }
+
     }
 }

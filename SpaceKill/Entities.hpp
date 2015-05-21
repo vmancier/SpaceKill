@@ -24,6 +24,8 @@ const int PLAYER_WIDTH = 30;
 const int PLAYER_HEIGHT = 50;
 const float PLAYER_X_SPEED = 200.0;
 const float PLAYER_Y_SPEED = 200.0;
+const int DEFAULT_PLAYER_DIRECTION = -1;
+const int DEFAULT_PLAYER_LIFE = 3;
 
 /************* ENEMY ************/
 const int DEFAULT_ENEMY_WIDTH = 30;
@@ -41,7 +43,10 @@ const float COEF_4 = 1.8;
 const float COEF_5 = 2.0;
 const float COEF_6 = 2.2;
 const float COEF_7 = 2.4;
+const int DEFAULT_ENEMY_DIRECTION = 1;
 
 /************* SHOTS ************/
 const float DEFAULT_SHOT_FIRERATE = 0.50;
+const int DEFAULT_SHOT_WIDTH = 30;
+const int DEFAULT_SHOT_HEIGHT = 30;
 #endif // ENTITIES_HPP_INCLUDED

@@ -115,19 +115,19 @@ void Ship::shoot(float timedelta)
         {
         case 0:
         {
-            Shot* shot0 = new Shot(0, m_x+m_w/2, m_y+m_h/4, 0, m_direction*200);
+            Shot* shot0 = new Shot(0, m_x+m_w/2, m_y+m_h/3, 0, m_direction*200);
             shots.push_back(shot0);
         }
         break;
         case 1:
         {
-            Shot* shot1 = new Shot(1, m_x+m_w/2, m_y+m_h/4,0 , m_direction*200);
+            Shot* shot1 = new Shot(1, m_x+m_w/2, m_y+m_h/3,0 , m_direction*200);
             shots.push_back(shot1);
         }
         break;
         case 2:
         {
-            Shot* shot2 = new Shot(1, m_x+m_w/2, m_y+m_h/4, 0, m_direction*200);
+            Shot* shot2 = new Shot(1, m_x+m_w/2, m_y+m_h/3, 0, m_direction*200);
             shots.push_back(shot2);
             Shot* shotLeft2 = new Shot(2, m_x, m_y+m_h/2, 0, m_direction*200);
             shots.push_back(shotLeft2);
@@ -137,7 +137,7 @@ void Ship::shoot(float timedelta)
         break;
         case 3:
         {
-            Shot* shot3 = new Shot(2, m_x+m_w/2, m_y+m_h/4, 0, m_direction*200);
+            Shot* shot3 = new Shot(2, m_x+m_w/2, m_y+m_h/3, 0, m_direction*200);
             shots.push_back(shot3);
             Shot* shotLeft3 = new Shot(3, m_x, m_y+m_h/2,0, m_direction*200);
             shots.push_back(shotLeft3);
@@ -147,7 +147,7 @@ void Ship::shoot(float timedelta)
         break;
         case 4:
         {
-            Shot* shot4 = new Shot(3, m_x+m_w/2, m_y+m_h/4, 0, m_direction*200);
+            Shot* shot4 = new Shot(3, m_x+m_w/2, m_y+m_h/3, 0, m_direction*200);
             shots.push_back(shot4);
             Shot* shotLeftD4 = new Shot(4, m_x-10, m_y+m_h/2, m_direction*200, m_direction*200);
             shots.push_back(shotLeftD4);
@@ -157,7 +157,7 @@ void Ship::shoot(float timedelta)
         break;
         case 5:
         {
-            Shot* shot5 = new Shot(3, m_x+m_w/2, m_y+m_h/4, 0, m_direction*200);
+            Shot* shot5 = new Shot(3, m_x+m_w/2, m_y+m_h/3, 0, m_direction*200);
             shots.push_back(shot5);
             Shot* shotLeft5 = new Shot(4, m_x, m_y+m_h/2, 0, m_direction*200);
             shots.push_back(shotLeft5);

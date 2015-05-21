@@ -163,7 +163,7 @@ void Game_View::drawAnimation(float t)
 
 void Game_View::drawTitle()
 {
-    drawSprite(0, 0, 440, 150, _title_sprite);
+    drawSprite(0, 0, MODEL_WIDTH, MODEL_HEIGHT/5, _title_sprite);
 }
 
 void Game_View::drawMenu()
@@ -307,7 +307,7 @@ void Game_View::drawEnemiesSprites(Sprite myEnemySprite)
 
 void Game_View::drawHeadBand()
 {
-    drawSprite(0, 0, 440, 20, _headband_sprite);
+    drawSprite(0, 0, VIEW_WIDTH, 20, _headband_sprite);
     drawLife();
     drawHealth();
     drawScore();
@@ -443,7 +443,6 @@ bool Game_View::treatMenuEvents()
     bool EscapeKeyDown = menuInput.IsKeyDown(sf::Key::Escape);
 
     if ((LeftMouseKeyDown) && (_menu_event.MouseButton.X > _button1_sprite.GetPosition().x) && (_menu_event.MouseButton.X < (_button1_sprite.GetSize().x)+(_button1_sprite.GetPosition().x)) && (_menu_event.MouseButton.Y > _button1_sprite.GetPosition().y) && (_menu_event.MouseButton.Y < (_button1_sprite.GetSize().y)+(_button1_sprite.GetPosition().y)))
-//    if ((&menuInput.GetMouseX > _button1_sprite.GetPosition().x) && (&menuInput.GetMouseX < (_button1_sprite.GetSize().x)+(_button1_sprite.GetPosition().x)) && (&menuInput.GetMouseY > _button1_sprite.GetPosition().y) && (&menuInput.GetMouseY < (_button1_sprite.GetSize().y)+(_button1_sprite.GetPosition().y)))
     {
         runMenu = false;
     }
@@ -488,7 +487,7 @@ void Game_View::drawTransition(sf::Clock m_clock)
         while(timetogo > 0.0)
         {
             time = m_clock.GetElapsedTime();
-            drawSprite(0, 0, 440, 720, _transition_sprite);
+            drawSprite(0, 0, VIEW_WIDTH, VIEW_HEIGHT, _transition_sprite);
             _window->Display();
             timetogo -= time;
         }

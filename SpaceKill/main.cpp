@@ -34,6 +34,7 @@ int main()
     view->playMusic(true);
     while(view->treatMenuEvents())
     {
+
         view->drawMenu();
     }
     /************/
@@ -42,6 +43,7 @@ int main()
     timedelta=0;
     while(view->treatEvents(timedelta))
     {
+
         clock.Reset();
         view->drawGame();
         model->nextStep(timedelta);

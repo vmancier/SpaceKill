@@ -54,6 +54,7 @@ Game_View::Game_View(int w, int h, int bpp): _w(w), _h(h)
             !_title_image.LoadFromFile("assets/title.png") ||
             !_minimal_font.LoadFromFile("assets/minimal.ttf") ||
             !_transition_image.LoadFromFile("assets/transition.png") ||
+            !_gameover_image.LoadFromFile("assets/gameover.png") ||
             !_music.OpenFromFile("assets/music.ogg"))
     {
         _background_sprite = Sprite();
@@ -78,6 +79,7 @@ Game_View::Game_View(int w, int h, int bpp): _w(w), _h(h)
         _title_sprite = Sprite();
         _minimal_font = Font();
         _transition_sprite = Sprite();
+        _gameover_sprite = Sprite();
     }
     else
     {
@@ -107,6 +109,7 @@ Game_View::Game_View(int w, int h, int bpp): _w(w), _h(h)
         _shot2_sprite = Sprite(_shot2_image);
         _title_sprite = Sprite(_title_image);
         _transition_sprite = Sprite(_transition_image);
+        _gameover_sprite = Sprite(_gameover_image);
     }
 }
 

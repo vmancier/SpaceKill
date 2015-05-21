@@ -67,15 +67,9 @@ void Ship::loseLife(int damages)
     {
         m_currentHealth = m_currentHealth-damages;
     }
-    else if (m_currentHealth == damages)
+    else if (m_currentHealth <= damages)
     {
-        m_currentHealth =m_healthMax;
-        m_life--;
-    }
-    else if (damages > m_currentHealth)
-    {
-        int tmp = damages-m_currentHealth;
-        m_currentHealth =m_healthMax -tmp;
+        m_currentHealth = m_healthMax;
         m_life--;
     }
 }
@@ -116,6 +110,7 @@ void Ship::shoot(float timedelta)
     m_elapsedTime += timedelta;
     if (m_elapsedTime>m_fireRate)
     {
+        playShotSound();
         switch(m_styleShot)
         {
         case 0:
@@ -179,6 +174,13 @@ void Ship::shoot(float timedelta)
     }
 }
 
+void Ship::playShotSound()
+{
+    !_shot_buffer.LoadFromFile("assets/shot.ogg");
+    _shot_sound.SetBuffer(_shot_buffer);
+    _shot_sound.SetVolume(3.0);
+    _shot_sound.Play();
+}
 // -- setX --------------------------------------
 // Sets the horizontal ship's position
 // ----------------------------------------------

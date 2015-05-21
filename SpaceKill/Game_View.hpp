@@ -104,6 +104,7 @@ public:
     void drawHealthLevel(int x);
     void drawScore();
     void drawTransition(sf::Clock m_clock);
+    void drawGameOver();
 
     bool treatEvents(float timedelta);
     bool treatMenuEvents();

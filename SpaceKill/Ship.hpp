@@ -14,6 +14,11 @@
 #include "Shot.hpp"
 #include <vector>
 
+#include <SFML/System.hpp>
+#include <SFML/Graphics.hpp>
+#include <SFML/Window.hpp>
+#include <SFML/Audio.hpp>
+
 class Shot;
 
 class Ship
@@ -34,7 +39,8 @@ protected:
     int m_life;
     std::vector <Shot*> shots;
 
-
+    sf::SoundBuffer _shot_buffer;
+    sf::Sound _shot_sound;
 public:
     Ship();
     Ship(int x, int y, int w, int h, float x_speed, float y_speed, int health,int styleShot);
@@ -44,6 +50,7 @@ public:
     bool die();
     void moveShotsShip(float timedelta);
     void shoot(float timedelta);
+    void playShotSound();
 
     void setX(int x);
     void setY(int y);

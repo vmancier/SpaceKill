@@ -31,6 +31,7 @@ Game_View::Game_View(int w, int h, int bpp): _w(w), _h(h)
     _window = new RenderWindow(sf::VideoMode(w, h, bpp), "SpaceKill", sf::Style::Close);
     _window->UseVerticalSync(false);
     _window->SetFramerateLimit(60);
+    run= true;
 
     if (!_background_image.LoadFromFile("assets/background.JPG") ||
             !_button1_image.LoadFromFile("assets/button1.png") ||
@@ -177,7 +178,7 @@ void Game_View::drawAnimation(float t)
 // ----------------------------------------------
 void Game_View::drawTitle()
 {
-    drawSprite(0, 0, 440, 150, _title_sprite);
+    drawSprite(0, 0, MODEL_WIDTH, MODEL_HEIGHT/5, _title_sprite);
 }
 
 // -- drawMenu ----------------------------------
@@ -302,7 +303,7 @@ void Game_View::drawPlayer()
 // ----------------------------------------------
 void Game_View::drawEnemies()
 {
-    int style = _model->getLevelNumber()%8;
+    int style = _model->getLevelNumber()%LEVELS;
     switch(style)
     {
     case 0:
@@ -352,7 +353,7 @@ void Game_View::drawEnemiesSprites(Sprite myEnemySprite)
 // ----------------------------------------------
 void Game_View::drawHeadBand()
 {
-    drawSprite(0, 0, 440, 20, _headband_sprite);
+    drawSprite(0, 0, VIEW_WIDTH, 20, _headband_sprite);
     drawLife();
     drawHealth();
     drawScore();
@@ -387,39 +388,11 @@ void Game_View::drawLife()
 void Game_View::drawHealth()
 {
     int lifeLevel = (_model->getPlayer()->getCurrentHealth()/_model->getPlayer()->getHealthMax())*100;
-    switch (lifeLevel)
+    if (lifeLevel ==0)
     {
-    case 100:
-        drawHealthLevel(200);
-        break;
-    case 90:
-        drawHealthLevel(179);
-        break;
-    case 80:
-        drawHealthLevel(159);
-        break;
-    case 70:
-        drawHealthLevel(139);
-        break;
-    case 60:
-        drawHealthLevel(119);
-        break;
-    case 50:
-        drawHealthLevel(99);
-        break;
-    case 40:
-        drawHealthLevel(79);
-        break;
-    case 30:
-        drawHealthLevel(59);
-        break;
-    case 20:
-        drawHealthLevel(39);
-        break;
-    case 10:
-        drawHealthLevel(19);
-        break;
+        lifeLevel=100;
     }
+    drawHealthLevel(2*lifeLevel-1);
 }
 
 // -- drawHealthLevel ---------------------------
@@ -518,10 +491,8 @@ void Game_View::drawGameOver()
 // ----------------------------------------------
 bool Game_View::treatEvents(float timedelta)
 {
-    bool result = false;
-    if(_window->IsOpened())
+    if(_window->IsOpened()&& run)
     {
-        result = true;
         Event event;
         _window->GetEvent(event);
 
@@ -539,11 +510,11 @@ bool Game_View::treatEvents(float timedelta)
         if (EscapeKeyDown)
         {
             _window->Close();
-            result = false;
+            run = false;
         }
         (_model->getPlayer())->moveP(LeftKeyDown, QKeyDown, RightKeyDown, DKeyDown, UpKeyDown, ZKeyDown, DownKeyDown, SKeyDown, timedelta);
     }
-    return result;
+    return run;
 }
 
 // -- treatMenuEvents ---------------------------
@@ -595,4 +566,47 @@ void Game_View::playMusic(bool loop)
     }
     _music.SetVolume(10.0);
     _music.Play();
+}
+
+void Game_View::drawTransition(sf::Clock m_clock)
+{
+    bool levelchange = _model->getLevelChange();
+    if(levelchange)
+    {
+        _model->setLevelChange(false);
+        float time = 0.0;
+        float duration = 50.0;
+        float timetogo = duration;
+        while(timetogo > 0.0)
+        {
+            time = m_clock.GetElapsedTime();
+            drawSprite(0, 0, VIEW_WIDTH, VIEW_HEIGHT, _transition_sprite);
+            _window->Display();
+            timetogo -= time;
+        }
+    }
+}
+
+void Game_View::drawGameOver()
+{
+    bool dead = _model->getPlayer()->die();
+    sf::Event _gameover_event;
+
+    if(dead)
+    {
+        while(run)
+        {
+            drawSprite(0, 0, VIEW_WIDTH, VIEW_HEIGHT, _gameover_sprite);
+            _window->Display();
+
+            _window->GetEvent(_gameover_event);
+            const sf::Input &gameoverInput = _window->GetInput();
+            bool EscapeKeyDown = gameoverInput.IsKeyDown(sf::Key::Escape);
+            if (EscapeKeyDown)
+            {
+                _window->Close();
+                run =false;
+            }
+        }
+    }
 }

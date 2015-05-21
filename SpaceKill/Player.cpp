@@ -31,8 +31,8 @@ using namespace sf;
 Player::Player(int x, int y, int w, int h, float x_speed, float y_speed, int health, int styleShot)
     :Ship(x, y, w, h, x_speed, y_speed, health, styleShot)
 {
-    m_life = 3;
-    m_direction=-1;
+    m_life = DEFAULT_PLAYER_LIFE;
+    m_direction=DEFAULT_PLAYER_DIRECTION;
     m_elapsedTime=0;
     m_fireRate = DEFAULT_SHOT_FIRERATE;
 }

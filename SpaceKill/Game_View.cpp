@@ -31,6 +31,7 @@ Game_View::Game_View(int w, int h, int bpp): _w(w), _h(h)
     _window = new RenderWindow(sf::VideoMode(w, h, bpp), "SpaceKill", sf::Style::Close);
     _window->UseVerticalSync(false);
     _window->SetFramerateLimit(60);
+    run= true;
 
     if (!_background_image.LoadFromFile("assets/background.JPG") ||
             !_button1_image.LoadFromFile("assets/button1.png") ||
@@ -265,7 +266,7 @@ void Game_View::drawPlayer()
 // ----------------------------------------------
 void Game_View::drawEnemies()
 {
-    int style = _model->getLevelNumber()%8;
+    int style = _model->getLevelNumber()%LEVELS;
     switch(style)
     {
     case 0:
@@ -404,10 +405,8 @@ void Game_View::drawScore()
 // ----------------------------------------------
 bool Game_View::treatEvents(float timedelta)
 {
-    bool result = false;
-    if(_window->IsOpened())
+    if(_window->IsOpened()&& run)
     {
-        result = true;
         Event event;
         _window->GetEvent(event);
 
@@ -425,11 +424,11 @@ bool Game_View::treatEvents(float timedelta)
         if (EscapeKeyDown)
         {
             _window->Close();
-            result = false;
+            run = false;
         }
         (_model->getPlayer())->moveP(LeftKeyDown, QKeyDown, RightKeyDown, DKeyDown, UpKeyDown, ZKeyDown, DownKeyDown, SKeyDown, timedelta);
     }
-    return result;
+    return run;
 }
 
 bool Game_View::treatMenuEvents()
@@ -501,9 +500,9 @@ void Game_View::drawGameOver()
 
     if(dead)
     {
-        while(true)
+        while(run)
         {
-            drawSprite(0, 0, 440, 720, _gameover_sprite);
+            drawSprite(0, 0, VIEW_WIDTH, VIEW_HEIGHT, _gameover_sprite);
             _window->Display();
 
             _window->GetEvent(_gameover_event);
@@ -512,8 +511,8 @@ void Game_View::drawGameOver()
             if (EscapeKeyDown)
             {
                 _window->Close();
+                run =false;
             }
         }
-
     }
 }

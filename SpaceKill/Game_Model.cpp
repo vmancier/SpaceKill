@@ -76,7 +76,7 @@ void Game_Model::nextStep(float timedelta)
 
 void Game_Model::loadLevel()
 {
-    if (_levelProgress >=10.0)
+    if (_levelProgress >=LEVEL_DURATION)
     {
         _levelStyle++;
         _levelProgress=0;
@@ -97,32 +97,32 @@ void Game_Model::loadLevel()
 void Game_Model::Level(int levelStyle)
 {
     float tmp=0;
-    int level =levelStyle%8;
+    int level =levelStyle%LEVELS;
     switch(level)
     {
     case 0:
-        tmp = 2.0;
+        tmp = SPAWNRATE_0;
         break;
     case 1:
-        tmp = 1.75;
+        tmp = SPAWNRATE_1;
         break;
     case 2:
-        tmp = 1.5;
+        tmp = SPAWNRATE_2;
         break;
     case 3:
-        tmp = 1.25;
+        tmp = SPAWNRATE_3;
         break;
     case 4:
-        tmp = 1.0;
+        tmp = SPAWNRATE_4;
         break;
     case 5:
-        tmp = 0.75;
+        tmp = SPAWNRATE_5;
         break;
     case 6:
-        tmp = 0.5;
+        tmp = SPAWNRATE_6;
         break;
     case 7:
-        tmp = 0.3;
+        tmp = SPAWNRATE_7;
         break;
     }
     _spawnRateMax=tmp/log(_levelStyle+1);
@@ -141,7 +141,7 @@ void Game_Model::createEnemy(float timedelta)
     {
         int exactWidth = MODEL_WIDTH - DEFAULT_ENEMY_WIDTH;
         int xPos = rand() % exactWidth;
-        int style = getLevelNumber()%8;
+        int style = getLevelNumber()%LEVELS;
         Enemy *myEnemy = new Enemy(xPos, style);
         enemies.push_back(myEnemy);
         _lastSpawn=0;

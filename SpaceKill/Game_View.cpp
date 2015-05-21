@@ -502,7 +502,7 @@ void Game_View::drawGameOver()
         while(true)//timetogo > 0.0)
         {
             //time = m_clock.GetElapsedTime();
-            //drawSprite(0, 0, 440, 720, _game_over);
+            drawSprite(0, 0, 440, 720, _gameover_sprite);
             _window->Display();
             //timetogo -= time;
         }

@@ -13,8 +13,6 @@
 
 #include <cstdlib>
 #include <iostream>
-//#include <windows.h>
-//#include <unistd.h>
 
 using namespace std;
 
@@ -46,11 +44,10 @@ int main()
     {
         clock.Reset();
         view->drawGame();
-        //cout<< endl << "----------DEPLACEMENT SUIVANT----------" << endl <<endl ;
         model->nextStep(timedelta);
         timedelta = clock.GetElapsedTime();
         view->drawTransition(clock);
-        //view->drawGameOver();
+        view->drawGameOver();
     }
     /************/
 

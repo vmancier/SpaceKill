@@ -24,7 +24,7 @@ public:
     Player(int x, int y, int w, int h, float x_speed, float y_speed, int health, int styleShot);
     Player();
 
-    void moveP(bool LeftKeyDown, bool RightKeyDown, bool UpKeyDown, bool DownKeyDown, float timedelta);
+    void moveP(bool LeftKeyDown1, bool LeftKeyDown2, bool RightKeyDown1, bool RightKeyDown2, bool UpKeyDown1, bool UpKeyDown2, bool DownKeyDown1, bool DownKeyDown2, float timedelta);
 
 };
 #endif // PLAYER_HPP_INCLUDED

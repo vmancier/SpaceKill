@@ -48,9 +48,9 @@ Player::Player(int x, int y, int w, int h, float x_speed, float y_speed, int hea
 // -- moveP -------------------------------------
 // Moves the player
 // ----------------------------------------------
-void Player::moveP(bool LeftKeyDown, bool RightKeyDown, bool UpKeyDown, bool DownKeyDown, float timedelta)
+void Player::moveP(bool LeftKeyDown1, bool LeftKeyDown2, bool RightKeyDown1, bool RightKeyDown2, bool UpKeyDown1, bool UpKeyDown2, bool DownKeyDown1, bool DownKeyDown2, float timedelta)
 {
-    if (LeftKeyDown)
+    if (LeftKeyDown1 || LeftKeyDown2)
     {
         if (m_x-m_x_speed*timedelta > 0)
         {
@@ -62,7 +62,7 @@ void Player::moveP(bool LeftKeyDown, bool RightKeyDown, bool UpKeyDown, bool Dow
         }
     }
 
-    if (RightKeyDown)
+    if (RightKeyDown1 || RightKeyDown2)
     {
         int limit = m_x+m_w+m_x_speed*timedelta;
         if (limit < MODEL_WIDTH)
@@ -75,7 +75,7 @@ void Player::moveP(bool LeftKeyDown, bool RightKeyDown, bool UpKeyDown, bool Dow
         }
     }
 
-    if(UpKeyDown)
+    if(UpKeyDown1 || UpKeyDown2)
     {
         if (m_y-m_y_speed*timedelta > 0)
         {
@@ -87,7 +87,7 @@ void Player::moveP(bool LeftKeyDown, bool RightKeyDown, bool UpKeyDown, bool Dow
         }
     }
 
-    if(DownKeyDown)
+    if(DownKeyDown1 || DownKeyDown2)
     {
         int limit = m_y+m_h+m_y_speed*timedelta;
         if (limit < MODEL_HEIGHT)

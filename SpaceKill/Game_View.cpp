@@ -417,13 +417,17 @@ bool Game_View::treatEvents(float timedelta)
         bool RightKeyDown = input.IsKeyDown(sf::Key::Right);
         bool UpKeyDown = input.IsKeyDown(sf::Key::Up);
         bool DownKeyDown = input.IsKeyDown(sf::Key::Down);
+        bool ZKeyDown = input.IsKeyDown(sf::Key::Z);
+        bool QKeyDown = input.IsKeyDown(sf::Key::Q);
+        bool SKeyDown = input.IsKeyDown(sf::Key::S);
+        bool DKeyDown = input.IsKeyDown(sf::Key::D);
 
         if (EscapeKeyDown)
         {
             _window->Close();
             result = false;
         }
-        (_model->getPlayer())->moveP(LeftKeyDown, RightKeyDown, UpKeyDown, DownKeyDown, timedelta);
+        (_model->getPlayer())->moveP(LeftKeyDown, QKeyDown, RightKeyDown, DKeyDown, UpKeyDown, ZKeyDown, DownKeyDown, SKeyDown, timedelta);
     }
     return result;
 }

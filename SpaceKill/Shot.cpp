@@ -14,21 +14,6 @@
 using namespace std;
 
 // -- Shot --------------------------------------
-// Builds by default an object "shot"
-// ----------------------------------------------
-Shot::Shot()
-{
-    m_xS = 0;
-    m_yS = 0;
-    m_wS = 10;
-    m_hS = 30;
-    m_x_speedS = 50;
-    m_y_speedS = 0;
-    m_damage = 30.0;
-    m_style = 0;
-}
-
-// -- Shot --------------------------------------
 // Builds an object "shot"
 // * in-parameters :
 // - "style" : number of the ship's shoot's style
@@ -74,6 +59,8 @@ Shot::Shot(int style, int x, int y, float xSpeed, float ySpeed)
 
 // -- moveShot ----------------------------------
 // Moves the shot
+// * in-parameters :
+// - "timeldelta", float : time elapsed since the last main game loop turn
 // ----------------------------------------------
 void Shot::moveShot(float timedelta)
 {
@@ -83,6 +70,8 @@ void Shot::moveShot(float timedelta)
 
 // -- getStyle ----------------------------------
 // Returns the shoot's style
+// * out-parameters :
+// - "m_style", int : shot's style
 // ----------------------------------------------
 int Shot::getStyle() const
 {
@@ -91,6 +80,8 @@ int Shot::getStyle() const
 
 // -- getDamages --------------------------------
 // Returns the shoot's damages
+// * out-parameters :
+// - "m_damage", int : shot's amount of damages
 // ----------------------------------------------
 int Shot::getDamages() const
 {
@@ -99,6 +90,8 @@ int Shot::getDamages() const
 
 // -- getX --------------------------------------
 // Returns the horizontal shoot's position
+// * out-parameters :
+// - "m_xS", int : horizontal shoot's position
 // ----------------------------------------------
 int Shot::getX() const
 {
@@ -107,6 +100,8 @@ int Shot::getX() const
 
 // -- getY --------------------------------------
 // Returns the vertical shoot's position
+// * out-parameters :
+// - "m_yS", int : vertical shoot's position
 // ----------------------------------------------
 int Shot::getY() const
 {
@@ -115,6 +110,8 @@ int Shot::getY() const
 
 // -- getW --------------------------------------
 // Returns the shot's width
+// * out-parameters :
+// - "m_wS", int : shot's width
 // ----------------------------------------------
 int Shot::getW() const
 {
@@ -123,12 +120,19 @@ int Shot::getW() const
 
 // -- getH --------------------------------------
 // Returns the shot's height
+// * out-parameters :
+// - "m_hS", int : shot's height
 // ----------------------------------------------
 int Shot::getH() const
 {
     return m_hS;
 }
 
+// -- getY_speed --------------------------------
+// Returns the vertical ship's speed
+// * out-parameters :
+// - "m_y_speed", int : vertical ship's speed
+// ----------------------------------------------
 float Shot::getXSpeed() const
 {
     return m_x_speedS;

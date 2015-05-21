@@ -124,6 +124,11 @@ Game_View::~Game_View()
     }
 }
 
+// -- drawIntro --------------------------------
+// Draws the introduction sequence
+// * in-parameters :
+// - "clock", Clock : current clock
+// ----------------------------------------------
 void Game_View::drawIntro(Clock clock)
 {
     float timedelta;
@@ -138,9 +143,11 @@ void Game_View::drawIntro(Clock clock)
         timedelta = clock.GetElapsedTime();
         t+=timedelta;
     }
-
 }
 
+// -- drawIntro --------------------------------
+// Draws the background with a vertical scrolling effect
+// ----------------------------------------------
 void Game_View::drawBackground()
 {
     drawSprite(0,_y_background, MODEL_WIDTH, MODEL_HEIGHT,_background_sprite);
@@ -152,20 +159,30 @@ void Game_View::drawBackground()
     }
 }
 
+// -- drawAnimation -----------------------------
+// Draws the animation of the introduction sequence
+// * in-parameters :
+// - "t", float : duration of the animation
+// ----------------------------------------------
 void Game_View::drawAnimation(float t)
 {
     drawSprite(100+t, 540-t, 150, 150, _player1_sprite);
     _player1_sprite.SetRotation(-50);
     drawSprite(VIEW_WIDTH-200-t, 650-t, 150, 150, _player2_sprite);
     _player2_sprite.SetRotation(50);
-
 }
 
+// -- drawTitle ---------------------------------
+// Draws the title during the animation sequence
+// ----------------------------------------------
 void Game_View::drawTitle()
 {
     drawSprite(0, 0, 440, 150, _title_sprite);
 }
 
+// -- drawMenu ----------------------------------
+// Draws the menu
+// ----------------------------------------------
 void Game_View::drawMenu()
 {
     _window->Clear();
@@ -175,6 +192,9 @@ void Game_View::drawMenu()
     _window->Display();
 }
 
+// -- drawButtons -------------------------------
+// Draws the buttons of the menu
+// ----------------------------------------------
 void Game_View::drawButtons()
 {
     drawSprite(VIEW_WIDTH/2-(_button1_sprite.GetSize().x)/2, VIEW_HEIGHT/2, _button1_sprite.GetSize().x, _button1_sprite.GetSize().y, _button1_sprite);
@@ -182,6 +202,7 @@ void Game_View::drawButtons()
     drawSprite(VIEW_WIDTH/2-(_button2_sprite.GetSize().x)/2, VIEW_HEIGHT-_button1_sprite.GetSize().x, _button2_sprite.GetSize().x, _button2_sprite.GetSize().y, _button2_sprite);
     _button2_sprite.SetPosition(VIEW_WIDTH/2-(_button2_sprite.GetSize().x)/2, VIEW_HEIGHT-_button1_sprite.GetSize().x);
 }
+
 // -- drawGame ----------------------------------
 // Draws all the necessary elements for the game
 // ----------------------------------------------
@@ -189,16 +210,23 @@ void Game_View::drawGame()
 {
     _window->Clear();
     drawBackground();
-
     drawPlayerShots();
     drawEnemiesShots();
     drawPlayer();
     drawEnemies();
     drawHeadBand();
-
     _window->Display();
 }
 
+// -- drawSprite --------------------------------
+// Draws a sprite
+// * in-parameters
+// - "x", int : horizontal sprite's position
+// - "y", int : vertical sprite's position
+// - "w", int : width of the sprite
+// - "h", int : height of the sprite
+// - "mySprite", Sprite : sprite to draw
+// ----------------------------------------------
 void Game_View::drawSprite(int x, int y, int w, int h, Sprite mySprite)
 {
     mySprite.Resize(w, h);
@@ -206,6 +234,9 @@ void Game_View::drawSprite(int x, int y, int w, int h, Sprite mySprite)
     _window->Draw(mySprite);
 }
 
+// -- drawPlayerShots ---------------------------
+// Draws the player's shots
+// ----------------------------------------------
 void Game_View::drawPlayerShots()
 {
     sf::Sprite myPlayerShotSprite;
@@ -240,6 +271,9 @@ void Game_View::drawPlayerShots()
     }
 }
 
+// -- drawEnemiesShots --------------------------
+// Draws the enemies's shots
+// ----------------------------------------------
 void Game_View::drawEnemiesShots()
 {
     int x, y, w, h;
@@ -253,6 +287,9 @@ void Game_View::drawEnemiesShots()
     }
 }
 
+// -- drawPlayer --------------------------------
+// Draws the player
+// ----------------------------------------------
 void Game_View::drawPlayer()
 {
     int x, y, w, h;
@@ -261,7 +298,7 @@ void Game_View::drawPlayer()
 }
 
 // -- drawEnemies -------------------------------
-// Draws all the enemies
+// Draws all the enemies according to their style number
 // ----------------------------------------------
 void Game_View::drawEnemies()
 {
@@ -295,6 +332,11 @@ void Game_View::drawEnemies()
     }
 }
 
+// -- drawEnemiesSprites ------------------------
+// Draws the enemies's sprites
+// * in-parameters :
+// - "myEnemeySprite", Sprite : sprite of the enemy to draw
+// ----------------------------------------------
 void Game_View::drawEnemiesSprites(Sprite myEnemySprite)
 {
     int x, y, w, h;
@@ -305,6 +347,9 @@ void Game_View::drawEnemiesSprites(Sprite myEnemySprite)
     }
 }
 
+// -- drawHeadBand ------------------------------
+// Draws the headband (life, level of life and score)
+// ----------------------------------------------
 void Game_View::drawHeadBand()
 {
     drawSprite(0, 0, 440, 20, _headband_sprite);
@@ -313,12 +358,14 @@ void Game_View::drawHeadBand()
     drawScore();
 }
 
-void Game_View::drawLife()  //nombre de vies
+// -- drawLife ----------------------------------
+// Draws the player's number of life according to his life number
+// ----------------------------------------------
+void Game_View::drawLife()
 {
     int lifeNumber = (_model->getPlayer())->getLife();
     switch (lifeNumber)
     {
-
     case 1:
         drawSprite(2, 0, 19, 19, _player_sprite);
         break;
@@ -334,7 +381,10 @@ void Game_View::drawLife()  //nombre de vies
     }
 }
 
-void Game_View::drawHealth()    //niveau de la vie en cours
+// -- drawHealth --------------------------------
+// Draws the player's level of life according to his health level
+// ----------------------------------------------
+void Game_View::drawHealth()
 {
     int lifeLevel = (_model->getPlayer()->getCurrentHealth()/_model->getPlayer()->getHealthMax())*100;
     switch (lifeLevel)
@@ -372,12 +422,22 @@ void Game_View::drawHealth()    //niveau de la vie en cours
     }
 }
 
+// -- drawHealthLevel ---------------------------
+// Draws the player's level of life according to his health level
+// * in-parameters :
+// - "x", int : player's health
+// ----------------------------------------------
 void Game_View::drawHealthLevel(int x)
 {
     _healthbar_sprite.SetSubRect(sf::IntRect(0, 0, x, 10));
     drawSprite(100, 5, x, 10, _healthbar_sprite);
 }
 
+// -- to_string ---------------------------------
+// Converts an int to a string
+// * out-parameters :
+// - "oss", ostringstream
+// ----------------------------------------------
 template <typename T>
 std::string to_string(T value)
 {
@@ -386,6 +446,9 @@ std::string to_string(T value)
     return oss.str();
 }
 
+// -- drawScore ---------------------------------
+// Draws the player's score
+// ----------------------------------------------
 void Game_View::drawScore()
 {
     std::string str = "Score : ";
@@ -397,6 +460,57 @@ void Game_View::drawScore()
     _score_string.SetPosition(320, -5);
     _score_string.SetColor(sf::Color(0, 0, 0));
     _window->Draw(_score_string);
+}
+
+// -- drawTransition ----------------------------
+// Draws the transition when a level is changing
+// * in-parameters :
+// - "m_clock", Clock
+// ----------------------------------------------
+void Game_View::drawTransition(sf::Clock m_clock)
+{
+    bool levelchange = _model->getLevelChange();
+    if(levelchange)
+    {
+        _model->setLevelChange(false);
+        float time = 0.0;
+        float duration = 50.0;
+        float timetogo = duration;
+        while(timetogo > 0.0)
+        {
+            time = m_clock.GetElapsedTime();
+            drawSprite(0, 0, 440, 720, _transition_sprite);
+            _window->Display();
+            timetogo -= time;
+        }
+    }
+}
+
+// -- drawGameOver ------------------------------
+// Draws the "Game Over" screen when the player is dead
+// ----------------------------------------------
+void Game_View::drawGameOver()
+{
+    bool dead = _model->getPlayer()->die();
+    sf::Event _gameover_event;
+
+    if(dead)
+    {
+        while(true)
+        {
+            drawSprite(0, 0, 440, 720, _gameover_sprite);
+            _window->Display();
+
+            _window->GetEvent(_gameover_event);
+            const sf::Input &gameoverInput = _window->GetInput();
+            bool EscapeKeyDown = gameoverInput.IsKeyDown(sf::Key::Escape);
+            if (EscapeKeyDown)
+            {
+                _window->Close();
+            }
+        }
+
+    }
 }
 
 // -- treatEvents -------------------------------
@@ -432,6 +546,9 @@ bool Game_View::treatEvents(float timedelta)
     return result;
 }
 
+// -- treatMenuEvents ---------------------------
+// Treat the game's events
+// ----------------------------------------------
 bool Game_View::treatMenuEvents()
 {
     bool runMenu = true;
@@ -443,7 +560,6 @@ bool Game_View::treatMenuEvents()
     bool EscapeKeyDown = menuInput.IsKeyDown(sf::Key::Escape);
 
     if ((LeftMouseKeyDown) && (_menu_event.MouseButton.X > _button1_sprite.GetPosition().x) && (_menu_event.MouseButton.X < (_button1_sprite.GetSize().x)+(_button1_sprite.GetPosition().x)) && (_menu_event.MouseButton.Y > _button1_sprite.GetPosition().y) && (_menu_event.MouseButton.Y < (_button1_sprite.GetSize().y)+(_button1_sprite.GetPosition().y)))
-//    if ((&menuInput.GetMouseX > _button1_sprite.GetPosition().x) && (&menuInput.GetMouseX < (_button1_sprite.GetSize().x)+(_button1_sprite.GetPosition().x)) && (&menuInput.GetMouseY > _button1_sprite.GetPosition().y) && (&menuInput.GetMouseY < (_button1_sprite.GetSize().y)+(_button1_sprite.GetPosition().y)))
     {
         runMenu = false;
     }
@@ -466,6 +582,11 @@ void Game_View::setModel(Game_Model *model)
     _model = model;
 }
 
+// -- playMusic ---------------------------------
+// Plays the music theme during the game
+// * in-parameters :
+// - "loop", bool : says if the music has to play in loop or not
+// ----------------------------------------------
 void Game_View::playMusic(bool loop)
 {
     if(loop)
@@ -474,47 +595,4 @@ void Game_View::playMusic(bool loop)
     }
     _music.SetVolume(10.0);
     _music.Play();
-}
-
-void Game_View::drawTransition(sf::Clock m_clock)
-{
-    bool levelchange = _model->getLevelChange();
-    if(levelchange)
-    {
-        _model->setLevelChange(false);
-        float time = 0.0;
-        float duration = 50.0;
-        float timetogo = duration;
-        while(timetogo > 0.0)
-        {
-            time = m_clock.GetElapsedTime();
-            drawSprite(0, 0, 440, 720, _transition_sprite);
-            _window->Display();
-            timetogo -= time;
-        }
-    }
-}
-
-void Game_View::drawGameOver()
-{
-    bool dead = _model->getPlayer()->die();
-    sf::Event _gameover_event;
-
-    if(dead)
-    {
-        while(true)
-        {
-            drawSprite(0, 0, 440, 720, _gameover_sprite);
-            _window->Display();
-
-            _window->GetEvent(_gameover_event);
-            const sf::Input &gameoverInput = _window->GetInput();
-            bool EscapeKeyDown = gameoverInput.IsKeyDown(sf::Key::Escape);
-            if (EscapeKeyDown)
-            {
-                _window->Close();
-            }
-        }
-
-    }
 }

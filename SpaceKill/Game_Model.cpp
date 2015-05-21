@@ -12,32 +12,16 @@
 #include "Entities.hpp"
 #include "Game_View.hpp"
 
-#include <cstdlib>  //necessaire pour le rand() du x
+#include <cstdlib>  //used for the rand() method
 #include <math.h>
 
 using namespace std;
 
 // -- Game_Model --------------------------------
-// Builds by default an object "game_model"
-// * out-parameters :
-// - "game_model", object : the game model itself
-// ----------------------------------------------
-Game_Model::Game_Model(): _w(MODEL_WIDTH), _h(MODEL_HEIGHT)
-{
-    m_player = new Player();
-    Level(0);
-    _levelProgress=0;
-    _lastSpawn=0;
-    m_score = 0;
-}
-
-// -- Game_Model --------------------------------
 // Builds an object "game_model"
 // * in-parameters :
-// - w, int : width of the game model
-// - h, int : height of the game model
-// * out-parameters :
-// - "game_model", object : the game model itself
+// - "w", int : width of the game model
+// - "h", int : height of the game model
 // ----------------------------------------------
 Game_Model::Game_Model(int w, int h): _w(w), _h(h)
 {
@@ -62,6 +46,8 @@ Game_Model::~Game_Model()
 
 // -- nextStep ----------------------------------
 // Runs the next step
+// * in-parameters :
+// - "timeldelta", float : time elapsed since the last main game loop turn
 // ----------------------------------------------
 void Game_Model::nextStep(float timedelta)
 {
@@ -70,10 +56,13 @@ void Game_Model::nextStep(float timedelta)
     m_player->shoot(timedelta);
     moveShots(timedelta);
     moveEnemies(timedelta);
-    collisions();
+    manageCollisions();
     loadLevel();
 }
 
+// -- loadLevel ----------------------------------
+// Loads a level
+// ----------------------------------------------
 void Game_Model::loadLevel()
 {
     if (_levelProgress >=10.0)
@@ -91,8 +80,11 @@ void Game_Model::loadLevel()
         _level_change = true;
     }
 }
+
 // -- Level -------------------------------------
 // Creates a level according to the current state of game
+// * in-parameters :
+// - "levelStyle", int : number of the current level
 // ----------------------------------------------
 void Game_Model::Level(int levelStyle)
 {
@@ -132,6 +124,8 @@ void Game_Model::Level(int levelStyle)
 
 // -- createEnemy -------------------------------
 // Creates an enemy according to his style
+// * in-parameters :
+// - "timeldelta", float : time elapsed since the last main game loop turn
 // ----------------------------------------------
 void Game_Model::createEnemy(float timedelta)
 {
@@ -150,6 +144,8 @@ void Game_Model::createEnemy(float timedelta)
 
 // -- moveEnemies -------------------------------
 // Moves the enemies
+// * in-parameters :
+// - "timeldelta", float : time elapsed since the last main game loop turn
 // ----------------------------------------------
 void Game_Model::moveEnemies(float timedelta)
 {
@@ -166,6 +162,8 @@ void Game_Model::moveEnemies(float timedelta)
 
 // -- shootEnemy --------------------------------
 // Makes the enemy shoot
+// * in-parameters :
+// - "timeldelta", float : time elapsed since the last main game loop turn
 // ----------------------------------------------
 void Game_Model::shootEnemy(float timedelta)
 {
@@ -177,6 +175,8 @@ void Game_Model::shootEnemy(float timedelta)
 
 // -- moveShots ---------------------------------
 // Moves the shots
+// * in-parameters :
+// - "timeldelta", float : time elapsed since the last main game loop turn
 // ----------------------------------------------
 void Game_Model::moveShots(float timedelta)
 {
@@ -195,14 +195,17 @@ int Game_Model::getLevelNumber() const
     return _levelStyle;
 }
 
-void Game_Model::collisions()
+// -- manageCollisions --------------------------
+// Manages all the types of collisions
+// ----------------------------------------------
+void Game_Model::manageCollisions()
 {
-    /*collisions between enemies and player's shots*/
+    //collisions between enemies and player's shots
     for(int i=0; i<m_player->getShotsSize(); i++)
     {
         for(unsigned int j=0; j<enemies.size(); j++)
         {
-            if (collision(m_player,enemies[j],i))
+            if (detectCollisions(m_player,enemies[j],i))
             {
                 enemies[j]->loseLife(m_player->getShot(i)->getDamages());
                 if (enemies[j]->die())
@@ -216,12 +219,12 @@ void Game_Model::collisions()
             }
         }
     }
-    /*collisions between player and enemies's shots*/
+    //collisions between player and enemies's shots
     for(unsigned int j=0; j<enemies.size(); j++)
     {
         for(int i=0; i<enemies[j]->getShotsSize(); i++)
         {
-            if (collision(enemies[j],m_player,i))
+            if (detectCollisions(enemies[j],m_player,i))
             {
                 m_player->loseLife((enemies[j]->getShot(i))->getDamages());
                 if (m_player->die()==true)
@@ -235,7 +238,12 @@ void Game_Model::collisions()
     }
 }
 
-bool Game_Model::collision(const Ship* a, const Ship* b, int i)
+// -- detectCollisions --------------------------
+// Detect all the types of collisions
+// * out-parameters :
+// - "coll", bool : says if there was a collision or not
+// ----------------------------------------------
+bool Game_Model::detectCollisions(const Ship* a, const Ship* b, int i)
 {
     int x, y, w, h;
     bool coll = true;
@@ -258,6 +266,8 @@ bool Game_Model::collision(const Ship* a, const Ship* b, int i)
 
 // -- getPlayer ---------------------------------
 // Returns the player
+// * out-parameters :
+// - "m_player" : the player itself
 // ----------------------------------------------
 Player* Game_Model::getPlayer() const
 {
@@ -266,6 +276,11 @@ Player* Game_Model::getPlayer() const
 
 // -- getPlayerSetings --------------------------
 // Returns the player's position and size
+// * out-parameters :
+// - "x", int : horizontal player's position
+// - "y", int : vertical player's position
+// - "w", int : player's width
+// - "h", int : player's height
 // ----------------------------------------------
 void Game_Model::getPlayerSettings(int &x, int &y, int &w, int &h) const
 {
@@ -277,6 +292,10 @@ void Game_Model::getPlayerSettings(int &x, int &y, int &w, int &h) const
 
 // -- getEnemy ----------------------------------
 // Returns a specified enemy
+// *in-parameters :
+// - "nb", int : index of the enemy in the "enemies" vector
+// * out-parameters :
+// - "enemies[nb] : Enemy*
 // ----------------------------------------------
 Enemy* Game_Model::getEnemy(int nb) const
 {
@@ -285,6 +304,8 @@ Enemy* Game_Model::getEnemy(int nb) const
 
 // -- getEnemiesSize ----------------------------
 // Returns the size of the vector "enemies", so the number of enemies
+// * out-parameters :
+// - "enemies.size", int : the size of the "enemies" vector
 // ----------------------------------------------
 int Game_Model::getEnemiesSize() const
 {
@@ -293,6 +314,16 @@ int Game_Model::getEnemiesSize() const
 
 // -- getEnemySettings --------------------------
 // Returns the enemy's position and size
+// * in-parameters :
+// - "x", int : horizontal player's position
+// - "y", int : vertical player's position
+// - "w", int : player's width
+// - "h", int : player's height
+// * out-parameters :
+// - "x", int : horizontal player's position
+// - "y", int : vertical player's position
+// - "w", int : player's width
+// - "h", int : player's height
 // ----------------------------------------------
 void Game_Model::getEnemySettings(int &x, int &y, int &w, int &h, int i) const
 {
@@ -302,16 +333,33 @@ void Game_Model::getEnemySettings(int &x, int &y, int &w, int &h, int i) const
     h = enemies[i]->getH();
 }
 
+// -- getScore ----------------------------------
+// Returns  the player's score
+// * out-parameters :
+// - "m_score", int : curent player's score
+// ----------------------------------------------
 int Game_Model::getScore() const
 {
     return m_score;
 }
 
+// -- getLevelChange ----------------------------
+// Says if the player is changing from a level to another one
+// * out-parameters :
+// - "_level_change", bool : says if the player is changing from a level to another one
+// ----------------------------------------------
 bool Game_Model::getLevelChange() const
 {
     return _level_change;
 }
 
+// -- setLevelChange ----------------------------
+// Sets the level changing state to true or false
+// * in-parameters :
+// - "level_change", bool : level changing state
+// * out-parameters :
+// - "_level_change", bool : level changing state
+// ----------------------------------------------
 void Game_Model::setLevelChange(bool level_change)
 {
     _level_change = level_change;

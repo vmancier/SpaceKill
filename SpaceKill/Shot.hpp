@@ -23,7 +23,6 @@ private:
     float m_damage;
 
 public:
-    Shot();
     Shot(int style, int x, int y, float xSpeed, float ySpeed);
 
     void shotSettings(int style, int x, int y,float xSpeed, float ySpeed);

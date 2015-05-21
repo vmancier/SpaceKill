@@ -88,6 +88,7 @@ bool Ship::die()
 
 // -- moveShotsShip -----------------------------
 // Moves the ship's shots
+// - "timeldelta", float : time elapsed since the last main game loop turn
 // ----------------------------------------------
 void Ship::moveShotsShip(float timedelta)
 {
@@ -103,7 +104,9 @@ void Ship::moveShotsShip(float timedelta)
 }
 
 // -- shoot -------------------------------------
-// Makes the ship shoot
+// Makes the ship shoot according to the style of shot
+// * in-parameters :
+// - "timeldelta", float : time elapsed since the last main game loop turn
 // ----------------------------------------------
 void Ship::shoot(float timedelta)
 {
@@ -174,6 +177,9 @@ void Ship::shoot(float timedelta)
     }
 }
 
+// -- playShotSound -----------------------------
+// Plays a fire sound when ships are shooting
+// ----------------------------------------------
 void Ship::playShotSound()
 {
     !_shot_buffer.LoadFromFile("assets/shot.ogg");
@@ -181,6 +187,7 @@ void Ship::playShotSound()
     _shot_sound.SetVolume(3.0);
     _shot_sound.Play();
 }
+
 // -- setX --------------------------------------
 // Sets the horizontal ship's position
 // ----------------------------------------------
@@ -197,6 +204,9 @@ void Ship::setY(int y)
     m_y = y;
 }
 
+// -- setStyleShot ------------------------------
+// Sets the ship's style of shot
+// ----------------------------------------------
 void Ship::setStyleShot(int styleShot)
 {
     if(styleShot<=0)
@@ -215,6 +225,10 @@ void Ship::setStyleShot(int styleShot)
 
 // -- getShot -----------------------------------
 // Returns a specified shot
+// * in-parameters :
+// "nb", int : index of the shot to get
+// * out-parameters :
+// - "shots[nb]", vector : Shot*
 // ----------------------------------------------
 Shot* Ship::getShot(int nb)
 {
@@ -223,6 +237,12 @@ Shot* Ship::getShot(int nb)
 
 // -- getShotSettings ---------------------------
 // Return the shot's position and size
+// * in-parameters :
+// - "x", int : horizontal shot's position
+// - "y", int : vertical shot's position
+// - "w", int : shot's width
+// - "h", int : shot's height
+// - "i", int : index of the shot to get
 // ----------------------------------------------
 void Ship::getShotSettings(int &x, int &y, int &w, int &h, int i) const
 {
@@ -234,12 +254,19 @@ void Ship::getShotSettings(int &x, int &y, int &w, int &h, int i) const
 
 // -- getShotsSize ------------------------------
 // Returns the size of the vector "shots", so the number of shots
+// * out-paramters :
+// - "shots.size", int : number of shots in the "shots" vector
 // ----------------------------------------------
 int Ship::getShotsSize() const
 {
     return shots.size();
 }
 
+// -- eraseShot ---------------------------------
+// Erases a shot
+// * in-parameters :
+// - "nb", int : index of the shot delete
+// ----------------------------------------------
 void Ship::eraseShot(int nb)
 {
     shots.erase(shots.begin()+nb);
@@ -247,27 +274,39 @@ void Ship::eraseShot(int nb)
 
 // -- getLife -----------------------------------
 // Returns the ship's life
+// * out-parameters :
+// - "m_life", int : ship's life
 // ----------------------------------------------
 int Ship::getLife() const
 {
     return m_life;
 }
 
-// -- getCurrentHealth ---------------------------------
+// -- getCurrentHealth --------------------------
 // Returns the ship's current health
+// * out-parameters :
+// - "m_CurrentHealth", int : ship's health
 // ----------------------------------------------
 float Ship::getCurrentHealth() const
 {
     return m_currentHealth;
 }
 
+// -- getHealthMax ------------------------------
+// Returns the ship's maximum health
+// * out-parameters :
+// - "m_healthMax", int : ship's maximum health
+// ----------------------------------------------
 float Ship::getHealthMax() const
 {
     return m_healthMax;
 }
 
+
 // -- getX --------------------------------------
 // Returns the horizontal ship's position
+// * out-parameters :
+// - "m_x", int : horizontal ship's position
 // ----------------------------------------------
 int Ship::getX() const
 {
@@ -276,6 +315,8 @@ int Ship::getX() const
 
 // -- getY --------------------------------------
 // Returns the vertical ship's position
+// * out-parameters :
+// - "m_y", int : vertical ship's position
 // ----------------------------------------------
 int Ship::getY() const
 {
@@ -284,6 +325,8 @@ int Ship::getY() const
 
 // -- getW --------------------------------------
 // Returns the ship's width
+// * out-parameters :
+// - "m_w", int : ship's width
 // ----------------------------------------------
 int Ship::getW() const
 {
@@ -292,28 +335,39 @@ int Ship::getW() const
 
 // -- getH --------------------------------------
 // Returns the ship's height
+// * out-parameters :
+// - "m_h", int : ship's height
 // ----------------------------------------------
 int Ship::getH() const
 {
     return m_h;
 }
 
-// -- getX_speed -------------------------------
+// -- getX_speed --------------------------------
 // Returns the horizontal ship's speed
+// * out-parameters :
+// - "m_x_speed", int : horizontal ship's speed
 // ----------------------------------------------
 int Ship::getX_speed() const
 {
     return m_x_speed;
 }
 
-// -- getY_speed -------------------------------
+// -- getY_speed --------------------------------
 // Returns the vertical ship's speed
+// * out-parameters :
+// - "m_y_speed", int : vertical ship's speed
 // ----------------------------------------------
 int Ship::getY_speed() const
 {
     return m_y_speed;
 }
 
+// -- getStyleShot ------------------------------
+// Returns the ship's style
+// * out-parameters :
+// - "m_styleShot", int : ship's style
+// ----------------------------------------------
 int Ship::getStyleShot() const
 {
     return m_styleShot;

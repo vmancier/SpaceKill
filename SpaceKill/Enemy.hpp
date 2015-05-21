@@ -15,15 +15,14 @@ class Enemy : public Ship
 {
 private:
     int m_style;
-    int m_value;
+    int m_value;    //number of points earned by the player when the ennemy is killed
 
 public:
-    Enemy();
-    Enemy(int x, int y, int w, int h, float x_speed, float y_speed, int health, int value, int styleShot, int style);
     Enemy(int x, int style);
 
-    void moveForward(float timedelta);
     void setEnemySettings(float coef);
+    void moveForward(float timedelta);
+
     int getStyle() const;
     int getValue() const;
 };

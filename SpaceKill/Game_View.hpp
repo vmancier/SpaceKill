@@ -88,7 +88,6 @@ public:
     void drawAnimation(float t);
     void drawTitle();
 
-
     /** Menu **/
     void drawMenu();
     void drawButtons();

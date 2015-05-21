@@ -14,37 +14,11 @@
 using namespace std;
 
 // -- Enemy -------------------------------------
-// Builds by default an object "enemy"
-// * out-parameters :
-// - "enemy", object : the enemy itself
-// ----------------------------------------------
-Enemy::Enemy()
-{
-    m_value = 0;
-}
-
-// -- Enemy -------------------------------------
-// Builds an object "enemy"
+// Builds an object "enemy" depending of his style
 // * in-parameters :
 // - "x", int : horizontal position of the enemy
-// - "y", int : vertical position of the enemy
-// - "w", int : width of the enemy
-// - "h", int : height of the enemy
-// - "x_speed", float : horizontal speed of the enemy
-// - "y_speed", float : horizontal speed of the enemy
-// - "health", int : level of the enemy's health
 // - "style", int : number of the enemy's style
-// - "value", int : number of points won by the player when he shots the enemy
-// - "styleShot" : number of the enemy's shoot's style
 // ----------------------------------------------
-Enemy::Enemy(int x, int y, int w, int h, float x_speed, float y_speed, int health, int value, int styleShot, int style)
-    :Ship(x, y, w, h, x_speed, y_speed, health, styleShot), m_style(style), m_value(value)
-{
-    m_fireRate = DEFAULT_SHOT_FIRERATE;
-    m_direction=1;
-    m_elapsedTime=0;
-}
-
 Enemy::Enemy(int x, int style)
 {
     m_style = style;
@@ -82,6 +56,11 @@ Enemy::Enemy(int x, int style)
     m_currentHealth=m_healthMax;
 }
 
+// -- setEnemySettings --------------------------
+// Set the enemies's parameters
+// * in-parameter :
+// - "coef", float : determinates the enemies's difficulty
+// ----------------------------------------------
 void Enemy::setEnemySettings(float coef)
 {
     m_x_speed = DEFAULT_ENEMY_X_SPEED*coef;
@@ -97,8 +76,8 @@ void Enemy::setEnemySettings(float coef)
 
 // -- moveForward -------------------------------
 // Moves the enemy forward
-// * out-parameters :
-// - m_y, int : modified enemy's position
+// * in-parameters :
+// - "timeldelta", float : time elapsed since the last main game loop turn
 // ----------------------------------------------
 void Enemy::moveForward(float timedelta)
 {
@@ -115,6 +94,11 @@ int Enemy::getStyle() const
     return m_style;
 }
 
+// -- getValue ----------------------------------
+// Gets the number of the enemy's value
+// * out-parameters :
+// - "m_value", int : number of the enemy's value
+// ----------------------------------------------
 int Enemy::getValue() const
 {
     return m_value;

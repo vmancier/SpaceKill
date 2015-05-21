@@ -43,7 +43,6 @@ int main()
     timedelta=0;
     while(view->treatEvents(timedelta))
     {
-
         clock.Reset();
         view->drawGame();
         model->nextStep(timedelta);

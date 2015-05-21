@@ -17,14 +17,6 @@ using namespace std;
 using namespace sf;
 
 // -- Player -------------------------------------
-// Builds by default an object "player"
-// ----------------------------------------------
-Player::Player():Ship()
-{
-
-}
-
-// -- Player -------------------------------------
 // Builds an object "player"
 // * in-parameters :
 // - "x", int : horizontal position of the player
@@ -47,6 +39,16 @@ Player::Player(int x, int y, int w, int h, float x_speed, float y_speed, int hea
 
 // -- moveP -------------------------------------
 // Moves the player
+// * in-parameters :
+// - "LeftKeyDown1", bool : the left arrow key
+// - "LeftKeyDown2", bool : the 'q' key
+// - "RightKeyDown1", bool : the right arrow key
+// - "RightKeyDown2", bool : the 'd' key
+// - "UpKeyDown1", bool : the up arrow key
+// - "UpKeyDown2", bool : the 'z' key
+// - "DownKeyDown1", bool : the down arrow key
+// - "DownKeyDown2", bool : the 's' key
+// - "timeldelta", float : time elapsed since the last main game loop turn
 // ----------------------------------------------
 void Player::moveP(bool LeftKeyDown1, bool LeftKeyDown2, bool RightKeyDown1, bool RightKeyDown2, bool UpKeyDown1, bool UpKeyDown2, bool DownKeyDown1, bool DownKeyDown2, float timedelta)
 {
@@ -61,7 +63,6 @@ void Player::moveP(bool LeftKeyDown1, bool LeftKeyDown2, bool RightKeyDown1, boo
             setX(0);
         }
     }
-
     if (RightKeyDown1 || RightKeyDown2)
     {
         int limit = m_x+m_w+m_x_speed*timedelta;
@@ -74,7 +75,6 @@ void Player::moveP(bool LeftKeyDown1, bool LeftKeyDown2, bool RightKeyDown1, boo
             setX(MODEL_WIDTH-m_w);
         }
     }
-
     if(UpKeyDown1 || UpKeyDown2)
     {
         if (m_y-m_y_speed*timedelta > 0)
@@ -86,7 +86,6 @@ void Player::moveP(bool LeftKeyDown1, bool LeftKeyDown2, bool RightKeyDown1, boo
             setY(0);
         }
     }
-
     if(DownKeyDown1 || DownKeyDown2)
     {
         int limit = m_y+m_h+m_y_speed*timedelta;

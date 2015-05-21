@@ -45,6 +45,7 @@ private:
     sf::Image _shot2_image;
     sf::Image _title_image;
     sf::Image _transition_image;
+    sf::Image _gameover_image;
 
     sf::Sprite _background_sprite;
     sf::Sprite _button1_sprite;
@@ -67,6 +68,7 @@ private:
     sf::Sprite _shot2_sprite;
     sf::Sprite _title_sprite;
     sf::Sprite _transition_sprite;
+    sf::Sprite _gameover_sprite;
 
     sf::Font _minimal_font;
     sf::String _score_string;

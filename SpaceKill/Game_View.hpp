@@ -44,6 +44,7 @@ private:
     sf::Image _shot1_image;
     sf::Image _shot2_image;
     sf::Image _title_image;
+    sf::Image _transition_image;
 
     sf::Sprite _background_sprite;
     sf::Sprite _button1_sprite;
@@ -65,6 +66,7 @@ private:
     sf::Sprite _shot1_sprite;
     sf::Sprite _shot2_sprite;
     sf::Sprite _title_sprite;
+    sf::Sprite _transition_sprite;
 
     sf::Font _minimal_font;
     sf::String _score_string;
@@ -101,6 +103,7 @@ public:
     void drawHealth();
     void drawHealthLevel(int x);
     void drawScore();
+    void drawTransition(sf::Clock m_clock);
 
     bool treatEvents(float timedelta);
     bool treatMenuEvents();

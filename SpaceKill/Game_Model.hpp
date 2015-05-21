@@ -35,6 +35,7 @@ private:
     std::vector<Enemy*> enemies;
     sf::SoundBuffer _shot_buffer;
     sf::Sound _shot_sound;
+    bool _level_change;
 
 public:
     Game_Model();
@@ -60,7 +61,11 @@ public:
     int getLevelNumber() const;
     int getScore() const;
 
+    void setLevelChange(bool level_change);
+    bool getLevelChange() const;
+
     void playShotSound();
+    void loadLevel();
 };
 
 #endif // GAME_MODEL_HPP_INCLUDED

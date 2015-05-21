@@ -53,6 +53,7 @@ Game_View::Game_View(int w, int h, int bpp): _w(w), _h(h)
             !_shot2_image.LoadFromFile("assets/shot2.png") ||
             !_title_image.LoadFromFile("assets/title.png") ||
             !_minimal_font.LoadFromFile("assets/minimal.ttf") ||
+            !_transition_image.LoadFromFile("assets/transition.png") ||
             !_music.OpenFromFile("assets/music.ogg"))
     {
         _background_sprite = Sprite();
@@ -76,6 +77,7 @@ Game_View::Game_View(int w, int h, int bpp): _w(w), _h(h)
         _shot2_sprite = Sprite();
         _title_sprite = Sprite();
         _minimal_font = Font();
+        _transition_sprite = Sprite();
     }
     else
     {
@@ -104,6 +106,7 @@ Game_View::Game_View(int w, int h, int bpp): _w(w), _h(h)
         _shot1_sprite = Sprite(_shot1_image);
         _shot2_sprite = Sprite(_shot2_image);
         _title_sprite = Sprite(_title_image);
+        _transition_sprite = Sprite(_transition_image);
     }
 }
 
@@ -464,4 +467,18 @@ void Game_View::playMusic(bool loop)
     }
     _music.SetVolume(10.0);
     _music.Play();
+}
+
+void Game_View::drawTransition(sf::Clock m_clock)
+{
+    float time = 0.0;
+    float duration = 50.0;
+    float timetogo = duration;
+    while(timetogo > 0.0)
+    {
+        time = m_clock.GetElapsedTime();
+        drawSprite(0, 0, 440, 720, _transition_sprite);
+        _window->Display();
+        timetogo -= time;
+    }
 }

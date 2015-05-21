@@ -10,6 +10,7 @@
 #include <iostream>
 #include "Game_Model.hpp"
 #include "Entities.hpp"
+#include "Game_View.hpp"
 
 #include <cstdlib>  //necessaire pour le rand() du x
 #include <math.h>
@@ -44,6 +45,7 @@ Game_Model::Game_Model(int w, int h): _w(w), _h(h)
     Level(0);
     _levelProgress=0;
     m_score=0;
+    _level_change = false;
 }
 
 // -- ~Game_Model --------------------------------
@@ -70,6 +72,11 @@ void Game_Model::nextStep(float timedelta)
     moveShots(timedelta);
     moveEnemies(timedelta);
     collisions();
+    loadLevel();
+}
+
+void Game_Model::loadLevel()
+{
     if (_levelProgress >=10.0)
     {
         _levelStyle++;
@@ -82,9 +89,9 @@ void Game_Model::nextStep(float timedelta)
         enemies.clear();
         Level(_levelStyle);
         m_player->setStyleShot(m_player->getStyleShot()+1);
+        _level_change = true;
     }
 }
-
 // -- Level -------------------------------------
 // Creates a level according to the current state of game
 // ----------------------------------------------
@@ -191,7 +198,7 @@ int Game_Model::getLevelNumber() const
 
 void Game_Model::collisions()
 {
-     /*collisions between enemies and player's shots*/
+    /*collisions between enemies and player's shots*/
     for(int i=0; i<m_player->getShotsSize(); i++)
     {
         for(unsigned int j=0; j<enemies.size(); j++)
@@ -309,3 +316,12 @@ void Game_Model::playShotSound()
     _shot_sound.Play();
 }
 
+bool Game_Model::getLevelChange() const
+{
+    return _level_change;
+}
+
+void Game_Model::setLevelChange(bool level_change)
+{
+    _level_change = level_change;
+}

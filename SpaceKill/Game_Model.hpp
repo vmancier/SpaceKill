@@ -14,11 +14,6 @@
 #include "Enemy.hpp"
 #include "Shot.hpp"
 
-#include <SFML/System.hpp>
-#include <SFML/Graphics.hpp>
-#include <SFML/Window.hpp>
-#include <SFML/Audio.hpp>
-
 #include <vector>
 
 class Game_Model
@@ -33,8 +28,6 @@ private:
     float _lastSpawn;
     Player * m_player;
     std::vector<Enemy*> enemies;
-    sf::SoundBuffer _shot_buffer;
-    sf::Sound _shot_sound;
     bool _level_change;
 
 public:

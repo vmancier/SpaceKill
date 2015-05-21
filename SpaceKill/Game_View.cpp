@@ -478,14 +478,37 @@ void Game_View::playMusic(bool loop)
 
 void Game_View::drawTransition(sf::Clock m_clock)
 {
-    float time = 0.0;
-    float duration = 50.0;
-    float timetogo = duration;
-    while(timetogo > 0.0)
+    bool levelchange = _model->getLevelChange();
+    if(levelchange)
     {
-        time = m_clock.GetElapsedTime();
-        drawSprite(0, 0, 440, 720, _transition_sprite);
-        _window->Display();
-        timetogo -= time;
+        _model->setLevelChange(false);
+        float time = 0.0;
+        float duration = 50.0;
+        float timetogo = duration;
+        while(timetogo > 0.0)
+        {
+            time = m_clock.GetElapsedTime();
+            drawSprite(0, 0, 440, 720, _transition_sprite);
+            _window->Display();
+            timetogo -= time;
+        }
+    }
+}
+
+void Game_View::drawGameOver()
+{
+    bool dead = _model->getPlayer()->die();
+    if(dead)
+    {
+        //float time = 0.0;
+        //float duration = 50.0;
+        //float timetogo = duration;
+        while(true)//timetogo > 0.0)
+        {
+            //time = m_clock.GetElapsedTime();
+            drawSprite(0, 0, 440, 720, _gameover_sprite);
+            _window->Display();
+            //timetogo -= time;
+        }
     }
 }

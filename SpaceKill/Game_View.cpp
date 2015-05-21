@@ -435,57 +435,6 @@ void Game_View::drawScore()
     _window->Draw(_score_string);
 }
 
-// -- drawTransition ----------------------------
-// Draws the transition when a level is changing
-// * in-parameters :
-// - "m_clock", Clock
-// ----------------------------------------------
-void Game_View::drawTransition(sf::Clock m_clock)
-{
-    bool levelchange = _model->getLevelChange();
-    if(levelchange)
-    {
-        _model->setLevelChange(false);
-        float time = 0.0;
-        float duration = 50.0;
-        float timetogo = duration;
-        while(timetogo > 0.0)
-        {
-            time = m_clock.GetElapsedTime();
-            drawSprite(0, 0, 440, 720, _transition_sprite);
-            _window->Display();
-            timetogo -= time;
-        }
-    }
-}
-
-// -- drawGameOver ------------------------------
-// Draws the "Game Over" screen when the player is dead
-// ----------------------------------------------
-void Game_View::drawGameOver()
-{
-    bool dead = _model->getPlayer()->die();
-    sf::Event _gameover_event;
-
-    if(dead)
-    {
-        while(true)
-        {
-            drawSprite(0, 0, 440, 720, _gameover_sprite);
-            _window->Display();
-
-            _window->GetEvent(_gameover_event);
-            const sf::Input &gameoverInput = _window->GetInput();
-            bool EscapeKeyDown = gameoverInput.IsKeyDown(sf::Key::Escape);
-            if (EscapeKeyDown)
-            {
-                _window->Close();
-            }
-        }
-
-    }
-}
-
 // -- treatEvents -------------------------------
 // Treat the game's events
 // ----------------------------------------------
@@ -568,6 +517,11 @@ void Game_View::playMusic(bool loop)
     _music.Play();
 }
 
+// -- drawTransition ----------------------------
+// Draws the transition when a level is changing
+// * in-parameters :
+// - "m_clock", Clock
+// ----------------------------------------------
 void Game_View::drawTransition(sf::Clock m_clock)
 {
     bool levelchange = _model->getLevelChange();
@@ -587,6 +541,9 @@ void Game_View::drawTransition(sf::Clock m_clock)
     }
 }
 
+// -- drawGameOver ------------------------------
+// Draws the "Game Over" screen when the player is dead
+// ----------------------------------------------
 void Game_View::drawGameOver()
 {
     bool dead = _model->getPlayer()->die();

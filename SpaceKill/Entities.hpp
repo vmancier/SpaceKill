@@ -32,8 +32,8 @@ const float SPAWNRATE_7 = 0.3;
 /************* PLAYER ************/
 const int PLAYER_WIDTH = 30;
 const int PLAYER_HEIGHT = 50;
-const float PLAYER_X_SPEED = 400.0;
-const float PLAYER_Y_SPEED = 400.0;
+const float PLAYER_X_SPEED = 250.0;
+const float PLAYER_Y_SPEED = 250.0;
 const int DEFAULT_PLAYER_DIRECTION = -1;
 const int DEFAULT_PLAYER_LIFE = 3;
 const int PLAYER_HEALTH = 300;
@@ -58,7 +58,7 @@ const int DEFAULT_ENEMY_DIRECTION = 1;
 
 /************* SHOTS ************/
 const float DEFAULT_SHOT_FIRERATE = 1.0;
-const int SHOT_SPEED = 200;
+const int SHOT_SPEED = 300;
 const int DEFAULT_SHOT_WIDTH = 10;
 const int DEFAULT_SHOT_HEIGHT = 30;
 const float SHOT_0_DAMAGE = 70.0;

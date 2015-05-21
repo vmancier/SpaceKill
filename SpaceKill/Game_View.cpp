@@ -338,39 +338,11 @@ void Game_View::drawLife()  //nombre de vies
 void Game_View::drawHealth()    //niveau de la vie en cours
 {
     int lifeLevel = (_model->getPlayer()->getCurrentHealth()/_model->getPlayer()->getHealthMax())*100;
-    switch (lifeLevel)
+    if (lifeLevel ==0)
     {
-    case 100:
-        drawHealthLevel(200);
-        break;
-    case 90:
-        drawHealthLevel(179);
-        break;
-    case 80:
-        drawHealthLevel(159);
-        break;
-    case 70:
-        drawHealthLevel(139);
-        break;
-    case 60:
-        drawHealthLevel(119);
-        break;
-    case 50:
-        drawHealthLevel(99);
-        break;
-    case 40:
-        drawHealthLevel(79);
-        break;
-    case 30:
-        drawHealthLevel(59);
-        break;
-    case 20:
-        drawHealthLevel(39);
-        break;
-    case 10:
-        drawHealthLevel(19);
-        break;
+        lifeLevel=100;
     }
+    drawHealthLevel(2*lifeLevel-1);
 }
 
 void Game_View::drawHealthLevel(int x)

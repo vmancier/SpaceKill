@@ -72,6 +72,10 @@ void Ship::loseLife(int damages)
         m_currentHealth = m_healthMax;
         m_life--;
     }
+    if (m_styleShot>=1)
+    {
+        m_styleShot--;
+    }
 }
 
 // -- die ---------------------------------------

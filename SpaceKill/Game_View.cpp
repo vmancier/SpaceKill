@@ -33,7 +33,7 @@ Game_View::Game_View(int w, int h, int bpp): _w(w), _h(h)
     _window->SetFramerateLimit(60);
     run= true;
 
-    if (!_background_image.LoadFromFile("assets/background.JPG") ||
+    if (!_background_image.LoadFromFile("assets/background.jpg") ||
             !_button1_image.LoadFromFile("assets/button1.png") ||
             !_button2_image.LoadFromFile("assets/button2.png") ||
             !_headband_image.LoadFromFile("assets/headband.png") ||
@@ -153,7 +153,7 @@ void Game_View::drawBackground()
 {
     drawSprite(0,_y_background, MODEL_WIDTH, MODEL_HEIGHT,_background_sprite);
     drawSprite(0,-MODEL_HEIGHT+_y_background, MODEL_WIDTH, MODEL_HEIGHT,_background_sprite);
-    _y_background += 1 ;
+    _y_background += 0.8 ;
     if (_y_background >= MODEL_HEIGHT)
     {
         _y_background =0;
@@ -430,7 +430,7 @@ void Game_View::drawScore()
     _score_string.SetText(str);
     _score_string.SetFont(_minimal_font);
     _score_string.SetSize(20);
-    _score_string.SetPosition(320, -5);
+    _score_string.SetPosition(310, -5);
     _score_string.SetColor(sf::Color(0, 0, 0));
     _window->Draw(_score_string);
 }
@@ -479,17 +479,25 @@ bool Game_View::treatMenuEvents()
     bool LeftMouseKeyDown = menuInput.IsMouseButtonDown(sf::Mouse::Left);
     bool EscapeKeyDown = menuInput.IsKeyDown(sf::Key::Escape);
 
-    if ((LeftMouseKeyDown) && (_menu_event.MouseButton.X > _button1_sprite.GetPosition().x) && (_menu_event.MouseButton.X < (_button1_sprite.GetSize().x)+(_button1_sprite.GetPosition().x)) && (_menu_event.MouseButton.Y > _button1_sprite.GetPosition().y) && (_menu_event.MouseButton.Y < (_button1_sprite.GetSize().y)+(_button1_sprite.GetPosition().y)))
+    if ((LeftMouseKeyDown) && (_menu_event.MouseButton.X > _button1_sprite.GetPosition().x)
+         && (_menu_event.MouseButton.X < (_button1_sprite.GetSize().x)+(_button1_sprite.GetPosition().x))
+         && (_menu_event.MouseButton.Y > _button1_sprite.GetPosition().y)
+         && (_menu_event.MouseButton.Y < (_button1_sprite.GetSize().y)+(_button1_sprite.GetPosition().y)))
     {
         runMenu = false;
     }
-    if ((LeftMouseKeyDown) && (_menu_event.MouseButton.X > _button2_sprite.GetPosition().x) && (_menu_event.MouseButton.X < (_button2_sprite.GetSize().x)+(_button2_sprite.GetPosition().x)) && (_menu_event.MouseButton.Y > _button2_sprite.GetPosition().y) && (_menu_event.MouseButton.Y < (_button2_sprite.GetSize().y)+(_button2_sprite.GetPosition().y)))
+    if ((LeftMouseKeyDown) && (_menu_event.MouseButton.X > _button2_sprite.GetPosition().x)
+        && (_menu_event.MouseButton.X < (_button2_sprite.GetSize().x)+(_button2_sprite.GetPosition().x))
+        && (_menu_event.MouseButton.Y > _button2_sprite.GetPosition().y)
+        && (_menu_event.MouseButton.Y < (_button2_sprite.GetSize().y)+(_button2_sprite.GetPosition().y)))
     {
         _window->Close();
+        run = false;
     }
     if (EscapeKeyDown)
     {
         _window->Close();
+        run = false;
     }
     return runMenu;
 }

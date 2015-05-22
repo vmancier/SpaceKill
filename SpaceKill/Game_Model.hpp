@@ -42,7 +42,6 @@ public:
     void moveShots(float timedelta);
     void manageCollisions();
     bool detectCollisions(const Ship* a, const Ship* b, int i);
-    void playShotSound();
     void loadLevel();
 
     Player* getPlayer() const;

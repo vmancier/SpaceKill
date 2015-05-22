@@ -53,6 +53,7 @@ Ship::~Ship()
     for(unsigned int i = 0; i<shots.size(); i++)
     {
         delete shots[i];
+        shots.clear();
     }
 }
 
@@ -112,7 +113,7 @@ void Ship::moveShotsShip(float timedelta)
 // * in-parameters :
 // - "timeldelta", float : time elapsed since the last main game loop turn
 // ----------------------------------------------
-void Ship::shoot(float timedelta)
+void Ship::shoot(float timedelta, int speed)
 {
     m_elapsedTime += timedelta;
     if (m_elapsedTime>m_fireRate)
@@ -122,57 +123,57 @@ void Ship::shoot(float timedelta)
         {
         case 0:
         {
-            Shot* shot0 = new Shot(0, m_x+m_w/2, m_y+m_h/3, 0, m_direction*SHOT_SPEED);
+            Shot* shot0 = new Shot(0, m_x+m_w/2, m_y+m_h/3, 0, m_direction*speed);
             shots.push_back(shot0);
         }
         break;
         case 1:
         {
-            Shot* shot1 = new Shot(1, m_x+m_w/2, m_y+m_h/3,0 , m_direction*SHOT_SPEED);
+            Shot* shot1 = new Shot(1, m_x+m_w/2, m_y+m_h/3,0 , m_direction*speed);
             shots.push_back(shot1);
         }
         break;
         case 2:
         {
-            Shot* shot2 = new Shot(1, m_x+m_w/2, m_y+m_h/3, 0, m_direction*SHOT_SPEED);
+            Shot* shot2 = new Shot(1, m_x+m_w/2, m_y+m_h/3, 0, m_direction*speed);
             shots.push_back(shot2);
-            Shot* shotLeft2 = new Shot(2, m_x, m_y+m_h/2, 0, m_direction*SHOT_SPEED);
+            Shot* shotLeft2 = new Shot(2, m_x, m_y+m_h/2, 0, m_direction*speed);
             shots.push_back(shotLeft2);
-            Shot* shotRight2 = new Shot(2, m_x+m_w, m_y+m_h/2, 0, m_direction*SHOT_SPEED);
+            Shot* shotRight2 = new Shot(2, m_x+m_w, m_y+m_h/2, 0, m_direction*speed);
             shots.push_back(shotRight2);
         }
         break;
         case 3:
         {
-            Shot* shot3 = new Shot(2, m_x+m_w/2, m_y+m_h/3, 0, m_direction*SHOT_SPEED);
+            Shot* shot3 = new Shot(2, m_x+m_w/2, m_y+m_h/3, 0, m_direction*speed);
             shots.push_back(shot3);
-            Shot* shotLeft3 = new Shot(3, m_x, m_y+m_h/2,0, m_direction*SHOT_SPEED);
+            Shot* shotLeft3 = new Shot(3, m_x, m_y+m_h/2,0, m_direction*speed);
             shots.push_back(shotLeft3);
-            Shot* shotRight3 = new Shot(3, m_x+m_w, m_y+m_h/2, 0, m_direction*SHOT_SPEED);
+            Shot* shotRight3 = new Shot(3, m_x+m_w, m_y+m_h/2, 0, m_direction*speed);
             shots.push_back(shotRight3);
         }
         break;
         case 4:
         {
-            Shot* shot4 = new Shot(3, m_x+m_w/2, m_y+m_h/3, 0, m_direction*SHOT_SPEED);
+            Shot* shot4 = new Shot(3, m_x+m_w/2, m_y+m_h/3, 0, m_direction*speed);
             shots.push_back(shot4);
-            Shot* shotLeftD4 = new Shot(4, m_x-10, m_y+m_h/2, m_direction*SHOT_SPEED, m_direction*SHOT_SPEED);
+            Shot* shotLeftD4 = new Shot(4, m_x-10, m_y+m_h/2, m_direction*speed, m_direction*speed);
             shots.push_back(shotLeftD4);
-            Shot* shotRightD4 = new Shot(4, m_x+m_w+10, m_y+m_h/2, -m_direction*SHOT_SPEED, m_direction*SHOT_SPEED);
+            Shot* shotRightD4 = new Shot(4, m_x+m_w+10, m_y+m_h/2, -m_direction*speed, m_direction*speed);
             shots.push_back(shotRightD4);
         }
         break;
         case 5:
         {
-            Shot* shot5 = new Shot(3, m_x+m_w/2, m_y+m_h/3, 0, m_direction*SHOT_SPEED);
+            Shot* shot5 = new Shot(3, m_x+m_w/2, m_y+m_h/3, 0, m_direction*speed);
             shots.push_back(shot5);
-            Shot* shotLeft5 = new Shot(4, m_x, m_y+m_h/2, 0, m_direction*SHOT_SPEED);
+            Shot* shotLeft5 = new Shot(4, m_x, m_y+m_h/2, 0, m_direction*speed);
             shots.push_back(shotLeft5);
-            Shot* shotRight5 = new Shot(4, m_x+m_w, m_y+m_h/2, 0, m_direction*SHOT_SPEED);
+            Shot* shotRight5 = new Shot(4, m_x+m_w, m_y+m_h/2, 0, m_direction*speed);
             shots.push_back(shotRight5);
-            Shot* shotLeftD5 = new Shot(5, m_x-10, m_y+m_h/2, m_direction*SHOT_SPEED, m_direction*SHOT_SPEED);
+            Shot* shotLeftD5 = new Shot(5, m_x-10, m_y+m_h/2, m_direction*speed, m_direction*speed);
             shots.push_back(shotLeftD5);
-            Shot* shotRightD5 = new Shot(5, m_x+m_w+10, m_y+m_h/2, -m_direction*SHOT_SPEED, m_direction*SHOT_SPEED);
+            Shot* shotRightD5 = new Shot(5, m_x+m_w+10, m_y+m_h/2, -m_direction*speed, m_direction*speed);
             shots.push_back(shotRightD5);
         }
         break;

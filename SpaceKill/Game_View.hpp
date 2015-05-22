@@ -20,7 +20,7 @@ class Game_View
 {
 private:
     int _w, _h;
-    int _y_background;
+    float _y_background;
     bool run;
 
     sf::RenderWindow * _window;

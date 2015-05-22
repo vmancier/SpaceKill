@@ -24,7 +24,7 @@ Enemy::Enemy(int x, int style)
     m_style = style;
     m_elapsedTime=0;
     m_direction=DEFAULT_ENEMY_DIRECTION;
-    m_fireRate = DEFAULT_SHOT_FIRERATE;
+    m_fireRate = DEFAULT_ENEMY_FIRERATE;
     switch(style)
     {
     case 0:

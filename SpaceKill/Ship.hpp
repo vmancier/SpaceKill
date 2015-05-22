@@ -49,7 +49,7 @@ public:
     void loseLife(int damages);
     bool die();
     void moveShotsShip(float timedelta);
-    void shoot(float timedelta);
+    void shoot(float timedelta, int speed);
     void playShotSound();
 
     void setX(int x);

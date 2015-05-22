@@ -34,7 +34,7 @@ Player::Player(int x, int y, int w, int h, float x_speed, float y_speed, int hea
     m_life = DEFAULT_PLAYER_LIFE;
     m_direction=DEFAULT_PLAYER_DIRECTION;
     m_elapsedTime=0;
-    m_fireRate = DEFAULT_SHOT_FIRERATE;
+    m_fireRate = DEFAULT_PLAYER_FIRERATE;
 }
 
 // -- moveP -------------------------------------

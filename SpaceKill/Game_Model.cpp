@@ -53,7 +53,7 @@ void Game_Model::nextStep(float timedelta)
 {
     createEnemy(timedelta);
     shootEnemy(timedelta);
-    m_player->shoot(timedelta);
+    m_player->shoot(timedelta, PLAYER_SHOT_SPEED);
     moveShots(timedelta);
     moveEnemies(timedelta);
     manageCollisions();
@@ -169,7 +169,7 @@ void Game_Model::shootEnemy(float timedelta)
 {
     for(unsigned int i = 0; i<enemies.size(); i++)
     {
-        enemies[i]->shoot(timedelta);
+        enemies[i]->shoot(timedelta, ENEMY_SHOT_SPEED);
     }
 }
 
